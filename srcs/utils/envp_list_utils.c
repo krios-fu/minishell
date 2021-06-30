@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   envp_list_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jacgarci <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 11:10:56 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/06/30 13:37:04 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/06/30 18:45:01 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libminishell.h"
 
-t_envp	*ft_lstnew(char **line)
+t_envp	*ft_lstnew(void *content)
 {
 	t_envp	*new_list;
 
 	if (!(new_list = malloc(sizeof(new_list))))
 		return (0);
-	new_list->line = line;
+	new_list->content = content;
 	new_list->next = 0;
 	return (new_list);
 }
@@ -54,11 +54,11 @@ void	ft_lstadd_back(t_envp **alst, t_envp *new)
 t_envp	*fill_envp_list(char **envp)
 {
 	t_envp *envp_list;
-	envp_list = ft_lstnew(ft_split(*envp, '='));
+	envp_list = ft_lstnew(*envp);
 	envp++;
 	while (*envp)
 	{
-		ft_lstadd_back(&envp_list, ft_lstnew(ft_split(*envp, '=')));
+		ft_lstadd_back(&envp_list, ft_lstnew(*envp));
 		envp++;
 	}
 	return (envp_list);

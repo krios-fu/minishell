@@ -10,7 +10,7 @@ SRCS =	srcs/utils/envp_list_utils \
 SRCSM = $(addsuffix .c, $(SRCS))
 OBJS = $(SRCSM:.c=.o)
 
-LIBFT = 42cursus_libft/libft.a
+LIBFT = libft/libft.a
 
 # COMPILER #
 CC = gcc -Wall -Wextra -Werror
@@ -27,14 +27,15 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	@echo "$(BLUE)==========CREATING LIBFT==========$(RESET)"
-	@cd 42cursus_libft && make
-	@echo "$(BLUE)==========CREATING PIPEX==========$(RESET)"
+	@make -sC ./libft
+	@echo "$(BLUE)==========CREATING MINISHELL==========$(RESET)"
 	@$(CC) $(INCLUDES) ${OBJS} $(LIBFT) -o ${NAME}
-	@echo "Success creating pipex file"
+	@echo "Success creating minishell file"
 
 clean:
 	@$(RM) $(OBJS)
 	@echo "$(GREEN)==========REMOVED==========$(RESET)"
+	@make -sC ./libft/ fclean
 
 fclean: clean
 	@$(RM) ${NAME}
