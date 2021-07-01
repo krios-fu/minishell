@@ -6,7 +6,7 @@
 /*   By: jacgarci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 09:17:36 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/06/30 11:27:03 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/01 13:21:05 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,12 @@ void				ft_memdel(void **ptr);
 void				ft_strdel(char **strp);
 void				*ft_memalloc(size_t size);
 char				*ft_stradd_back(char *s1, char *s2);
-int					get_next_line(int fd, char **line);
+void				ft_lstadd_back(t_list **alst, t_list *new);
+void				ft_lstadd_front(t_list **alst, t_list *new);
+void				ft_lstiter(t_list *lst, void (*f)(void *));
+t_list				*ft_lstlast(t_list *lst);
+t_list				*ft_lstnew(void const *content);
+int					ft_lstsize(t_list *lst);
+void				ft_lstdelone(t_list **lst, void *content);
 
 #endif

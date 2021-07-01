@@ -4,7 +4,7 @@ INCLUDES = -I$(LIBFT) -I includes/
 NAME = minishell
 
 # SOURCES #
-SRCS =	srcs/utils/envp_list_utils \
+SRCS =	srcs/utils/list_utils \
 		srcs/utils/main
 
 SRCSM = $(addsuffix .c, $(SRCS))
