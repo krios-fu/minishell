@@ -12,8 +12,8 @@ OBJS = $(SRCSM:.c=.o)
 
 LIBFT = libft/libft.a
 
-# COMPILER #
-CC = gcc -Wall -Wextra -Werror
+# COMPILER FLAGS -lreadline for library <readline/readline.h> &&  <readline/history.h>#
+CC = gcc -Wall -Wextra -Werror -lreadline
 
 # COLOUR DEFINITION #
 BLUE = \033[0;34m
