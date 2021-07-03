@@ -17,6 +17,12 @@
 # define WHITE	"\033[0;37m"
 
 
+enum	e_boolean
+{
+	false,
+	true
+};
+
 /*
 ** Start structs for split line prompt 
 */
