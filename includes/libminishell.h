@@ -27,24 +27,25 @@ enum	e_boolean
 ** Start structs for split line prompt 
 */
 
-typedef struct s_operator
+typedef struct s_redirect
 {
+	char 		*dst;
 	char		*symbol;
-	t_token		*lst_token;
-	t_operator	*next;
-}				t_operator;
+	t_redirect	*next;
+}				t_redirect;
 
-typedef	struct s_token
+
+typedef	struct s_process
 {
 	char		*cmd;
-	char		**arg;
-	t_token		*next;
-}				t_token;
+	char		**argv;
+	t_redirect	*lst_redirect;
+	t_process	*next;
+}				t_process;
 
 typedef	struct s_data
 {
-	t_operator	*lst_operator;
-	
+	t_process	lst_process;
 }				t_data;
 
 /*
