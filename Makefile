@@ -5,7 +5,8 @@ NAME = minishell
 
 # SOURCES #
 SRCS =	srcs/utils/list_utils \
-		srcs/utils/main
+		srcs/utils/main srcs/prompt/prompt
+
 
 SRCSM = $(addsuffix .c, $(SRCS))
 OBJS = $(SRCSM:.c=.o)
@@ -13,7 +14,7 @@ OBJS = $(SRCSM:.c=.o)
 LIBFT = libft/libft.a
 
 # COMPILER FLAGS -lreadline for library <readline/readline.h> &&  <readline/history.h>#
-CC = gcc -Wall -Wextra -Werror -lreadline
+CC = gcc -Wall -Wextra -Werror 
 
 # COLOUR DEFINITION #
 BLUE = \033[0;34m
@@ -29,7 +30,7 @@ $(NAME): $(OBJS)
 	@echo "$(BLUE)==========CREATING LIBFT==========$(RESET)"
 	@make -sC ./libft
 	@echo "$(BLUE)==========CREATING MINISHELL==========$(RESET)"
-	@$(CC) $(INCLUDES) ${OBJS} $(LIBFT) -o ${NAME}
+	@$(CC) $(INCLUDES) ${OBJS} $(LIBFT) -o ${NAME} -lreadline
 	@echo "Success creating minishell file"
 
 clean:
