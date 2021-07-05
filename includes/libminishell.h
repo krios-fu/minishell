@@ -5,14 +5,24 @@
 # include <stdio.h>
 # include "../libft/libft.h"
 
-//struct for minishell variables
+/*
+** Struct for minishell variables
+*/
 typedef struct s_shell
 {
 	t_list	*envp_list;
 }			t_shell;
 
 
-//list functions
+/*
+** List functions
+*/
 t_list	*fill_envp_list(char **envp);
+
+/*
+** Builtins
+*/
+int ft_env(t_list *envp_list);
+int	ft_unset(t_list **envp_list, char *name);
 
 #endif

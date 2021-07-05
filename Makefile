@@ -4,8 +4,10 @@ INCLUDES = -I$(LIBFT) -I includes/
 NAME = minishell
 
 # SOURCES #
-SRCS =	srcs/utils/list_utils \
-		srcs/utils/main
+SRCS =	srcs/utils/list_utils	\
+		srcs/utils/main			\
+		srcs/builtins/ft_env	\
+		srcs/builtins/ft_unset
 
 SRCSM = $(addsuffix .c, $(SRCS))
 OBJS = $(SRCSM:.c=.o)
