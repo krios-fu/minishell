@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 19:25:08 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/05 16:00:43 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/05 16:10:40 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,30 +35,7 @@ char	*prompt(void)
 **	see struct libminishell.h
 */
 
-/*
-void	init_parseo(t_data **data, char *argv)
-{
-	char	**line;
-	char	**cmd_arg;
-	int		i;
 
-	i = 0;
-	line = ft_split(argv, '|');
-	while (argv[i])
-	{
-		cmd_arg = ft_split(line, ' ');
-		free(line[i]);
-		i++;
-	}
-	free(line);
-}
-
-t_data	*set_cmd(char *argv[])
-{
-	t_data	*data;
-
-	data = (t_data *)malloc(sizeof(t_data));
-}*/
 
 int	main(void)
 {

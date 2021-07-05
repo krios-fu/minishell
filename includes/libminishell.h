@@ -35,51 +35,26 @@ typedef struct s_redirect
 	struct	s_redirct	*next;
 }				t_redirect;
 
-
 typedef	struct s_process
 {
-	char		*cmd;
-	char		**argv;
+	char				*cmd;
+	char				**argv;
 	struct s_process	*next;
-	t_redirect	*lst_redirect;
+	t_redirect			*lst_redirect;
 }				t_process;
 
 typedef	struct s_data
 {
-	struct s_process	lst_process;
+	t_process			*lst_process
 }				t_data;
 
-/*
-**	END structs for split line prompt 
-*/
 
-/*
-**	Struct for list of enviroment variables
-*/
-typedef struct s_envp
-{
-	void			*content;
-	struct s_envp	*next;
-}				t_envp;
-
-
-/* 
-**	struct for minishell vriables
-*/
 typedef struct s_shell
 {
-	t_envp			*envp_list;
-	t_data			*data;
-}				t_shell;
+	t_list	*envp_list;
+}			t_shell;
 
 
-/*
-**	srcs/utils/envp_list_utils.c functions
-*/
-t_envp	*ft_lstnew(void *content);
-t_envp	*ft_lstlast(t_envp *lst);
-t_envp	*fill_envp_list(char **envp);
-void	ft_lstadd_front(t_envp **alst, t_envp *new);
-void	ft_lstadd_back(t_envp **alst, t_envp *new);
-
+/*  */
+t_list	*fill_envp_list(char **envp);
 #endif
