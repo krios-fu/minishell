@@ -29,9 +29,10 @@ enum	e_boolean
 
 typedef struct s_redirect
 {
-	char 		*dst;
-	char		*symbol;
-	t_redirect	*next;
+	char				*origin;
+	char				*symbol; 
+	char 				*dst;
+	struct	s_redirct	*next;
 }				t_redirect;
 
 
@@ -39,13 +40,13 @@ typedef	struct s_process
 {
 	char		*cmd;
 	char		**argv;
+	struct s_process	*next;
 	t_redirect	*lst_redirect;
-	t_process	*next;
 }				t_process;
 
 typedef	struct s_data
 {
-	t_process	lst_process;
+	struct s_process	lst_process;
 }				t_data;
 
 /*
