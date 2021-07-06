@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 19:25:08 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/05 20:15:12 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/06 21:00:40 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,93 +36,3 @@ char	*prompt(void)
 **	see struct libminishell.h
 */
 
-char	*ft_isspace(char *str)
-{
-	int	i;
-
-	i = 0;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
-		i++;
-	return (&str[i]);
-}
-
-int		is_redirect(int c)
-{
-	if (c == '<' || c == '>')
-		return (1);
-	return (0);
-}
-
-
-char	*set_dst_redirect(t_redirect *redirect, char *line)
-{
-	int	i;
-
-	i = 0;
-	line = ft_isspace(line);
-	// printf("[[%s]]\n", line);
-	while(line[i])
-	{
-		if(ft_isascii(line[i]) && line[i] != ' ')
-			i++;
-		else
-			break ;
-	}
-	redirect->output = ft_strndup(line, i);
-	if(!redirect->output)
-		return(NULL);
-	return(&line[i]);
-}
-
-char	*set_origin_redirect(t_redirect *redirect, char *line)
-{
-	int	i;
-
-	i = 0;
-	line = ft_isspace(line);
-	// printf("[[%s]]\n", line);
-	while(line[i])
-	{
-		if(ft_isascii(line[i]) && line[i] != ' ')
-			i++;
-		else
-			break ;
-	}
-	redirect->input = ft_strndup(line, i);
-	if(!redirect->input)
-		return(NULL);
-	return(&line[i]);
-}
-
-char	*set_symbol_redirect(t_redirect *redirect, char *line)
-{
-	int			i;
-	i = 0;
-	line = ft_isspace(line);
-	while(line[i])
-	{
-		if (is_redirect(line[i]))
-			i++;
-		else
-			break ;
-	}
-	redirect->symbol =ft_strndup(line, i);
-	return(&line[i]);
-}
-
-char	*part_one_redirect(t_redirect *redirect, char *line)
-{
-	char *tmp;
-
-	tmp = line;
-	
-	tmp = set_origin_redirect (redirect, tmp);
-	if(!tmp)
-		return (NULL);
-	tmp = set_symbol_redirect(redirect, tmp);
-	if(!tmp)
-		return (NULL);
-	tmp = set_dst_redirect(redirect, tmp);
-
-	return(tmp);
-}

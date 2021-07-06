@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 14:11:39 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/05 20:09:07 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/06 21:11:10 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,30 @@
 //main para probar que funciona la funcion fill_envp_list. La funcion se encuentra en srcs/utils
 int	main(void)
 {
-	t_redirect	*redirect;
-	redirect = (t_redirect *)malloc(sizeof(t_redirect));
-	
-	part_one_redirect(redirect, "cat init > a");
+	t_process *process;
+	t_redirect *redirect;
 
-	printf("[%s], [%s], [%s]", redirect->symbol, redirect->input, redirect->output);
+	process = (t_process *)malloc(sizeof(t_process));
+
+	
+	 redirect =  get_redirect("< mundo");
+	if (redirect->symbol[0] == '<')
+	{
+		process->input = redirect;
+		printf("[%s]  [%s]\n", process->input->symbol, process->input->file);
+	}
+	if (redirect->symbol[0] == '>')
+	{
+		process->output = redirect;
+		printf("[%s] [%s]\n", process->output->symbol, process->output->file);
+	}
+
+	
+	// t_redirect	*redirect;
+	// redirect = (t_redirect *)malloc(sizeof(t_redirect));
+	
+	// part_one_redirect(redirect, "< init cat");
+
+	// printf("[%s], [%s], [%s]", redirect->symbol, redirect->input, redirect->output);
 	return (0);
 }

@@ -5,7 +5,8 @@ NAME = minishell
 
 # SOURCES #
 SRCS =	srcs/utils/list_utils \
-		srcs/utils/main srcs/prompt/prompt
+		srcs/utils/main srcs/prompt/prompt \
+		srcs/prompt/utils srcs/prompt/redirect
 
 
 SRCSM = $(addsuffix .c, $(SRCS))

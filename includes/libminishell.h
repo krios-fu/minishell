@@ -29,11 +29,8 @@ enum	e_boolean
 
 typedef struct s_redirect
 {
-	char				*input;
-	int					fd_orig;
+	char				*file;
 	char				*symbol; 
-	char 				*output;
-	int					fd_dst;
 	int					pos;
 	struct	s_redirct	*next;
 }				t_redirect;
@@ -43,7 +40,8 @@ typedef	struct s_process
 	char				*cmd;
 	char				**argv;
 	struct s_process	*next;
-	t_redirect			*lst_redirect;
+	t_redirect			*input;
+	t_redirect			*output;
 }				t_process;
 
 typedef	struct s_data
@@ -61,18 +59,30 @@ typedef struct s_shell
 /*  */
 t_list		*fill_envp_list(char **envp);
 
-
 /*
-**functions prompt parseo
+**	functions prompt/ utils
 */
 
-int			is_redirect(int c);
-char		*prompt(void);
-char		*set_symbol_redirect(t_redirect *redirect, char *line);
-char		*set_origin_redirect(t_redirect *redirect, char *line);
-char		*set_dst_redirect(t_redirect *redirect, char *line);
-char		*part_one_redirect(t_redirect *redirect, char *line);
-char		*ft_isspace(char *str);
+char			*ft_isspace(char *str);
+
+/*
+**	functions prompt/ prompt
+*/
+
+char			*prompt(void);
+
+/*
+**	functions prompt/ redirect
+*/
+
+t_redirect		*get_redirect(char *line);
+int				is_redirect(int c);
+char			*set_symbol_redirect(t_redirect *redirect, char *line);
+char			*set_file_redirect(t_redirect *redirect, char *line);
+
+/*
+**	functions prompt/ parseo
+*/
 
 
 #endif
