@@ -50,6 +50,10 @@ typedef	struct s_data
 }				t_data;
 
 
+/*
+** Struct for minishell variables
+*/
+
 typedef struct s_shell
 {
 	t_list	*envp_list;
@@ -84,5 +88,11 @@ char			*set_file_redirect(t_redirect *redirect, char *line);
 **	functions prompt/ parseo
 */
 
+
+/*
+** Builtins
+*/
+int ft_env(t_list *envp_list);
+int	ft_unset(t_list **envp_list, char *name);
 
 #endif
