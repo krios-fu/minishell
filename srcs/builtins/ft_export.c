@@ -1,23 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pwd.c                                           :+:      :+:    :+:   */
+/*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jacgarci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/28 17:30:01 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/06 12:21:49 by jacgarci         ###   ########.fr       */
+/*   Created: 2021/07/07 11:40:34 by jacgarci          #+#    #+#             */
+/*   Updated: 2021/07/07 19:16:42 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libminishell.h"
 
-int	ft_pwd(void)
+static int	print_export_list(t_list *lst)
 {
-	char	path[1024];
+	while (lst)
+	{
+		printf("%s%s\n", "declare -x ", lst->content);
+		lst = lst->next;
+	}
+	return (0);
+}
 
-	if (!getcwd(path, sizeof(path)))
-		return (1);
-	printf("%s\n", path);
+int	ft_export(t_list **env_list, t_list **exp_list, char **var)
+{
+	if (!var)
+		return (print_export_list(*exp_list));
+	else
+	{
+		while (*var)
+		{
+			if (ft_strchr(*var, '='))
+				ft_lstadd_back(env_list, ft_lstnew(*var));
+			ft_lstadd_front(exp_list, ft_lstnew(*var));
+			var++;
+		}
+	}
+	sort_env_list(exp_list);
 	return (0);
 }

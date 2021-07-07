@@ -1,23 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pwd.c                                           :+:      :+:    :+:   */
+/*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jacgarci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/28 17:30:01 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/06 12:21:49 by jacgarci         ###   ########.fr       */
+/*   Created: 2021/07/07 18:54:04 by jacgarci          #+#    #+#             */
+/*   Updated: 2021/07/07 19:18:23 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libminishell.h"
 
-int	ft_pwd(void)
+int	ft_echo(char **args)
 {
-	char	path[1024];
+	int	flag;
+	int	index;
 
-	if (!getcwd(path, sizeof(path)))
-		return (1);
-	printf("%s\n", path);
+	flag = 0;
+	index = 0;
+	if (!ft_strncmp(args[index], "-n", 2))
+	{
+		flag = 1;
+		index++;
+	}
+	while (args[index])
+	{
+		if (args[index + 1])
+			printf("%s ", args[index]);
+		else
+			printf("%s", args[index]);
+		index++;
+	}
+	if (!flag)
+		printf("\n");
 	return (0);
 }
