@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 14:11:39 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/06 23:31:14 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/07 22:11:45 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@
 //main para probar que funciona la funcion fill_envp_list. La funcion se encuentra en srcs/utils
 int	main(void)
 {
+
+	size_t num = num_arg_process("<cat < init mundo f\"\'\" p <");
+	printf("%zu", num);
+	
+	/*
 	t_process *process;
 	t_redirect *redirect;
 
@@ -33,7 +38,7 @@ int	main(void)
 		process->output = redirect;
 		printf("[%s] [%s]\n", process->output->symbol, process->output->file);
 	}
-
+*/
 	
 	// t_redirect	*redirect;
 	// redirect = (t_redirect *)malloc(sizeof(t_redirect));

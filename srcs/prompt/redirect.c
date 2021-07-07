@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 21:00:26 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/06 21:10:41 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/07 22:06:47 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ char	*set_symbol_redirect(t_redirect *redirect, char *line)
 	redirect->symbol = ft_strndup(line, i);
 		if(redirect->symbol == false)
 			return(NULL);
-
 	return(&line[i]);
 }
 

@@ -10,7 +10,8 @@ SRCS =	srcs/utils/list_utils \
 		srcs/prompt/utils \
 		srcs/prompt/redirect \
 		srcs/builtins/ft_env	\
-		srcs/builtins/ft_unset
+		srcs/builtins/ft_unset \
+		srcs/prompt/parseo
 
 
 SRCSM = $(addsuffix .c, $(SRCS))
@@ -35,7 +36,7 @@ $(NAME): $(OBJS)
 	@echo "$(BLUE)==========CREATING LIBFT==========$(RESET)"
 	@make -sC ./libft
 	@echo "$(BLUE)==========CREATING MINISHELL==========$(RESET)"
-	@$(CC) $(INCLUDES) ${OBJS} $(LIBFT) -o ${NAME} -lreadline
+	@$(CC) $(INCLUDES) ${OBJS} $(LIBFT) -o ${NAME} -lreadline 
 	@echo "Success creating minishell file"
 
 clean:

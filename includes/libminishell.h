@@ -23,6 +23,22 @@ enum	e_boolean
 	true
 };
 
+typedef int t_bool;
+
+/*
+** struct var parseo
+*/
+
+typedef struct s_parseo
+{
+	size_t		num_arg;
+	size_t		i;
+	t_bool		flag;
+	t_bool		quotes_d;
+	t_bool		quotes_s;
+
+}				t_parseo;
+
 /*
 ** Start structs for split line prompt 
 */
@@ -87,6 +103,7 @@ char			*set_file_redirect(t_redirect *redirect, char *line);
 /*
 **	functions prompt/ parseo
 */
+size_t			num_arg_process (char *line);
 
 
 /*
