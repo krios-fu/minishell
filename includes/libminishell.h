@@ -48,7 +48,7 @@ typedef struct s_redirect
 	char				*file;
 	char				*symbol; 
 	int					pos;
-	struct	s_redirct	*next;
+	struct	s_redirect	*next;
 }				t_redirect;
 
 typedef	struct s_process
@@ -83,7 +83,8 @@ t_list		*fill_envp_list(char **envp);
 **	functions prompt/ utils
 */
 
-char			*ft_isspace(char *str);
+char	*ft_isspace(char *str);
+void	ft_addlst_back_redirect(t_redirect *redirect, t_redirect *new_redirect);
 
 /*
 **	functions prompt/ prompt
@@ -95,7 +96,7 @@ char			*prompt(void);
 **	functions prompt/ redirect
 */
 
-t_redirect		*get_redirect(char *line);
+char		*get_redirect(char *line, t_process *lst_process);
 int				is_redirect(int c);
 char			*set_symbol_redirect(t_redirect *redirect, char *line);
 char			*set_file_redirect(t_redirect *redirect, char *line);
@@ -103,7 +104,7 @@ char			*set_file_redirect(t_redirect *redirect, char *line);
 /*
 **	functions prompt/ parseo
 */
-size_t			num_arg_process (char *line);
+size_t			num_arg_process (char *line, t_process *lst_process);
 
 
 /*

@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 14:11:39 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/07 22:11:45 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/08 01:53:49 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,24 @@
 //main para probar que funciona la funcion fill_envp_list. La funcion se encuentra en srcs/utils
 int	main(void)
 {
+	t_process *process ;
 
-	size_t num = num_arg_process("<cat < init mundo f\"\'\" p <");
-	printf("%zu", num);
+	process = (t_process*)malloc(sizeof(t_process));
+	process->input = NULL;
+	process->output = NULL;
+	size_t num = num_arg_process(">cat > init > j init end > z <p <s <<d << q\0", process);
+	printf("%zu\n", num);
+
+	while(process->output)
+	{
+		printf("file output is : %s\n", process->output->file);
+		process->output = process->output->next;
+	}
+		while(process->input)
+	{
+		printf("file intput is : %s\n", process->input->file);
+		process->input = process->input->next;
+	}
 	
 	/*
 	t_process *process;
