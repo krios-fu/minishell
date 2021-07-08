@@ -11,7 +11,8 @@ SRCS =	srcs/utils/list_utils \
 		srcs/prompt/redirect \
 		srcs/builtins/ft_env	\
 		srcs/builtins/ft_unset \
-		srcs/prompt/parseo
+		srcs/prompt/parseo \
+		srcs/prompt/pre_parseo
 
 
 SRCSM = $(addsuffix .c, $(SRCS))

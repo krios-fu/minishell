@@ -96,7 +96,7 @@ char			*prompt(void);
 **	functions prompt/ redirect
 */
 
-char		*get_redirect(char *line, t_process *lst_process);
+char			*get_redirect(char *line, t_process *lst_process);
 int				is_redirect(int c);
 char			*set_symbol_redirect(t_redirect *redirect, char *line);
 char			*set_file_redirect(t_redirect *redirect, char *line);
@@ -105,7 +105,14 @@ char			*set_file_redirect(t_redirect *redirect, char *line);
 **	functions prompt/ parseo
 */
 size_t			num_arg_process (char *line, t_process *lst_process);
+char			**get_tokens_arg(t_process *process, char *line);
+void			change_status_quote(char *line, t_parseo *parse);
+t_process 		**get_process(char *line);
+/*
+** Funtions prompt / pre-parseo 
+*/
 
+int	get_num_pipe(char *line);
 
 /*
 ** Builtins

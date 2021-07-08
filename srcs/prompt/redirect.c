@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 21:00:26 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/08 01:56:00 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/08 18:22:43 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*set_file_redirect(t_redirect *redirect, char *line)
 	int	i;
 
 	i = 0;
-	line = ft_isspace(line);
+	 line = ft_isspace(line);
 	while(line[i])
 	{
 		if(ft_isascii(line[i]) && line[i] != ' ' && !is_redirect(line[i]))
@@ -64,6 +64,7 @@ char *get_redirect(char *line, t_process *lst_process)
 	line = ft_isspace(line);
 	line = set_symbol_redirect(new_redirect, line);
 	line = set_file_redirect(new_redirect, line);
+	new_redirect->next = NULL;
 	if(new_redirect->symbol[0] == '<')
 	{
 		if(!lst_process->input)
@@ -78,5 +79,8 @@ char *get_redirect(char *line, t_process *lst_process)
 		else
 			ft_addlst_back_redirect(lst_process->output, new_redirect);
 	}
+	// line = ft_isspace(line);
+	// if(is_redirect(*line))
+		// get_redirect(line, lst_process);
 	return(line);
 }

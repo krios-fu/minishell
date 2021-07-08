@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 21:21:42 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/08 02:07:14 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/09 00:18:41 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,34 @@
 **	quotes_d = "
 */
 
+void change_status_quote(char *line, t_parseo *parse)
+{
+	if(line[parse->i] == '\"' && parse->quotes_s == false)
+	{	if (parse->quotes_d == true)
+			parse->quotes_d  = false;
+		else
+			parse->quotes_d  = true;
+	}
+	if(line[parse->i] == '\'' && parse->quotes_d == false)
+	{	if (parse->quotes_s == true)
+				parse->quotes_s  = false;
+		else
+			parse->quotes_s  = true;
+	}
+	
+}
+
 static void state_var(char *line, t_parseo *parse)
 {
 	if(*line && ft_isascii(*line) &&  *line != ' ' && !is_redirect(*line)
-		&& *line != '|' && parse->flag == false
+		 && parse->flag == false
 		&& parse->quotes_d == false && parse->quotes_s == false)
 	{
 		(parse->num_arg)++;
 		parse->flag = true;
-		if (*line == '\"')
-			parse->quotes_d = true;
-		if (*line == '\'')
-			parse->quotes_s = true;
 	}
 }
+
 size_t	num_arg_process (char *line, t_process *lst_process)
 {
 	t_parseo	parse;
@@ -47,12 +61,9 @@ size_t	num_arg_process (char *line, t_process *lst_process)
 		if (is_redirect(c))
 			line = get_redirect(line, lst_process);
 		c = *line;
-		if ( c == ' ' || is_redirect(c) || c == '|')
+		if ( c == ' ' || is_redirect(c))
 			parse.flag = false;
-		if (c == '\"')
-			parse.quotes_d = false;
-		if (c == '\'')
-			parse.quotes_s = false;
+		change_status_quote(line, &parse);
 		state_var(line, &parse);
 		line++;
 	}
@@ -61,18 +72,96 @@ size_t	num_arg_process (char *line, t_process *lst_process)
 		printf("Error quote\n");
 	return (parse.num_arg);
 }
-/*
-char	**set_words(t_process *prosess, char *line)
+  
+char	**get_tokens_arg(t_process *process, char *line)
 {
-	char **arg;
-	size_t size;
+	char **arguments;
+	int size;
+	int pos_arg;
+	int i;
 
-	size = num_arg(line);
-	arg = (char **)malloc(sizeof(char *) * size);
-	
-}*/
-/*
-char	*get_process(t_process *process, char *line)
+	i = 0;
+	pos_arg = 0;
+	size = num_arg_process(line, process);
+	arguments = (char **)malloc(sizeof(char *) * size + 1);
+	while (pos_arg < size)
+	{
+		line = ft_isspace(line);
+		while (is_redirect(*line))
+		{
+			while(is_redirect(*line))
+				line++;
+			line = ft_isspace(line);
+			while(*line && *line != ' ' && !is_redirect(*line))
+				line++;
+			line = ft_isspace(line);
+		}
+		while (ft_isascii(line[i]) && line[i] != ' ')
+			i++;
+		arguments[pos_arg] = ft_strndup(line, i);
+		line = &line[i];
+		pos_arg++;
+		i = 0;
+	}
+	arguments[pos_arg] = NULL;
+	return(arguments);
+}
+
+t_process	**new_array_process(int num_process)
 {
-	
-}*/
+	t_process **array_process;
+
+	array_process = (t_process **)malloc(sizeof(t_process *) * num_process);
+	array_process[num_process] = NULL;
+	return(array_process);
+}
+
+char *next_line_process(char *line)
+{
+	while (*line)
+		line++;
+	line++;
+	return(line);
+}
+
+char **get_lines_cmd(char *line, int num_process)
+{
+	char **lines_cmd;
+	int i;
+
+	i = 1;
+	lines_cmd = (char **)malloc(sizeof(char *) * num_process + 1);
+	lines_cmd[0] = ft_strdup(line);
+	if (num_process > 1)
+	{
+		while(i < num_process)
+		{
+			line = next_line_process(line); 
+			lines_cmd[i] =  ft_strdup(line);
+			i++;
+		}
+	}
+	lines_cmd[num_process] = NULL;
+	return(lines_cmd);
+}
+t_process **get_process(char *line)
+{
+	int			num_process;
+	t_process	**array_process;
+	char		**line_cmd;
+	int i;
+	i = 0;
+
+	num_process = get_num_pipe(line);
+	printf("num p [[%d]]\n", num_process);
+	array_process = new_array_process(num_process);
+	line_cmd = get_lines_cmd(line, num_process);
+
+	while (i < num_process)
+	{
+		array_process[i] = (t_process *)malloc(sizeof(t_process));
+		array_process[i]->argv = get_tokens_arg(array_process[i], line_cmd[i]);
+		i++;
+	}
+	return(array_process);	
+}
