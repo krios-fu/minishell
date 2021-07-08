@@ -6,7 +6,7 @@
 /*   By: jacgarci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 11:40:34 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/07 19:16:42 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/08 11:28:22 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,12 @@ int	ft_export(t_list **env_list, t_list **exp_list, char **var)
 {
 	if (!var)
 		return (print_export_list(*exp_list));
-	else
+	while (*var)
 	{
-		while (*var)
-		{
-			if (ft_strchr(*var, '='))
-				ft_lstadd_back(env_list, ft_lstnew(*var));
-			ft_lstadd_front(exp_list, ft_lstnew(*var));
-			var++;
-		}
+		if (ft_strchr(*var, '='))
+			ft_lstadd_back(env_list, ft_lstnew(*var));
+		ft_lstadd_front(exp_list, ft_lstnew(*var));
+		var++;
 	}
 	sort_env_list(exp_list);
 	return (0);

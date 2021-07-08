@@ -6,7 +6,7 @@
 /*   By: jacgarci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 18:54:04 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/07 19:18:23 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/08 18:13:42 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	ft_echo(char **args)
 
 	flag = 0;
 	index = 0;
+	if (!args || !**args)
+		printf("\n");
 	if (!ft_strncmp(args[index], "-n", 2))
 	{
 		flag = 1;

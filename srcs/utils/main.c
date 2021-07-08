@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 14:11:39 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/07 19:11:00 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/08 19:39:13 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,12 @@
 int	main(int argc, char **argv, char **envp)
 {
 	(void)argc;
-	(void)envp;
+	(void)argv;
+//	(void)envp;
 
-	argv++;
-	ft_echo(argv);
-/*
+//	argv++;
+//	ft_echo(argv);
+
 	t_shell shell;
 
 	shell.envp_list = fill_envp_list(envp);
@@ -29,8 +30,13 @@ int	main(int argc, char **argv, char **envp)
 
 
 //	ft_env(shell.exp_list);
-	ft_export(&shell.envp_list, &shell.exp_list, argv);
-	print_list(shell.exp_list);
-	print_list(shell.envp_list);
-*/
+//	ft_export(&shell.envp_list, &shell.exp_list, argv);
+//	print_list(shell.exp_list);
+//	print_list(shell.envp_list);
+//*/
+	printf("%s\n", getcwd(0, 1024));
+	ft_cd(&shell.envp_list, &shell.exp_list, "utils");
+	printf("%s\n", getcwd(0, 1024));
+	ft_cd(&shell.envp_list, &shell.exp_list, "includes");
+	printf("%s\n", getcwd(0, 1024));
 }
