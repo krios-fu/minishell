@@ -1,23 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_unset.c                                         :+:      :+:    :+:   */
+/*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jacgarci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/05 18:23:51 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/08 16:19:56 by jacgarci         ###   ########.fr       */
+/*   Created: 2021/07/07 11:40:34 by jacgarci          #+#    #+#             */
+/*   Updated: 2021/07/09 12:51:29 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libminishell.h"
 
-int	ft_unset(t_list **envp_list, char *name)
+static int	print_export_list(t_list *lst)
 {
-	char	*content;
+	while (lst)
+	{
+		printf("%s%s\n", "declare -x ", lst->content);
+		lst = lst->next;
+	}
+	return (0);
+}
 
-	content = search_env(*envp_list, name);
-	if (content)
-		ft_lstdelone(envp_list, (void *)content);
+int	ft_export(t_list **env_list, t_list **exp_list, char **var)
+{
+	if (!var)
+		return (print_export_list(*exp_list));
+	while (*var)
+	{
+		if (ft_strchr(*var, '='))
+			ft_lstadd_back(env_list, ft_lstnew(ft_strdup(*var)));
+		ft_lstadd_front(exp_list, ft_lstnew(*var));
+		var++;
+	}
+	sort_env_list(exp_list);
 	return (0);
 }

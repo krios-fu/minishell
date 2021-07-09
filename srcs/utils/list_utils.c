@@ -6,11 +6,96 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 11:10:56 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/06 23:31:26 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/09 21:07:13 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libminishell.h"
+
+/*
+** Function that recives a list and a name
+** and returns the list content that have the name
+*/
+char	*search_env(t_list *envp_list, char *name)
+{
+	char	*f_name;
+
+	f_name = ft_strjoin(name, "=");
+	while (envp_list)
+	{
+		if (!ft_strncmp(envp_list->content, f_name, ft_strlen(f_name)))
+		{
+			free(f_name);
+			return (envp_list->content);
+		}
+		envp_list = envp_list->next;
+	}
+	free(f_name);
+	return (0);
+}
+
+/*
+** Function that recieves the first element of 
+** a list and prints the entire list
+*/
+void	print_list(t_list *lst)
+{
+	if (lst)
+	{
+		while (lst)
+		{
+			printf("%s\n", (char *)lst->content);
+			lst = lst->next;
+		}
+	}
+}
+
+/*
+** Function to swap two elements of list.
+** Used on sort_env_list
+*/
+static void	swap(t_list *a, t_list *b)
+{
+	t_list *aux;
+
+	aux = malloc(sizeof(t_list));
+	if (!aux)
+		return ;
+	aux->content = b->content;
+	b->content = a->content;
+	a->content = aux->content;
+}
+
+/*
+** Function that given a pointer to the first
+** element of a list returns a pointer to the 
+** original list sorted
+*/
+t_list	*sort_env_list(t_list **lst)
+{
+	t_list	*pt;
+	t_list	*lptr;
+	int		swapped;
+
+	lptr = 0;
+	swapped = 1;
+	while (swapped)
+	{
+		swapped = 0;
+		pt = *lst;
+		while (pt->next)
+		{
+			if (ft_strcmp((char *)pt->content, (char *)pt->next->content) > 0)
+			{
+				swap(pt, pt->next);
+				swapped = 1;
+			}
+			pt = pt->next;
+		}
+		lptr = pt;
+	}
+	return (*lst);
+}
 
 /*
 ** Function that recives char **envp as parameter
