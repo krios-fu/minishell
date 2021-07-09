@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 21:21:42 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/09 02:47:42 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/09 19:56:43 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void state_var(char *line, t_parseo *parse)
 	}
 }
 
-size_t	num_arg_process (char *line, t_process *lst_process)
+int	num_arg_process (char *line, t_process *lst_process)
 {
 	t_parseo	parse;
 	char		c;
@@ -70,6 +70,7 @@ size_t	num_arg_process (char *line, t_process *lst_process)
 
 	if (parse.quotes_d == true || parse.quotes_s == true)
 		printf("Error quote\n");
+	
 	return (parse.num_arg);
 }
   
@@ -83,6 +84,9 @@ char	**get_tokens_arg(t_process *process, char *line)
 	i = 0;
 	pos_arg = 0;
 	size = num_arg_process(line, process);
+
+	if (size == -1)
+		return(NULL);
 	arguments = (char **)malloc(sizeof(char *) * size + 1);
 	while (pos_arg < size)
 	{
@@ -103,7 +107,7 @@ char	**get_tokens_arg(t_process *process, char *line)
 		pos_arg++;
 		i = 0;
 	}
-	arguments[pos_arg] = NULL;
+	arguments[size] = NULL;
 	return(arguments);
 }
 
@@ -111,7 +115,7 @@ t_process	**new_array_process(int num_process)
 {
 	t_process **array_process;
 
-	array_process = (t_process **)malloc(sizeof(t_process *) * num_process);
+	array_process = (t_process **)malloc(sizeof(t_process *) * num_process + 1);
 	array_process[num_process] = NULL;
 	return(array_process);
 }
@@ -156,8 +160,8 @@ t_process **get_process(char *line)
 	printf("num cmd [%d]\n", num_process);
 	if (num_process == -1)
 	{
-		printf(BLUE"Rocket-men 🚀 : "RED"parse error near `|'\n"WHITE);
-		return ((void *)0);
+		printf("minishell 🚀 : parse error near `|'\n");
+		return(NULL);
 	}
 	array_process = new_array_process(num_process);
 	line_cmd = get_lines_cmd(line, num_process);
@@ -168,5 +172,5 @@ t_process **get_process(char *line)
 		array_process[i]->argv = get_tokens_arg(array_process[i], line_cmd[i]);
 		i++;
 	}
-	return(array_process);	
+	return(array_process);
 }

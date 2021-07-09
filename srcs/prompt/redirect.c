@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 21:00:26 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/08 18:22:43 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/09 20:03:51 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ char	*set_file_redirect(t_redirect *redirect, char *line)
 			break ;
 	}
 	redirect->file = ft_strndup(line, i);
-		if(redirect->file == false)
-			return(NULL);
 	return(&line[i]);
 }
 
@@ -51,8 +49,6 @@ char	*set_symbol_redirect(t_redirect *redirect, char *line)
 			break ;
 	}
 	redirect->symbol = ft_strndup(line, i);
-		if(redirect->symbol == false)
-			return(NULL);
 	return(&line[i]);
 }
 
@@ -79,8 +75,5 @@ char *get_redirect(char *line, t_process *lst_process)
 		else
 			ft_addlst_back_redirect(lst_process->output, new_redirect);
 	}
-	// line = ft_isspace(line);
-	// if(is_redirect(*line))
-		// get_redirect(line, lst_process);
 	return(line);
 }
