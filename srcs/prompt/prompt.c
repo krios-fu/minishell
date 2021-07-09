@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 19:25:08 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/06 21:00:40 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/09 03:10:53 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ void	print_header(void)
 	printf(RED"\t\t\t\t\tBy: Jacgarci && Krios-fu\n");
 }
 
-/*
+
 char	*prompt(void)
 {
 	char	*line;
-	line = readline(BLUE"Rocket-men 🚀"WHITE);
+	line = readline(BLUE"Rocket-men 🚀 "WHITE);
 	return (line);
-}*/
+}
 
 /*
 **

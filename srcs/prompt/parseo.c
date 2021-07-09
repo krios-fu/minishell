@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 21:21:42 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/09 00:18:41 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/09 02:47:42 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,7 +153,12 @@ t_process **get_process(char *line)
 	i = 0;
 
 	num_process = get_num_pipe(line);
-	printf("num p [[%d]]\n", num_process);
+	printf("num cmd [%d]\n", num_process);
+	if (num_process == -1)
+	{
+		printf(BLUE"Rocket-men 🚀 : "RED"parse error near `|'\n"WHITE);
+		return ((void *)0);
+	}
 	array_process = new_array_process(num_process);
 	line_cmd = get_lines_cmd(line, num_process);
 

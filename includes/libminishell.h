@@ -55,7 +55,6 @@ typedef	struct s_process
 {
 	char				*cmd;
 	char				**argv;
-	struct s_process	*next;
 	t_redirect			*input;
 	t_redirect			*output;
 }				t_process;
@@ -91,6 +90,7 @@ void	ft_addlst_back_redirect(t_redirect *redirect, t_redirect *new_redirect);
 */
 
 char			*prompt(void);
+void			print_header(void);
 
 /*
 **	functions prompt/ redirect
