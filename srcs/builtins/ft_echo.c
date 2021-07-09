@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jacgarci <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 18:54:04 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/08 18:13:42 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/09 22:51:54 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,13 @@ int	ft_echo(char **args)
 	int	index;
 
 	flag = 0;
-	index = 0;
-	if (!args || !**args)
+	index = 1;
+	if (!args[index])
+	{
 		printf("\n");
-	if (!ft_strncmp(args[index], "-n", 2))
+		return (0);
+	}
+	if (ft_strnstr(args[index], "-n\0", 2))
 	{
 		flag = 1;
 		index++;

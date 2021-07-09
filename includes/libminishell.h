@@ -53,7 +53,6 @@ typedef struct s_redirect
 
 typedef	struct s_process
 {
-	char				*cmd;
 	char				**argv;
 	t_redirect			*input;
 	t_redirect			*output;
@@ -119,15 +118,25 @@ int	pre_parse(char *line);
 /*
 ** Builtins
 */
-int ft_env(t_list *envp_list);
-int	ft_unset(t_list **envp_list, char *name);
-int	ft_pwd(void);
-int	ft_export(t_list **env_list, t_list **exp_list, char **var);
-int	ft_echo(char **args);
 int ft_cd(t_list **envp_list, t_list **exp_list, char *path);
+int	ft_echo(char **args);
+int ft_env(t_list *envp_list);
+int	ft_export(t_list **env_list, t_list **exp_list, char **var);
+int	ft_pwd(void);
+int	ft_unset(t_list **envp_list, char *name);
+
 
 
 /* 
+** process / exect
+*/
+
+void	*menu_builtins (void);
+int		search_builtins(t_process *process);
+int		start_process(t_process *process);
+
+/* 
+** lst
 */
 
 t_list	*fill_envp_list(char **envp);

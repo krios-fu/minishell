@@ -5,7 +5,7 @@ NAME = minishell
 
 # SOURCES #
 SRCS =	srcs/utils/list_utils	\
-		srcs/utils/main			\
+		srcs/utils/main_krios	\
 		srcs/prompt/prompt		\
 		srcs/prompt/utils		\
 		srcs/prompt/redirect	\
@@ -16,7 +16,8 @@ SRCS =	srcs/utils/list_utils	\
 		srcs/builtins/ft_cd		\
 		srcs/builtins/ft_unset	\
 		srcs/prompt/parseo 		\
-		srcs/prompt/pre_parseo
+		srcs/prompt/pre_parseo	\
+		srcs/process/exec
 
 
 SRCSM = $(addsuffix .c, $(SRCS))

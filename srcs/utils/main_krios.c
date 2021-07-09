@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_krios.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 14:11:39 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/09 21:09:36 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/09 22:57:23 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,9 @@ int	main(void)
 		if (process)
 		{
 			while (process[j])
-			{
-				i = 0;
-				while(process[j]->argv[i])
-				{
-					printf("arg [%d] [%s]\n", i, process[j]->argv[i]);
-					i++;
-				}
+			{	
+				// printf("[%d]\n", search_builtins(process[j]));
+				start_process(process[j]);
 				j++;
 			}
 		}
