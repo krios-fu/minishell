@@ -60,7 +60,9 @@ typedef	struct s_process
 
 typedef	struct s_data
 {
-	t_process			*lst_process;
+	t_process		**lst_process;
+	t_list 			**envp_list;
+	t_list			**exp_list
 }				t_data;
 
 
@@ -76,14 +78,14 @@ typedef struct s_shell
 
 
 /*  */
-t_list		*fill_envp_list(char **envp);
+t_list			*fill_envp_list(char **envp);
 
 /*
 **	functions prompt/ utils
 */
 
-char	*ft_isspace(char *str);
-void	ft_addlst_back_redirect(t_redirect *redirect, t_redirect *new_redirect);
+char			*ft_isspace(char *str);
+void			ft_addlst_back_redirect(t_redirect *redirect, t_redirect *new_redirect);
 
 /*
 **	functions prompt/ prompt
@@ -104,7 +106,7 @@ char			*set_file_redirect(t_redirect *redirect, char *line);
 /*
 **	functions prompt/ parseo
 */
-int			num_arg_process (char *line, t_process *lst_process);
+int				num_arg_process (char *line, t_process *lst_process);
 char			**get_tokens_arg(t_process *process, char *line);
 void			change_status_quote(char *line, t_parseo *parse);
 t_process 		**get_process(char *line);
@@ -112,18 +114,18 @@ t_process 		**get_process(char *line);
 ** Funtions prompt / pre-parseo 
 */
 
-int	get_num_pipe(char *line);
-int	pre_parse(char *line);
+int				get_num_pipe(char *line);
+int				pre_parse(char *line);
 
 /*
 ** Builtins
 */
-int ft_cd(t_list **envp_list, t_list **exp_list, char *path);
-int	ft_echo(char **args);
-int ft_env(t_list *envp_list);
-int	ft_export(t_list **env_list, t_list **exp_list, char **var);
-int	ft_pwd(void);
-int	ft_unset(t_list **envp_list, char *name);
+int 			ft_cd(t_list **envp_list, t_list **exp_list, char *path);
+int				ft_echo(char **args);
+int 			ft_env(t_list *envp_list);
+int				ft_export(t_list **env_list, t_list **exp_list, char **var);
+int				ft_pwd(void);
+int				ft_unset(t_list **envp_list, char *name);
 
 
 
