@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 18:54:04 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/09 22:51:54 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/10 18:48:59 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	ft_echo(char **args)
 
 	flag = 0;
 	index = 1;
+
 	if (!args[index])
 	{
 		printf("\n");

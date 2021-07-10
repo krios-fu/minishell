@@ -42,7 +42,7 @@ $(NAME): $(OBJS)
 	@echo "$(BLUE)==========CREATING LIBFT==========$(RESET)"
 	@make -sC ./libft
 	@echo "$(BLUE)==========CREATING MINISHELL==========$(RESET)"
-	@$(CC) $(INCLUDES) ${OBJS} $(LIBFT) -o ${NAME} -lreadline 
+	@$(CC) $(INCLUDES) ${OBJS} $(LIBFT) -o ${NAME} -lreadline  -g3 -fsanitize=address
 	@echo "Success creating minishell file"
 
 clean:

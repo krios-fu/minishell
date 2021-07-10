@@ -56,11 +56,12 @@ typedef	struct s_process
 	char				**argv;
 	t_redirect			*input;
 	t_redirect			*output;
+	struct 	s_process  *next;
 }				t_process;
 
 typedef	struct s_data
 {
-	t_process		**lst_process;
+	t_process		*lst_process;
 	//t_list 			**envp_list;  this is opcionaly
 	//t_list			**exp_list;   this the same
 }				t_data;
@@ -86,7 +87,7 @@ t_list			*fill_envp_list(char **envp);
 
 char			*ft_isspace(char *str);
 void			ft_addlst_back_redirect(t_redirect *redirect, t_redirect *new_redirect);
-
+void ft_addlst_back_process(t_process *process, t_process *new_process);
 /*
 **	functions prompt/ prompt
 */
@@ -109,7 +110,7 @@ char			*set_file_redirect(t_redirect *redirect, char *line);
 int				num_arg_process (char *line, t_process *lst_process);
 char			**get_tokens_arg(t_process *process, char *line);
 void			change_status_quote(char *line, t_parseo *parse);
-int				get_process(t_process ***array_process, char *line);
+int				get_process(t_data *data, char *line);
 /*
 ** Funtions prompt / pre-parseo 
 */
@@ -135,7 +136,7 @@ int				ft_unset(t_list **envp_list, char *name);
 
 void	*menu_builtins (void);
 int		search_builtins(char *bcmd);
-int		start_process(t_process **process);
+int		start_process(char **cmd);
 
 /* 
 ** lst
