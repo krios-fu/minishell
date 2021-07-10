@@ -4,21 +4,22 @@ INCLUDES = -I$(LIBFT) -I includes/
 NAME = minishell
 
 # SOURCES #
-SRCS =	srcs/utils/list_utils	\
-		srcs/utils/main_krios	\
-		srcs/prompt/prompt		\
-		srcs/prompt/utils		\
-		srcs/prompt/redirect	\
-		srcs/builtins/ft_env	\
-		srcs/builtins/ft_pwd	\
-		srcs/builtins/ft_export	\
-		srcs/builtins/ft_echo	\
-		srcs/builtins/ft_cd		\
-		srcs/builtins/ft_unset	\
-		srcs/prompt/parseo 		\
-		srcs/prompt/pre_parseo	\
-		srcs/process/exec
-
+SRCS =	srcs/utils/list_utils		\
+		srcs/utils/main_krios		\
+		srcs/prompt/prompt			\
+		srcs/prompt/utils			\
+		srcs/prompt/redirect		\
+		srcs/builtins/ft_env		\
+		srcs/builtins/ft_pwd		\
+		srcs/builtins/ft_export		\
+		srcs/builtins/ft_echo		\
+		srcs/builtins/ft_cd			\
+		srcs/builtins/ft_unset		\
+		srcs/prompt/parseo 			\
+		srcs/prompt/pre_parseo		\
+		srcs/process/exec			\
+		srcs/process/process		\
+		srcs/prompt/parseo_tokens	
 
 SRCSM = $(addsuffix .c, $(SRCS))
 OBJS = $(SRCSM:.c=.o)
