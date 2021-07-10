@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/09 21:01:01 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/10 20:26:24 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/10 23:21:26 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void	*menu_builtins (void)
 
 int	search_builtins(char *bcmd)
 {
+	if (!bcmd)
+		return(-1);
 	if (ft_strnstr("cd\0", bcmd,  ft_strlen(bcmd)))
 		return (0);
 	if (ft_strnstr("echo\0", bcmd,  ft_strlen(bcmd)))

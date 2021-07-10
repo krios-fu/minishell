@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 19:25:08 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/09 03:10:53 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/10 23:14:25 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,6 @@ void	print_header(void)
 char	*prompt(void)
 {
 	char	*line;
-	line = readline(BLUE"Rocket-men 🚀 "WHITE);
+	line = readline(BLUE"rocket-men 🚀 "WHITE);
 	return (line);
 }
-
-/*
-**
-**	this function returns a pointer
-**	to the structure with the analyzed data argv (parseo)
-**	see struct libminishell.h
-*/
-

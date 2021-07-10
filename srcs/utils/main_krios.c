@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 14:11:39 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/10 21:08:17 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/10 23:22:10 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,9 @@ int	main(void)
 				while (i < num_p)
 				{	
 					
-				  	printf("content --> : [%s]\n\n", data->lst_process->argv[0]);
-					//  start_process(data->lst_process->argv);
+					printf("content --> : [%s]\n\n", data->lst_process->argv[0]);
+					 start_process(data->lst_process->argv);
 					data->lst_process = data->lst_process->next;
-					// printf("exito final\n");
 					i++;
 				}
 

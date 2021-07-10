@@ -39,7 +39,7 @@ RM = rm -rf
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) ./includes/libminishell.h ./includes/prompt.h
 	@echo "$(BLUE)==========CREATING LIBFT==========$(RESET)"
 	@make -sC ./libft
 	@echo "$(BLUE)==========CREATING MINISHELL==========$(RESET)"
