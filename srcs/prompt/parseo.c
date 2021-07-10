@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 21:21:42 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/09 19:56:43 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/10 03:38:00 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,18 +76,18 @@ int	num_arg_process (char *line, t_process *lst_process)
   
 char	**get_tokens_arg(t_process *process, char *line)
 {
-	char **arguments;
-	int size;
-	int pos_arg;
-	int i;
+	char	**arguments;
+	int		pos_arg;
+	int		size;
+	int		i;
 
 	i = 0;
 	pos_arg = 0;
 	size = num_arg_process(line, process);
-
+	printf("num arg [[%d]]\n", size);
 	if (size == -1)
 		return(NULL);
-	arguments = (char **)malloc(sizeof(char *) * size + 1);
+	arguments = (char **)malloc(sizeof(char *) * (size + 1));
 	while (pos_arg < size)
 	{
 		line = ft_isspace(line);
@@ -100,22 +100,27 @@ char	**get_tokens_arg(t_process *process, char *line)
 				line++;
 			line = ft_isspace(line);
 		}
-		while (ft_isascii(line[i]) && line[i] != ' ')
+		while (ft_isascii(line[i]) && line[i] != ' ' && line[i])
 			i++;
 		arguments[pos_arg] = ft_strndup(line, i);
-		line = &line[i];
+		if (!line[i])
+			break ;
+		 line = &line[i];
 		pos_arg++;
 		i = 0;
 	}
 	arguments[size] = NULL;
+
 	return(arguments);
 }
 
 t_process	**new_array_process(int num_process)
 {
-	t_process **array_process;
+	t_process	**array_process;
 
 	array_process = (t_process **)malloc(sizeof(t_process *) * num_process + 1);
+	if (!array_process)
+		return (NULL);
 	array_process[num_process] = NULL;
 	return(array_process);
 }
@@ -128,49 +133,58 @@ char *next_line_process(char *line)
 	return(line);
 }
 
-char **get_lines_cmd(char *line, int num_process)
+char	**get_lines_cmd(char *line, int num_process)
 {
-	char **lines_cmd;
-	int i;
+	char	**lines_cmd;
+	int		i;
 
 	i = 1;
-	lines_cmd = (char **)malloc(sizeof(char *) * num_process + 1);
+	lines_cmd = (char **)malloc(sizeof(char *) * (num_process + 1));
+	if (!lines_cmd)
+		return (NULL);
 	lines_cmd[0] = ft_strdup(line);
+	if(!lines_cmd[0])
+		return (NULL);
 	if (num_process > 1)
 	{
 		while(i < num_process)
 		{
-			line = next_line_process(line); 
+			line = next_line_process(line);
 			lines_cmd[i] =  ft_strdup(line);
+			if(!lines_cmd[i])
+				return (NULL);
 			i++;
 		}
 	}
 	lines_cmd[num_process] = NULL;
 	return(lines_cmd);
 }
-t_process **get_process(char *line)
+int	get_process(t_process ***array_process, char *line)
 {
-	int			num_process;
-	t_process	**array_process;
 	char		**line_cmd;
-	int i;
-	i = 0;
+	int			num_process;
+	int			i;
 
+	i = 0;
 	num_process = get_num_pipe(line);
 	printf("num cmd [%d]\n", num_process);
 	if (num_process == -1)
 	{
 		printf("minishell 🚀 : parse error near `|'\n");
-		return(NULL);
+		return(0);
 	}
-	array_process = new_array_process(num_process);
+	(*array_process) = new_array_process(num_process);
+	if (!array_process)
+		return (0);
 	line_cmd = get_lines_cmd(line, num_process);
-
+	if (!line_cmd)
+		return (0);
 	while (i < num_process)
 	{
-		array_process[i] = (t_process *)malloc(sizeof(t_process));
-		array_process[i]->argv = get_tokens_arg(array_process[i], line_cmd[i]);
+		(*array_process[i]) = (t_process *)malloc(sizeof(t_process));
+		(*array_process[i])->argv = get_tokens_arg((*array_process[i]), line_cmd[i]);
 		i++;
+		printf("get_token *** exito\n");
 	}
-	return(array_process);
+	return(num_process);	
 }

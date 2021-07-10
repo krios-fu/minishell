@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 20:35:34 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/09 20:57:23 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/10 01:52:14 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ int	get_num_pipe(char *line)
 			}
 			(parse.i)++;
 		}
+
+		printf("pipe exito\n");
 		return(parse.num_arg);
 	}
 	return (-1);
@@ -73,5 +75,6 @@ int	pre_parse(char *line)
 		if (!is_redirect(*line))
 			line++;
 	}
+	printf("exito\n");
 	return (1);
 }

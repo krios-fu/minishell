@@ -109,7 +109,7 @@ char			*set_file_redirect(t_redirect *redirect, char *line);
 int				num_arg_process (char *line, t_process *lst_process);
 char			**get_tokens_arg(t_process *process, char *line);
 void			change_status_quote(char *line, t_parseo *parse);
-t_process 		**get_process(char *line);
+int				get_process(t_process ***array_process, char *line);
 /*
 ** Funtions prompt / pre-parseo 
 */
@@ -134,8 +134,8 @@ int				ft_unset(t_list **envp_list, char *name);
 */
 
 void	*menu_builtins (void);
-int		search_builtins(t_process *process);
-int		start_process(t_process *process);
+int		search_builtins(char *bcmd);
+int		start_process(t_process **process);
 
 /* 
 ** lst
