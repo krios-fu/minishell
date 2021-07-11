@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 14:11:39 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/11 05:38:46 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/11 06:21:23 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	main(int argc, char *argv[], char *envp[])
 				while (i < num_p)
 				{	
 					
-					// expansive_token(data->lst_process);
+					expansive_token(data->lst_process);
 					printf("content --> : [%s]\n\n", data->lst_process->argv[1]);
 					//  start_process(data->lst_process->argv);
 					process = data->lst_process->next;

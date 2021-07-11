@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 21:21:42 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/11 05:28:02 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/11 06:17:19 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,10 @@ int	num_arg_process(char *line, t_process *lst_process)
 		line++;
 	}
 	if (parse.quotes_d == true || parse.quotes_s == true)
+	{
 		printf("Error quote\n");
+		return (0);
+	}
 	return (parse.num_arg);
 }
 
