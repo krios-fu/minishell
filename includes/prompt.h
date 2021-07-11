@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 21:37:30 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/10 23:14:06 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/11 00:25:03 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,4 +109,5 @@ char			*set_symbol_redirect(t_redirect *redirect, char *line);
 char			*set_file_redirect(t_redirect *redirect, char *line);
 
 
+void	expansive_token(t_process *process);
 #endif

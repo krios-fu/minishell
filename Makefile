@@ -19,7 +19,8 @@ SRCS =	srcs/utils/list_utils		\
 		srcs/prompt/pre_parseo		\
 		srcs/process/exec			\
 		srcs/process/process		\
-		srcs/prompt/parseo_tokens	
+		srcs/prompt/parseo_tokens	\
+		srcs/prompt/expansive_var
 
 SRCSM = $(addsuffix .c, $(SRCS))
 OBJS = $(SRCSM:.c=.o)
@@ -27,8 +28,8 @@ OBJS = $(SRCSM:.c=.o)
 LIBFT = libft/libft.a
 
 # COMPILER FLAGS -lreadline for library <readline/readline.h> &&  <readline/history.h>#
-CC = gcc -Wall -Wextra -Werror 
-
+CC = gcc -Wall -Wextra -Werror  
+#-g3 -fsanitize=address
 # COLOUR DEFINITION #
 BLUE = \033[0;34m
 GREEN = \033[1;32m
@@ -43,9 +44,9 @@ $(NAME): $(OBJS) ./includes/libminishell.h ./includes/prompt.h
 	@echo "$(BLUE)==========CREATING LIBFT==========$(RESET)"
 	@make -sC ./libft
 	@echo "$(BLUE)==========CREATING MINISHELL==========$(RESET)"
-	@$(CC) $(INCLUDES) ${OBJS} $(LIBFT) -o ${NAME} -lreadline  -g3 -fsanitize=address
+	@$(CC) $(INCLUDES) ${OBJS} $(LIBFT) -o ${NAME} -lreadline 
 	@echo "Success creating minishell file"
-
+# -g3 -fsanitize=address
 clean:
 	@$(RM) $(OBJS)
 	@echo "$(GREEN)==========REMOVED==========$(RESET)"

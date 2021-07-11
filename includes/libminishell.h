@@ -35,6 +35,7 @@ typedef struct s_shell
 */
 
 int		get_process(t_data *data, char *line);
+void	free_resources(t_process *process);
 
 
 /* 
