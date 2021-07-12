@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 14:11:39 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/12 18:45:25 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/12 19:23:27 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	main(int argc, char *argv[], char *envp[])
 					// printf("content --> : [%s]\n\n", data->lst_process->argv[1]);
 					start_process(shell);
 					process = shell->data->lst_process->next;
-					free_resources(shell->data->lst_process);
+	//				free_resources(shell->data->lst_process);
 					shell->data->lst_process = process;
 					i++;
 				}
