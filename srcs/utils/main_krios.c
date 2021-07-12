@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 14:11:39 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/12 18:31:01 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/12 18:45:25 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	main(int argc, char *argv[], char *envp[])
 {
 	t_process	*process;
 	t_shell		*shell;
-	t_data		*data;
 	char 		*line;
 	int i;
 	int num_p;
@@ -27,25 +26,19 @@ int	main(int argc, char *argv[], char *envp[])
 	(void)envp;
 
 	shell = (t_shell *)malloc(sizeof(t_shell));
+	shell->data = (t_data *)malloc(sizeof(t_data));
 //	(void)envp;
 
 //	argv++;
 //	ft_echo(argv);
-/*
-	t_shell shell;
 
-	shell.envp_list = fill_envp_list(envp);
-	shell.exp_list = fill_envp_list(envp);
-	shell.exp_list = sort_env_list(&shell.exp_list);
+	shell->data->envp_list = fill_envp_list(envp);
+	shell->data->exp_list = fill_envp_list(envp);
+	shell->data->exp_list = sort_env_list(&shell->data->exp_list);
 
 
-	ft_env(shell.exp_list);
-	ft_export(&shell.envp_list, &shell.exp_list, argv);
-	print_list(shell.exp_list);
-	// print_list(shell.envp_list);
-*/
-	data = (t_data *)malloc(sizeof(t_data));
-	shell->data = data;
+
+	 
 	num_p = 0;
 	process = NULL;
 
@@ -71,8 +64,8 @@ int	main(int argc, char *argv[], char *envp[])
 				{	
 					
 					expansive_token(shell->data->lst_process);
-					printf("content --> : [%s]\n\n", data->lst_process->argv[1]);
-					//  start_process(shell->data->lst_process->argv);
+					// printf("content --> : [%s]\n\n", data->lst_process->argv[1]);
+					start_process(shell);
 					process = shell->data->lst_process->next;
 					free_resources(shell->data->lst_process);
 					shell->data->lst_process = process;
@@ -98,13 +91,18 @@ int	main(int argc, char **argv, char **envp)
 //	ft_echo(argv);
 
 	t_shell shell;
+	t_data data;
+//	shell = (t_shell *)malloc(sizeof(t_shell));
+//	shell->data = (t_data *)malloc(sizeof(t_data));
+	shell.data = &data;
 
-	shell.envp_list = fill_envp_list(envp);
-	shell.exp_list = fill_envp_list(envp);
-	shell.exp_list = sort_env_list(&shell.exp_list);
+	shell.data->envp_list = fill_envp_list(envp);
+	shell.data->exp_list = fill_envp_list(envp);
+	shell.data->exp_list = sort_env_list(&shell.data->exp_list);
 
-
-	ft_env(shell.exp_list);
+	ft_export(shell.data);
+//	ft_env(shell->data);
+//	print_list(shell.data->exp_list);
 	ft_export(&shell.envp_list, &shell.exp_list, argv);
 	print_list(shell.exp_list);
 	print_list(shell.envp_list);
@@ -118,4 +116,5 @@ int	main(int argc, char **argv, char **envp)
 //	printf("%s\n", getcwd(0, 1024));
 //	ft_cd(&shell.envp_list, &shell.exp_list, "includes");
 //	printf("%s\n", getcwd(0, 1024));
+
 }*/

@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/09 21:01:01 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/10 23:21:26 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/12 18:49:38 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void	*menu_builtins (void)
 {
-	int (**menu)(void);
+	int (**menu)(t_data *);
 
 	menu = malloc(sizeof(menu) + 2);
 	// menu[0] = &ft_cd;
 	// menu[1] = &ft_echo;
-	// menu[2] = &ft_env;
-	// menu[3] = &ft_export;
-	menu[0] = &ft_pwd;
+	menu[2] = &ft_env;
+	menu[3] = &ft_export;
+	// menu[4] = &ft_pwd;
 	// menu[5] = &ft_unset;
 	menu[1] = (void *)0;
 	return (menu);
@@ -52,18 +52,18 @@ int	search_builtins(char *bcmd)
 **
 */
 
-int	start_process(char **cmd)
+int	start_process(t_shell *shell)
 {
-	int (**menu)(void);
+	int (**menu)(t_data *);
 
 	int opc = 0;
 	int i;
 	i = 0;
 	
 	 menu = menu_builtins();
-	 opc = search_builtins(cmd[0]);
+	 opc = search_builtins(shell->data->lst_process->argv[0]);
 	if (opc >= 0)
-		(*menu[opc])();
+		(*menu[opc])(shell->data);
 	free(menu);
 	return(0);
 }
