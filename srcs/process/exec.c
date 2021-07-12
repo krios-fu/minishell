@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/09 21:01:01 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/12 18:49:38 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/12 19:27:38 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@ void	*menu_builtins (void)
 {
 	int (**menu)(t_data *);
 
-	menu = malloc(sizeof(menu) + 2);
+	menu = malloc(sizeof(menu) + 3);
 	// menu[0] = &ft_cd;
 	// menu[1] = &ft_echo;
-	menu[2] = &ft_env;
-	menu[3] = &ft_export;
+	menu[2 - 2] = &ft_env;
+	menu[3 - 2] = &ft_export;
 	// menu[4] = &ft_pwd;
 	// menu[5] = &ft_unset;
-	menu[1] = (void *)0;
+	menu[2] = (void *)0;
 	return (menu);
 }
 

@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 14:11:39 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/12 18:45:25 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/12 19:27:55 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ int	main(int argc, char *argv[], char *envp[])
 //	argv++;
 //	ft_echo(argv);
 
-	shell->data->envp_list = fill_envp_list(envp);
-	shell->data->exp_list = fill_envp_list(envp);
-	shell->data->exp_list = sort_env_list(&shell->data->exp_list);
+	// shell->data->envp_list = fill_envp_list(envp);
+	// shell->data->exp_list = fill_envp_list(envp);
+	// shell->data->exp_list = sort_env_list(&shell->data->exp_list);
 
 
 
@@ -54,7 +54,7 @@ int	main(int argc, char *argv[], char *envp[])
 				printf("minishell: syntax error near unexpected token\n");
 			else 
 			{
-				num_p =  get_process(shell->data, line);
+				 num_p =  get_process(shell->data, line);
 				if (num_p == 0)
 				{
 					free_resources(shell->data->lst_process);
@@ -63,8 +63,8 @@ int	main(int argc, char *argv[], char *envp[])
 				while (i < num_p)
 				{	
 					
-					expansive_token(shell->data->lst_process);
-					// printf("content --> : [%s]\n\n", data->lst_process->argv[1]);
+					// expansive_token(shell->data->lst_process);
+					 printf("content --> : [%s]\n\n", shell->data->lst_process->argv[1]);
 					start_process(shell);
 					process = shell->data->lst_process->next;
 					free_resources(shell->data->lst_process);

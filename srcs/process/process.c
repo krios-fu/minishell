@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 21:30:07 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/12 18:24:19 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/12 19:21:53 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ int	get_process(t_data *data, char *line)
 			ft_addlst_back_process(data->lst_process, new_process);
 		i++;
 	}
-
 	free_matrix(line_cmd);
 	return (num_process);
 }
