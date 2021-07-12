@@ -20,7 +20,8 @@ SRCS =	srcs/utils/list_utils		\
 		srcs/process/exec			\
 		srcs/process/process		\
 		srcs/prompt/parseo_tokens	\
-		srcs/prompt/expansive_var
+		srcs/prompt/expansive_var	\
+		srcs/utils/free
 
 SRCSM = $(addsuffix .c, $(SRCS))
 OBJS = $(SRCSM:.c=.o)
@@ -28,8 +29,8 @@ OBJS = $(SRCSM:.c=.o)
 LIBFT = libft/libft.a
 
 # COMPILER FLAGS -lreadline for library <readline/readline.h> &&  <readline/history.h>#
-CC = gcc -Wall -Wextra -Werror  
-#-g3 -fsanitize=address
+CC = gcc -Wall -Wextra -Werror 
+# -g3 -fsanitize=address
 # COLOUR DEFINITION #
 BLUE = \033[0;34m
 GREEN = \033[1;32m

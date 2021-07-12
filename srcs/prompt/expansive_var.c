@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 23:30:51 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/12 02:28:36 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/12 16:31:53 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,7 @@ void	expansive_token(t_process *process)
 								j++;
 							}
 						 j -= len_exp;
-						tmp = ft_strndup("42\0", 2); // val $
+						tmp = ft_strndup("k\0", 2); // val $
 						before_exp = ft_strndup(process->argv[i], j - 1);
 						join_befor_tmp = ft_strjoin(before_exp, tmp);
 						after_exp = ft_strjoin(join_befor_tmp, &process->argv[i][j + len_exp]);
