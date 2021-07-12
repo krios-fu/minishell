@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 18:04:13 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/12 18:29:21 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/12 19:45:53 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,12 @@ void	free_matrix(char **str)
 	int i;
 
 	i = 0;
-	printf("*%s*\n", *str);
 	if(str)
 	{
 		while(str[i])
 			free(str[i++]);
 		free(str);
 	}
-	printf("*%s*\n", *str);
 }
 
 void	free_redirect(t_redirect *redirect)
@@ -48,7 +46,7 @@ void	free_resources(t_process *process)
 	
 	while (process)
 	{
-		free(process->argv);
+		free_matrix(process->argv);
 		free_redirect(process->input);
 		free_redirect(process->output);
 		tmp = process->next;

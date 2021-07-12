@@ -6,12 +6,26 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 21:30:07 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/12 19:21:53 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/12 20:12:31 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libminishell.h"
 
+
+static t_process	*create_process (char **argv)
+{
+	t_process *new_process;
+
+	new_process = (t_process *)malloc(sizeof(t_process));
+	if (!new_process)
+		return (NULL);
+	new_process->next = NULL;
+	new_process->input = NULL;
+	new_process->output = NULL;
+	new_process->argv = argv;
+	return(new_process);
+}
 
 int	get_process(t_data *data, char *line)
 {
@@ -27,12 +41,8 @@ int	get_process(t_data *data, char *line)
 		return (0);
 	while (i < num_process)
 	{
-		new_process = (t_process *)malloc(sizeof(t_process));
-		new_process->next = NULL;
-		new_process->input = NULL;
-		new_process->output = NULL;
-		new_process->argv = get_tokens_arg(new_process, line_cmd[i]);
-		if (new_process->argv == (void *)0)
+		new_process = create_process(get_tokens_arg(new_process, line_cmd[i]));
+		if (!new_process || !new_process->argv)
 			{
 				free_matrix(line_cmd);
 				free_resources(new_process);

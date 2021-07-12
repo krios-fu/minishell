@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 14:11:39 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/12 19:27:55 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/12 19:37:52 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,17 +60,17 @@ int	main(int argc, char *argv[], char *envp[])
 					free_resources(shell->data->lst_process);
 				}
 				printf("n_p %d\n", num_p);
+				process = shell->data->lst_process;
 				while (i < num_p)
 				{	
 					
 					// expansive_token(shell->data->lst_process);
 					 printf("content --> : [%s]\n\n", shell->data->lst_process->argv[1]);
-					start_process(shell);
-					process = shell->data->lst_process->next;
-					free_resources(shell->data->lst_process);
-					shell->data->lst_process = process;
+					// start_process(shell);
+					shell->data->lst_process = shell->data->lst_process->next;
 					i++;
 				}
+				free_resources(process);
 			}
 		}
 		free(line);
