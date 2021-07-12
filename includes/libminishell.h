@@ -12,8 +12,8 @@
 typedef	struct s_data
 {
 	t_process		*lst_process;
-	//t_list 			**envp_list;  this is opcionaly
-	//t_list			**exp_list;   this the same
+	t_list 			**envp_list;
+	t_list			**exp_list;
 }				t_data;
 
 
@@ -23,8 +23,7 @@ typedef	struct s_data
 
 typedef struct s_shell
 {
-	t_list	*envp_list;
-	t_list	*exp_list;
+	t_data 		*data;
 }			t_shell;
 
 

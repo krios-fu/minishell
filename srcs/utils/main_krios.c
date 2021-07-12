@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 14:11:39 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/11 06:21:23 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/12 16:27:23 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	main(int argc, char *argv[], char *envp[])
 {
 	t_process	*process;
+	t_shell		*shell;
 	t_data		*data;
 	char 		*line;
 	int i;
@@ -24,6 +25,8 @@ int	main(int argc, char *argv[], char *envp[])
 	(void)argc;
 	(void)argv;
 	(void)envp;
+
+	shell = (t_shell *)malloc(sizeof(t_shell));
 //	(void)envp;
 
 //	argv++;
@@ -41,6 +44,8 @@ int	main(int argc, char *argv[], char *envp[])
 	print_list(shell.exp_list);
 	// print_list(shell.envp_list);
 */
+	data = (t_data *)malloc(sizeof(t_data));
+	shell->data = data;
 	num_p = 0;
 	process = NULL;
 
@@ -48,8 +53,7 @@ int	main(int argc, char *argv[], char *envp[])
 	while (1)
 	{
 		i = 0;
-		data = (t_data *)malloc(sizeof(t_data));
-		data->lst_process = NULL;
+		shell->data->lst_process = NULL;
 		line = prompt();
 		if (ft_strlen(line) > 0)
 		{
@@ -57,14 +61,14 @@ int	main(int argc, char *argv[], char *envp[])
 				printf("minishell: syntax error near unexpected token\n");
 			else 
 			{
-				num_p =  get_process(data, line);
+				num_p =  get_process(shell->data, line);
 				printf("n_p %d\n", num_p);
 				while (i < num_p)
 				{	
 					
-					expansive_token(data->lst_process);
+					expansive_token(shell->data->lst_process);
 					printf("content --> : [%s]\n\n", data->lst_process->argv[1]);
-					//  start_process(data->lst_process->argv);
+					//  start_process(shell->data->lst_process->argv);
 					process = data->lst_process->next;
 					free_resources(data->lst_process);
 					data->lst_process = process;
