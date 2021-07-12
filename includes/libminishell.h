@@ -12,8 +12,8 @@
 typedef	struct s_data
 {
 	t_process		*lst_process;
-	t_list 			**envp_list;
-	t_list			**exp_list;
+	t_list 			*envp_list;
+	t_list			*exp_list;
 }				t_data;
 
 
@@ -51,8 +51,8 @@ int		start_process(char **cmd);
 
 int 	ft_cd(t_list **envp_list, t_list **exp_list, char *path);
 int		ft_echo(char **args);
-int		ft_env(t_list *envp_list);
-int		ft_export(t_list **env_list, t_list **exp_list, char **var);
+int		ft_env(t_data *data);
+int		ft_export(t_data *data);
 int		ft_pwd(void);
 int		ft_unset(t_list **envp_list, char *name);
 

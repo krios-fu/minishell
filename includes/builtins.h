@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_env.c                                           :+:      :+:    :+:   */
+/*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jacgarci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/05 16:14:55 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/12 17:14:36 by jacgarci         ###   ########.fr       */
+/*   Created: 2021/07/12 16:46:49 by jacgarci          #+#    #+#             */
+/*   Updated: 2021/07/12 16:48:41 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/libminishell.h"
+#ifndef BUILTINS_H
+# define BUILTINS_H
 
-int	ft_env(t_data *data)
-{
-	if (!data->envp_list)
-		return (1);
-	printf("AAA\n");
-	while (data->envp_list->next)
-	{
-		printf("%s\n", data->envp_list->content);
-		data->envp_list = data->envp_list->next;
-	}
-	printf("%s\n", data->envp_list->content);
-	return (0);
-}
+
+
+#endif

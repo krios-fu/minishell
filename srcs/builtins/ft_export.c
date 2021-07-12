@@ -6,7 +6,7 @@
 /*   By: jacgarci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 11:40:34 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/09 12:51:29 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/12 18:27:07 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,22 @@ static int	print_export_list(t_list *lst)
 	return (0);
 }
 
-int	ft_export(t_list **env_list, t_list **exp_list, char **var)
+int	ft_export(t_data *data)
 {
-	if (!var)
-		return (print_export_list(*exp_list));
-	while (*var)
+	int	index;
+
+	index = 1;
+	if (!data->lst_process->argv[1])
+		return (print_export_list(data->exp_list));
+	while (data->lst_process->argv[index])
 	{
-		if (ft_strchr(*var, '='))
-			ft_lstadd_back(env_list, ft_lstnew(ft_strdup(*var)));
-		ft_lstadd_front(exp_list, ft_lstnew(*var));
-		var++;
+		if (ft_strchr(data->lst_process->argv[index], '='))
+			ft_lstadd_back(&data->envp_list,
+					ft_lstnew(ft_strdup(data->lst_process->argv[index])));
+		ft_lstadd_front(&data->exp_list,
+				ft_lstnew(ft_strdup(data->lst_process->argv[index])));
+		index++;
 	}
-	sort_env_list(exp_list);
+	sort_env_list(&data->exp_list);
 	return (0);
 }

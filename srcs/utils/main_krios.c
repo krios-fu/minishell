@@ -6,12 +6,12 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 14:11:39 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/12 16:27:23 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/12 18:30:31 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libminishell.h"
-
+/*
 int	main(int argc, char *argv[], char *envp[])
 {
 	t_process	*process;
@@ -31,7 +31,7 @@ int	main(int argc, char *argv[], char *envp[])
 
 //	argv++;
 //	ft_echo(argv);
-/*
+
 	t_shell shell;
 
 	shell.envp_list = fill_envp_list(envp);
@@ -43,7 +43,7 @@ int	main(int argc, char *argv[], char *envp[])
 	ft_export(&shell.envp_list, &shell.exp_list, argv);
 	print_list(shell.exp_list);
 	// print_list(shell.envp_list);
-*/
+
 	data = (t_data *)malloc(sizeof(t_data));
 	shell->data = data;
 	num_p = 0;
@@ -83,7 +83,7 @@ int	main(int argc, char *argv[], char *envp[])
 	return (0);
 }
 
-/*
+*/
 //main para probar que funciona la funcion fill_envp_list. La funcion se encuentra en srcs/utils
 int	main(int argc, char **argv, char **envp)
 {
@@ -95,14 +95,19 @@ int	main(int argc, char **argv, char **envp)
 //	ft_echo(argv);
 
 	t_shell shell;
+	t_data data;
+//	shell = (t_shell *)malloc(sizeof(t_shell));
+//	shell->data = (t_data *)malloc(sizeof(t_data));
+	shell.data = &data;
 
-	shell.envp_list = fill_envp_list(envp);
-	shell.exp_list = fill_envp_list(envp);
-	shell.exp_list = sort_env_list(&shell.exp_list);
+	shell.data->envp_list = fill_envp_list(envp);
+	shell.data->exp_list = fill_envp_list(envp);
+	shell.data->exp_list = sort_env_list(&shell.data->exp_list);
 
-
-	ft_env(shell.exp_list);
-	ft_export(&shell.envp_list, &shell.exp_list, argv);
+	ft_export(shell.data);
+//	ft_env(shell->data);
+//	print_list(shell.data->exp_list);
+/*	ft_export(&shell.envp_list, &shell.exp_list, argv);
 	print_list(shell.exp_list);
 	print_list(shell.envp_list);
 
@@ -115,4 +120,5 @@ int	main(int argc, char **argv, char **envp)
 //	printf("%s\n", getcwd(0, 1024));
 //	ft_cd(&shell.envp_list, &shell.exp_list, "includes");
 //	printf("%s\n", getcwd(0, 1024));
-}*/
+*/
+}

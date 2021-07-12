@@ -10,8 +10,8 @@ SRCS =	srcs/utils/list_utils		\
 		srcs/prompt/utils			\
 		srcs/prompt/redirect		\
 		srcs/builtins/ft_env		\
-		srcs/builtins/ft_pwd		\
 		srcs/builtins/ft_export		\
+	#	srcs/builtins/ft_pwd		\
 		srcs/builtins/ft_echo		\
 		srcs/builtins/ft_cd			\
 		srcs/builtins/ft_unset		\
@@ -28,7 +28,7 @@ OBJS = $(SRCSM:.c=.o)
 LIBFT = libft/libft.a
 
 # COMPILER FLAGS -lreadline for library <readline/readline.h> &&  <readline/history.h>#
-CC = gcc -Wall -Wextra -Werror  
+CC = gcc -Wall -Wextra -Werror 
 #-g3 -fsanitize=address
 # COLOUR DEFINITION #
 BLUE = \033[0;34m
