@@ -1,43 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_echo.c                                          :+:      :+:    :+:   */
+/*   list_utils2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/07 18:54:04 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/13 16:28:57 by jacgarci         ###   ########.fr       */
+/*   Created: 2021/07/13 17:20:31 by jacgarci          #+#    #+#             */
+/*   Updated: 2021/07/13 20:25:05 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libminishell.h"
 
-void	ft_echo(t_data *data)
+void	replace_content(t_list **lst, char *content, char *name)
 {
-	int	flag;
-	int	index;
+	t_list	*ptr;
+	char	*f_name;
 
-	flag = 0;
-	index = 1;
-	if (!data->lst_process->argv[index])
-	{
-		printf("\n");
+	if (!lst || !*lst)
 		return ;
-	}
-	if (ft_strnstr(data->lst_process->argv[index], "-n\0", 2))
+	ptr = *lst;
+	f_name = ft_strjoin(name, "=");
+	while (*lst)
 	{
-		flag = 1;
-		index++;
+		if (!ft_strncmp((char *)(*lst)->content, f_name, ft_strlen(f_name)))
+		{
+			free((*lst)->content);
+			(*lst)->content = ft_strdup(content);
+		}
+		*lst = (*lst)->next;
 	}
-	while (data->lst_process->argv[index])
-	{
-		if (data->lst_process->argv[index + 1])
-			printf("%s ", data->lst_process->argv[index]);
-		else
-			printf("%s", data->lst_process->argv[index]);
-		index++;
-	}
-	if (!flag)
-		printf("\n");
-	// return (0);
+	 free(f_name); // mod kevin
+	*lst = ptr;
 }

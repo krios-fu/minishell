@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jacgarci <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 18:23:51 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/13 11:03:15 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/13 20:34:11 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libminishell.h"
 
-//int	ft_unset(t_list **envp_list, char *name)
-int	ft_unset(t_data *data)
+void	ft_unset(t_data *data)
 {
 	char	*envp_var;
 	char	*exp_var;
@@ -24,5 +23,7 @@ int	ft_unset(t_data *data)
 		ft_lstdelone(&data->envp_list, (void *)envp_var);
 	if (exp_var)
 		ft_lstdelone(&data->exp_list, (void *)exp_var);
-	return (0);
+	free(envp_var);
+	free(exp_var);
+
 }

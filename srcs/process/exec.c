@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/09 21:01:01 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/13 16:37:51 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/13 20:11:31 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,22 @@
 
 void	*menu_builtins (void)
 {
-	// void **menu;
+
 	void (**menu)(t_data *);
-	menu = malloc(sizeof(menu) + 7);
-	// menu[0] = &ft_cd;
+
+	menu = malloc(sizeof(*menu) * 6);
+	menu[0] = &ft_cd;
 	menu[1] = &ft_echo;
-	// menu[2] = &ft_env;
-	// menu[3] = &ft_export;
-	// menu[4] = &ft_pwd;
-	// menu[5] = &ft_unset;
-	// menu[6] = (void *)0;
-	return ((void *)menu);
+	menu[2] = &ft_env;
+	menu[3] = &ft_export;
+	menu[4] = &ft_pwd;
+	menu[5] = &ft_unset;
+	return (menu);
 }
 
 int	search_builtins(char *bcmd)
 {
+		
 	if (!bcmd)
 		return(-1);
 	if (ft_strnstr("cd\0", bcmd,  ft_strlen(bcmd)))
@@ -47,23 +48,19 @@ int	search_builtins(char *bcmd)
 	return (-1);
 }
 
-/*
-**	to do: mod parameters input for data 
-**
-*/
-
 int	start_process(t_shell *shell)
 {
 	void (**menu)(t_data *);
 
-	int opc = 0;
+	int opc;
 	int i;
 	i = 0;
-	
-	 menu = menu_builtins();
-	 opc = search_builtins(shell->data->lst_process->argv[0]);
+
+	opc = 0;
+	menu = menu_builtins();
+	opc = search_builtins((char *)shell->data->lst_process->argv[0]);
 	if (opc >= 0)
-		(menu[opc])(shell->data);
-	free(menu);
+		(*menu[opc])(shell->data);
+	 free(menu);
 	return(0);
 }

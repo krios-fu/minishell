@@ -3,32 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jacgarci <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 11:40:34 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/12 19:54:37 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/13 23:10:32 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libminishell.h"
 
-static int	print_export_list(t_list *lst)
+static void	print_export_list(t_list *lst)
 {
 	while (lst)
 	{
 		printf("%s%s\n", "declare -x ", lst->content);
 		lst = lst->next;
 	}
-	return (0);
 }
 
-int	ft_export(t_data *data)
+void	ft_export(t_data *data)
 {
 	int	index;
 
 	index = 1;
 	if (!data->lst_process->argv[1])
-		return (print_export_list(data->exp_list));
+		print_export_list(data->exp_list);
 	while (data->lst_process->argv[index])
 	{
 		if (ft_strchr(data->lst_process->argv[index], '='))
@@ -38,6 +37,5 @@ int	ft_export(t_data *data)
 				ft_lstnew(ft_strdup(data->lst_process->argv[index])));
 		index++;
 	}
-	sort_env_list(&data->exp_list);
-	return (0);
+	sort_env_list(data->exp_list);
 }

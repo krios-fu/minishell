@@ -67,12 +67,12 @@ int		start_process(t_shell *shell);
 ** Builtins
 */
 
-int 	ft_cd(t_data *data);
+void 	ft_cd(t_data *data);
 void	ft_echo(t_data *data);
-int		ft_env(t_data *data);
-int		ft_export(t_data *data);
-int		ft_pwd(t_data *data);
-int		ft_unset(t_data *data);
+void	ft_env(t_data *data);
+void	ft_export(t_data *data);
+void	ft_pwd(t_data *data);
+void	ft_unset(t_data *data);
 
 
 /* 
@@ -80,9 +80,11 @@ int		ft_unset(t_data *data);
 */
 
 t_list	*fill_envp_list(char **envp);
-t_list	*sort_env_list(t_list **lst);
+t_list	*sort_env_list(t_list *lst);
+void 	sort_lst(t_list **lst);
 void	print_list(t_list *lst);
 char	*search_env(t_list *envp_list, char *name);
+void    replace_content(t_list **lst, char *content, char *name);
 
 
 /*
