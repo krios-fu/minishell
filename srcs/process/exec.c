@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/09 21:01:01 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/13 15:53:31 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/13 16:37:51 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,16 @@
 
 void	*menu_builtins (void)
 {
-	int (**menu)(t_data *);
-	menu = (void *)malloc(sizeof(*menu) + 7);
-	menu[0] = &ft_cd;
+	// void **menu;
+	void (**menu)(t_data *);
+	menu = malloc(sizeof(menu) + 7);
+	// menu[0] = &ft_cd;
 	menu[1] = &ft_echo;
-	menu[2] = &ft_env;
-	menu[3] = &ft_export;
-	menu[4] = &ft_pwd;
-	menu[5] = &ft_unset;
-	menu[6] = (void *)0;
+	// menu[2] = &ft_env;
+	// menu[3] = &ft_export;
+	// menu[4] = &ft_pwd;
+	// menu[5] = &ft_unset;
+	// menu[6] = (void *)0;
 	return ((void *)menu);
 }
 
@@ -53,7 +54,7 @@ int	search_builtins(char *bcmd)
 
 int	start_process(t_shell *shell)
 {
-	int (**menu)(t_data *);
+	void (**menu)(t_data *);
 
 	int opc = 0;
 	int i;
@@ -63,6 +64,6 @@ int	start_process(t_shell *shell)
 	 opc = search_builtins(shell->data->lst_process->argv[0]);
 	if (opc >= 0)
 		(menu[opc])(shell->data);
-	// free(menu);
+	free(menu);
 	return(0);
 }

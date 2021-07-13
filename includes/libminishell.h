@@ -17,6 +17,19 @@ typedef	struct s_data
 }				t_data;
 
 
+typedef struct s_var
+{
+	int		i;
+	int		j;
+	int		len_exp;
+	char	*content;
+	char	*before_exp;
+	char	*after_exp;
+	char	*join_befor_tmp;
+	char	*env;
+	char	**token;
+}				t_var;
+
 /*
 ** Struct for minishell variables
 */

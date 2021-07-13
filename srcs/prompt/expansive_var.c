@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 23:30:51 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/13 16:22:15 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/13 18:14:41 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,55 +99,56 @@ void	del_quotes(t_process *process)
 	}
 }
 
+static void	len_expansive(t_var *var)
+{
+	var->j++;
+	var->len_exp = 0;
+	while (var->token[var->i][var->j] && (var->token[var->i][var->j] != ' '
+		&& var->token[var->i][var->j] != '$' && !is_quote(var->token[var->i][var->j])))
+		{
+			var->len_exp++;
+			var->j++;
+		}
+}
+
+static void	expansive_swap(t_shell *shell, t_var *var)
+{
+	var->j -= var->len_exp;
+	var->env = ft_strndup(&var->token[var->i][var->j], var->len_exp); 
+	var->content = search_env(shell->data->envp_list, var->env);
+	free(var->env);
+	var->before_exp = ft_strndup(var->token[var->i], var->j - 1);
+	var->join_befor_tmp = ft_strjoin(var->before_exp,
+		&var->content[var->len_exp + 1]);
+	var->after_exp = ft_strjoin(var->join_befor_tmp,
+		&var->token[var->i][var->j + var->len_exp]);
+	free(var->content);
+	free(var->before_exp);
+	free(var->join_befor_tmp);
+	free(var->token[var->i]);
+	var->token[var->i] = var->after_exp;
+}
 void	expansive_token(t_shell *shell)
 {
-	int		i;
-	int		j;
-	int		len_exp;
-	char	*tmp;
-	char	*before_exp;
-	char	*after_exp;
-	char	*join_befor_tmp;
-	char	*env;
+	t_var	var;
 
-	i = 0;
-	j = 0;
-	len_exp = 0;
-	// (void)get_var;
-	while (shell->data->lst_process->argv[i])
+	var.i = 0;
+	var.len_exp = 0;
+	var.token = shell->data->lst_process->argv;
+	while (var.token[var.i])
 	{
-
-		j = 0;
-		if (shell->data->lst_process->argv[i][j] != '\'')
-			while(shell->data->lst_process->argv[i][j])
+		var.j = 0;
+		if (var.token[var.i][var.j] != '\'')
+			while(var.token[var.i][var.j])
 			{
-				if (shell->data->lst_process->argv[i][j] == '$')
+				if (var.token[var.i][var.j] == '$')
 					{
-						j++;
-						len_exp = 0;
-						while (shell->data->lst_process->argv[i][j] && (shell->data->lst_process->argv[i][j] != ' '
-							&& shell->data->lst_process->argv[i][j] != '$' && !is_quote(shell->data->lst_process->argv[i][j])))
-							{
-								len_exp++;
-								j++;
-							}
-						 j -= len_exp;
-						env = ft_strndup(&shell->data->lst_process->argv[i][j], len_exp); 
-						printf("[[%s]]\n", env);
-						tmp = search_env(shell->data->envp_list, env);
-						free(env);
-						before_exp = ft_strndup(shell->data->lst_process->argv[i], j - 1);
-						join_befor_tmp = ft_strjoin(before_exp, &tmp[len_exp + 1]);
-						after_exp = ft_strjoin(join_befor_tmp, &shell->data->lst_process->argv[i][j + len_exp]);
-						free(tmp);
-						free(before_exp);
-						free(join_befor_tmp);
-						free(shell->data->lst_process->argv[i]);
-						shell->data->lst_process->argv[i] = after_exp;
+						len_expansive(&var);
+						expansive_swap(shell, &var);
 					}
-				j++;
+				var.j++;
 			}
-		i++;
+		var.i++;
 	}
 	del_quotes(shell->data->lst_process);
 }

@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 21:37:30 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/13 16:08:33 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/13 16:40:59 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef	struct s_process
 	t_redirect			*input;
 	t_redirect			*output;
 	struct 	s_process	*next;
+	int					code_error;
 }				t_process;
 
 /*

@@ -6,13 +6,13 @@
 /*   By: jacgarci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 17:48:30 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/13 18:23:28 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/13 18:52:22 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libminishell.h"
 
-static int	update_pwd(t_data *data, char *new_pwd)
+static void	update_pwd(t_data *data, char *new_pwd)
 {
 	char	*tmp;
 	char	*pwd;
@@ -28,10 +28,9 @@ static int	update_pwd(t_data *data, char *new_pwd)
 	replace_content(&data->envp_list, pwd, "PWD");
 	replace_content(&data->exp_list, pwd, "PWD");
 	free(pwd);
-	return (0);
 }
 
-static int	cdpath(t_data *data)
+static void	cdpath(t_data *data)
 {
 	char	*content;
 	char	**paths;
@@ -49,7 +48,7 @@ static int	cdpath(t_data *data)
 			printf("~%s\n", tmp + ft_strlen(search_env(data->envp_list,
 							"HOME") + 5));
 			free_matrix(paths);
-			return (update_pwd(data, tmp));
+			update_pwd(data, tmp);
 		}
 		ft_bzero(tmp, ft_strlen(tmp));
 		free(tmp);
@@ -57,10 +56,10 @@ static int	cdpath(t_data *data)
 	}
 	printf("cd: no such file or directory: %s\n", data->lst_process->argv[1]);
 	free_matrix(paths);
-	return (1);
+	data->lst_process->code_error = 1;
 }
 
-static int	cd_home(t_data *data)
+static void	cd_home(t_data *data)
 {
 	char	*content;
 
@@ -69,33 +68,38 @@ static int	cd_home(t_data *data)
 	{
 		printf(" cd: HOME not set\n");
 		free(content);
-		return (1);
+		data->lst_process->code_error = 1;
+		return ;
 	}
 	if (chdir(content + 5))
 	{
 		printf("cd: no such file or directory: %s\n", content + 5);
 		free(content);
-		return (1);
+		data->lst_process->code_error = 1;
+		return ;
 	}
 	update_pwd(data, content + 5);
 	free(content);
-	return (0);
 }
 
 void	ft_cd(t_data *data)
 {
 	if (!data->lst_process->argv[1])
 	{
-		if (cd_home(data))
-		{
-			data->lst_process
-			return (1);
-		}
+		cd_home(data);
+		if (data->lst_process->code_error == 1)
+			return ;
 	}
-	else if (!ft_strncmp(search_env(data->envp_list,
-					"CDPATH"), "CDPATH=", 7))
-		return (cdpath(data));
+	else if (!ft_strncmp(search_env(data->envp_list, "CDPATH"), "CDPATH=", 7))
+	{
+		cdpath(data);
+		if (data->lst_process->code_error == 1)
+			return ;	
+	}
 	if (chdir(data->lst_process->argv[1]))
-		return (1);
-	return (update_pwd(data, data->lst_process->argv[1]));
+	{
+		data->lst_process->code_error = 1;
+		return ;
+	}
+	update_pwd(data, data->lst_process->argv[1]);
 }

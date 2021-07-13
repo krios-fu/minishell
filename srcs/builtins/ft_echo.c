@@ -12,7 +12,7 @@
 
 #include "../../includes/libminishell.h"
 
-int	ft_echo(t_data *data)
+void	ft_echo(t_data *data)
 {
 	int	flag;
 	int	index;
@@ -22,7 +22,7 @@ int	ft_echo(t_data *data)
 	if (!data->lst_process->argv[index])
 	{
 		printf("\n");
-		return (0);
+		return ;
 	}
 	if (ft_strnstr(data->lst_process->argv[index], "-n\0", 2))
 	{
@@ -39,5 +39,5 @@ int	ft_echo(t_data *data)
 	}
 	if (!flag)
 		printf("\n");
-	return (0);
+	// return (0);
 }
