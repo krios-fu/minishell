@@ -6,12 +6,12 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 14:11:39 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/13 18:00:54 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/13 18:15:41 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libminishell.h"
-
+/*
 int	main(int argc, char *argv[], char *envp[])
 {
 	t_process	*process;
@@ -79,8 +79,8 @@ int	main(int argc, char *argv[], char *envp[])
 
 	return (0);
 }
+*/
 
-/*
 //main para probar que funciona la funcion fill_envp_list. La funcion se encuentra en srcs/utils
 int	main(int argc, char **argv, char **envp)
 {
@@ -103,14 +103,14 @@ int	main(int argc, char **argv, char **envp)
 	shell.data->exp_list = fill_envp_list(envp);
 	shell.data->exp_list = sort_env_list(&shell.data->exp_list);
 	shell.data->lst_process->argv = argv;
-//	print_list(data.envp_list);
-//	printf("\n");
-//	printf("%s\n", getcwd(0, 1024));
+	print_list(data.envp_list);
+	printf("\n");
+	printf("%s\n", getcwd(0, 1024));
 	ft_cd(&data);
 	data.lst_process->argv[1] = "includes";
 	ft_cd(&data);
-//	printf("%s\n", getcwd(0, 1024));
-//	print_list(data.envp_list);
+	printf("%s\n", getcwd(0, 1024));
+	print_list(data.envp_list);
 //	ft_echo(shell.data);
 //	ft_export(shell.data);
 //	ft_env(shell.data);
@@ -138,4 +138,4 @@ int	main(int argc, char **argv, char **envp)
 //	printf("%s\n", getcwd(0, 1024));
 
 }
-*/
+

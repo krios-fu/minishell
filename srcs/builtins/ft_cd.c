@@ -6,7 +6,7 @@
 /*   By: jacgarci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 17:48:30 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/13 17:40:51 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/13 18:23:28 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static int	cdpath(t_data *data)
 		{
 			printf("~%s\n", tmp + ft_strlen(search_env(data->envp_list,
 							"HOME") + 5));
-			free_tab(paths);
+			free_matrix(paths);
 			return (update_pwd(data, tmp));
 		}
 		ft_bzero(tmp, ft_strlen(tmp));
@@ -56,16 +56,15 @@ static int	cdpath(t_data *data)
 		paths++;
 	}
 	printf("cd: no such file or directory: %s\n", data->lst_process->argv[1]);
-	free_tab(paths);
+	free_matrix(paths);
 	return (1);
 }
 
 static int	cd_home(t_data *data)
 {
 	char	*content;
-	char	*path;
 
-	content = search_env(envp_list, "HOME");
+	content = search_env(data->envp_list, "HOME");
 	if (!content)
 	{
 		printf(" cd: HOME not set\n");
@@ -83,12 +82,15 @@ static int	cd_home(t_data *data)
 	return (0);
 }
 
-int	ft_cd(t_data *data)
+void	ft_cd(t_data *data)
 {
 	if (!data->lst_process->argv[1])
 	{
-		if (cd_home(data->envp_list))
+		if (cd_home(data))
+		{
+			data->lst_process
 			return (1);
+		}
 	}
 	else if (!ft_strncmp(search_env(data->envp_list,
 					"CDPATH"), "CDPATH=", 7))

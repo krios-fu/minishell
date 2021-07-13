@@ -51,12 +51,12 @@ int		start_process(t_shell *shell);
 ** Builtins
 */
 
-int 	ft_cd(t_data *data);
-int		ft_echo(t_data *data);
-int		ft_env(t_data *data);
-int		ft_export(t_data *data);
-int		ft_pwd(t_data *data);
-int		ft_unset(t_data *data);
+void 	ft_cd(t_data *data);
+void	ft_echo(t_data *data);
+void	ft_env(t_data *data);
+void	ft_export(t_data *data);
+void	ft_pwd(t_data *data);
+void	ft_unset(t_data *data);
 
 
 /* 
