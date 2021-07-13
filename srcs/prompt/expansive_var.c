@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 23:30:51 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/12 16:31:53 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/13 16:22:15 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	del_quotes(t_process *process)
 	}
 }
 
-void	expansive_token(t_process *process)
+void	expansive_token(t_shell *shell)
 {
 	int		i;
 	int		j;
@@ -108,41 +108,46 @@ void	expansive_token(t_process *process)
 	char	*before_exp;
 	char	*after_exp;
 	char	*join_befor_tmp;
+	char	*env;
 
 	i = 0;
 	j = 0;
 	len_exp = 0;
 	// (void)get_var;
-	while (process->argv[i])
+	while (shell->data->lst_process->argv[i])
 	{
+
 		j = 0;
-		if (process->argv[i][j] != '\'')
-			while(process->argv[i][j])
+		if (shell->data->lst_process->argv[i][j] != '\'')
+			while(shell->data->lst_process->argv[i][j])
 			{
-				if (process->argv[i][j] == '$')
+				if (shell->data->lst_process->argv[i][j] == '$')
 					{
 						j++;
 						len_exp = 0;
-						while (process->argv[i][j] && (process->argv[i][j] != ' '
-							&& process->argv[i][j] != '$' && !is_quote(process->argv[i][j])))
+						while (shell->data->lst_process->argv[i][j] && (shell->data->lst_process->argv[i][j] != ' '
+							&& shell->data->lst_process->argv[i][j] != '$' && !is_quote(shell->data->lst_process->argv[i][j])))
 							{
 								len_exp++;
 								j++;
 							}
 						 j -= len_exp;
-						tmp = ft_strndup("k\0", 2); // val $
-						before_exp = ft_strndup(process->argv[i], j - 1);
-						join_befor_tmp = ft_strjoin(before_exp, tmp);
-						after_exp = ft_strjoin(join_befor_tmp, &process->argv[i][j + len_exp]);
+						env = ft_strndup(&shell->data->lst_process->argv[i][j], len_exp); 
+						printf("[[%s]]\n", env);
+						tmp = search_env(shell->data->envp_list, env);
+						free(env);
+						before_exp = ft_strndup(shell->data->lst_process->argv[i], j - 1);
+						join_befor_tmp = ft_strjoin(before_exp, &tmp[len_exp + 1]);
+						after_exp = ft_strjoin(join_befor_tmp, &shell->data->lst_process->argv[i][j + len_exp]);
 						free(tmp);
 						free(before_exp);
 						free(join_befor_tmp);
-						free(process->argv[i]);
-						process->argv[i] = after_exp;
+						free(shell->data->lst_process->argv[i]);
+						shell->data->lst_process->argv[i] = after_exp;
 					}
 				j++;
 			}
 		i++;
 	}
-	del_quotes(process);
+	del_quotes(shell->data->lst_process);
 }

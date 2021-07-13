@@ -33,6 +33,8 @@ typedef struct s_shell
 **
 */
 
+void	expansive_token(t_shell *shell);
+
 int		get_process(t_data *data, char *line);
 void	free_resources(t_process *process);
 

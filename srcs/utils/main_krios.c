@@ -6,12 +6,12 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 14:11:39 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/13 13:21:59 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/13 16:11:16 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libminishell.h"
-/*
+
 int	main(int argc, char *argv[], char *envp[])
 {
 	t_process	*process;
@@ -23,7 +23,7 @@ int	main(int argc, char *argv[], char *envp[])
 
 	(void)argc;
 	(void)argv;
-	(void)envp;
+	// (void)envp;
 
 	shell = (t_shell *)malloc(sizeof(t_shell));
 	shell->data = (t_data *)malloc(sizeof(t_data));
@@ -59,18 +59,19 @@ int	main(int argc, char *argv[], char *envp[])
 				{
 					free_resources(shell->data->lst_process);
 				}
-				printf("n_p %d\n", num_p);
+				// printf("n_p %d\n", num_p);
 				process = shell->data->lst_process;
 				while (i < num_p)
 				{	
 					
-					// expansive_token(shell->data->lst_process);
-					 printf("content --> : [%s]\n\n", shell->data->lst_process->argv[1]);
-					 start_process(shell);
+					expansive_token(shell);
+					//  printf("content --> : [%s]\n\n", shell->data->lst_process->argv[1]);
+					//  start_process(shell);
+					 ft_echo(shell->data);
 					shell->data->lst_process = shell->data->lst_process->next;
 					i++;
 				}
-				free_resources(process);
+				//  free_resources(process);
 			}
 		}
 		free(line);
@@ -78,8 +79,8 @@ int	main(int argc, char *argv[], char *envp[])
 
 	return (0);
 }
-*/
 
+/*
 //main para probar que funciona la funcion fill_envp_list. La funcion se encuentra en srcs/utils
 int	main(int argc, char **argv, char **envp)
 {
@@ -137,3 +138,4 @@ int	main(int argc, char **argv, char **envp)
 //	printf("%s\n", getcwd(0, 1024));
 
 }
+*/
