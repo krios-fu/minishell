@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 11:10:56 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/12 19:32:43 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/13 11:25:22 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*search_env(t_list *envp_list, char *name)
 		envp_list = envp_list->next;
 	}
 	free(f_name);
-	return (0);
+	return (ft_strdup(""));
 }
 
 /*

@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/09 21:01:01 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/12 20:49:36 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/13 10:48:46 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void	*menu_builtins (void)
 	// menu[1] = &ft_echo;
 	menu[0] = &ft_env;
 	menu[1] = &ft_export;
-	// menu[4] = &ft_pwd;
+	menu[2] = &ft_pwd;
 	// menu[5] = &ft_unset;
-	menu[2] = (void *)0;
+	menu[3] = (void *)0;
 	return ((void *)menu);
 }
 
@@ -38,8 +38,8 @@ int	search_builtins(char *bcmd)
 		return (0);	
 	if (ft_strnstr("export\0", bcmd,  ft_strlen(bcmd)))
 		return (1);
-	// if (ft_strnstr("pwd\0", bcmd,  ft_strlen(bcmd)))
-		// return (0);
+	if (ft_strnstr("pwd\0", bcmd,  ft_strlen(bcmd)))
+		return (2);
 	// if (ft_strnstr("unset\0", bcmd,  ft_strlen(bcmd)))
 		// return (5);
 
@@ -63,6 +63,6 @@ int	start_process(t_shell *shell)
 	 opc = search_builtins(shell->data->lst_process->argv[0]);
 	if (opc >= 0)
 		(menu[opc])(shell->data);
-	free(menu);
+//	free(menu);
 	return(0);
 }

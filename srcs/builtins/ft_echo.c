@@ -6,13 +6,13 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 18:54:04 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/10 18:48:59 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/13 11:29:57 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libminishell.h"
 
-int	ft_echo(char **args)
+int	ft_echo(t_data *data)
 {
 	int	flag;
 	int	index;
@@ -20,22 +20,22 @@ int	ft_echo(char **args)
 	flag = 0;
 	index = 1;
 
-	if (!args[index])
+	if (!data->lst_process->argv[index])
 	{
 		printf("\n");
 		return (0);
 	}
-	if (ft_strnstr(args[index], "-n\0", 2))
+	if (ft_strnstr(data->lst_process->argv[index], "-n\0", 2))
 	{
 		flag = 1;
 		index++;
 	}
-	while (args[index])
+	while (data->lst_process->argv[index])
 	{
-		if (args[index + 1])
-			printf("%s ", args[index]);
+		if (data->lst_process->argv[index + 1])
+			printf("%s ", data->lst_process->argv[index]);
 		else
-			printf("%s", args[index]);
+			printf("%s", data->lst_process->argv[index]);
 		index++;
 	}
 	if (!flag)

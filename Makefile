@@ -11,6 +11,10 @@ SRCS =	srcs/utils/list_utils		\
 		srcs/prompt/redirect		\
 		srcs/builtins/ft_env		\
 		srcs/builtins/ft_export		\
+		srcs/builtins/ft_pwd		\
+	 	srcs/builtins/ft_unset		\
+		srcs/builtins/ft_echo		\
+		srcs/builtins/ft_cd			\
 		srcs/prompt/parseo 			\
 		srcs/prompt/pre_parseo		\
 		srcs/process/exec			\
@@ -18,10 +22,6 @@ SRCS =	srcs/utils/list_utils		\
 		srcs/prompt/parseo_tokens	\
 		srcs/prompt/expansive_var	\
 		srcs/utils/free				
-#	srcs/builtins/ft_echo		\
-	 	srcs/builtins/ft_unset		\
-		srcs/builtins/ft_cd			\
-		srcs/builtins/ft_pwd		\
 
 SRCSM = $(addsuffix .c, $(SRCS))
 OBJS = $(SRCSM:.c=.o)
