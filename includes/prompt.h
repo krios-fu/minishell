@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 21:37:30 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/13 16:40:59 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/13 18:36:12 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,5 +110,11 @@ char			*set_symbol_redirect(t_redirect *redirect, char *line);
 char			*set_file_redirect(t_redirect *redirect, char *line);
 
 
+/*
+**
+**  srscs/prompt / parseo_quote
+*/
+void			del_quotes(t_process *process);
+int				is_quote(char c);
 
 #endif

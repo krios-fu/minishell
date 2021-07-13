@@ -28,6 +28,9 @@ typedef struct s_var
 	char	*join_befor_tmp;
 	char	*env;
 	char	**token;
+	char 	**tmp;
+	char 	*tmp_join;
+	char 	*aux;
 }				t_var;
 
 /*
@@ -65,7 +68,7 @@ int		start_process(t_shell *shell);
 */
 
 int 	ft_cd(t_data *data);
-void		ft_echo(t_data *data);
+void	ft_echo(t_data *data);
 int		ft_env(t_data *data);
 int		ft_export(t_data *data);
 int		ft_pwd(t_data *data);

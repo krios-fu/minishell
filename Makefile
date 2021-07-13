@@ -21,7 +21,8 @@ SRCS =	srcs/utils/list_utils		\
 		srcs/process/process		\
 		srcs/prompt/parseo_tokens	\
 		srcs/prompt/expansive_var	\
-		srcs/utils/free				
+		srcs/utils/free				\
+		srcs/prompt/parseo_quote
 
 SRCSM = $(addsuffix .c, $(SRCS))
 OBJS = $(SRCSM:.c=.o)
