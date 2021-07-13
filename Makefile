@@ -5,6 +5,7 @@ NAME = minishell
 
 # SOURCES #
 SRCS =	srcs/utils/list_utils		\
+		srcs/utils/list_utils2		\
 		srcs/utils/main_krios		\
 		srcs/prompt/prompt			\
 		srcs/prompt/utils			\

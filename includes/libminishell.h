@@ -67,6 +67,7 @@ t_list	*fill_envp_list(char **envp);
 t_list	*sort_env_list(t_list **lst);
 void	print_list(t_list *lst);
 char	*search_env(t_list *envp_list, char *name);
+void    replace_content(t_list **lst, char *content, char *name);
 
 
 /*

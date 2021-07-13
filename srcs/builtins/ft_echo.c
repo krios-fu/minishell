@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 18:54:04 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/13 15:58:19 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/13 16:28:57 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ int	ft_echo(t_data *data)
 
 	flag = 0;
 	index = 1;
-
-printf("hola\n");
 	if (!data->lst_process->argv[index])
 	{
 		printf("\n");

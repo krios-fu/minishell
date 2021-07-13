@@ -6,7 +6,7 @@
 /*   By: jacgarci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 17:48:30 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/13 13:24:55 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/13 17:40:51 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,29 +15,19 @@
 static int	update_pwd(t_data *data, char *new_pwd)
 {
 	char	*tmp;
-	char	*tmp2;
+	char	*pwd;
 	char	*old_pwd;
-	char	**exports;
 
-	exports = malloc(sizeof(char *) * 3);
-	if (!exports)
-		return (1);
 	tmp = search_env(data->envp_list, "PWD");
 	old_pwd = ft_strjoin("OLD", tmp);
-	ft_lstdelone(&data->envp_list, search_env(data->envp_list, "OLDPWD"));
-	ft_lstdelone(&data->exp_list, search_env(data->exp_list, "OLDPWD"));
-	exports[0] = old_pwd;
-	exports[1] = old_pwd;
-	exports[3] = 0;
-	//free(data->lst_process->argv);
-	data->lst_process->argv = exports;
-	ft_export(data);
-	ft_lstdelone(&data->envp_list, search_env(data->envp_list, "PWD"));
-	ft_lstdelone(&data->exp_list, search_env(data->exp_list, "PWD"));
-	tmp2 = ft_strjoin("PWD=", new_pwd);
-	exports[1] = tmp2;
-	data->lst_process->argv = exports;
-	ft_export(data);
+	free(tmp);
+	replace_content(&data->envp_list, old_pwd, "OLDPWD");
+	replace_content(&data->exp_list, old_pwd, "OLDPWD");
+	free(old_pwd);
+	pwd = ft_strjoin("PWD=", new_pwd);
+	replace_content(&data->envp_list, pwd, "PWD");
+	replace_content(&data->exp_list, pwd, "PWD");
+	free(pwd);
 	return (0);
 }
 
@@ -49,6 +39,7 @@ static int	cdpath(t_data *data)
 
 	content = search_env(data->envp_list, "CDPATH");
 	paths = ft_split(content + 7, ':');
+	free(content);
 	while (*paths)
 	{
 		tmp = ft_strjoin(*paths, "/");
@@ -57,6 +48,7 @@ static int	cdpath(t_data *data)
 		{
 			printf("~%s\n", tmp + ft_strlen(search_env(data->envp_list,
 							"HOME") + 5));
+			free_tab(paths);
 			return (update_pwd(data, tmp));
 		}
 		ft_bzero(tmp, ft_strlen(tmp));
@@ -64,10 +56,11 @@ static int	cdpath(t_data *data)
 		paths++;
 	}
 	printf("cd: no such file or directory: %s\n", data->lst_process->argv[1]);
+	free_tab(paths);
 	return (1);
 }
 
-static int	cd_home(t_list *envp_list)
+static int	cd_home(t_data *data)
 {
 	char	*content;
 	char	*path;
@@ -76,21 +69,20 @@ static int	cd_home(t_list *envp_list)
 	if (!content)
 	{
 		printf(" cd: HOME not set\n");
+		free(content);
 		return (1);
 	}
-	path = ft_strdup(content + 5);
-	if (chdir(path))
+	if (chdir(content + 5))
 	{
-		printf("cd: no such file or directory: %s\n", path);
-		free(path);
+		printf("cd: no such file or directory: %s\n", content + 5);
+		free(content);
 		return (1);
 	}
-	//update pwd;
-	free(path);
+	update_pwd(data, content + 5);
+	free(content);
 	return (0);
 }
 
-//int	ft_cd(t_list **envp_list, t_list **exp_list, char *path)
 int	ft_cd(t_data *data)
 {
 	if (!data->lst_process->argv[1])

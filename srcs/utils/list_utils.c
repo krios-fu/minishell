@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 11:10:56 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/13 16:25:09 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/13 17:00:21 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,18 @@
 char	*search_env(t_list *envp_list, char *name)
 {
 	char	*f_name;
+	t_list	*lst;
 
 	f_name = ft_strjoin(name, "=");
-	while (envp_list)
+	lst = envp_list;
+	while (lst)
 	{
-		if (!ft_strncmp(envp_list->content, f_name, ft_strlen(f_name)))
+		if (!ft_strncmp(lst->content, f_name, ft_strlen(f_name)))
 		{
 			free(f_name);
-			return (ft_strdup(envp_list->content));
+			return (ft_strdup(lst->content));
 		}
-		envp_list = envp_list->next;
+		lst = lst->next;
 	}
 	free(f_name);
 	return (ft_strdup(""));

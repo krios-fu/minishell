@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_env.c                                           :+:      :+:    :+:   */
+/*   list_utils2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jacgarci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/05 16:14:55 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/13 16:29:42 by jacgarci         ###   ########.fr       */
+/*   Created: 2021/07/13 17:20:31 by jacgarci          #+#    #+#             */
+/*   Updated: 2021/07/13 17:40:03 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libminishell.h"
 
-int	ft_env(t_data *data)
+void	replace_content(t_list **lst, char *content, char *name)
 {
-	t_list *lst;
+	t_list	*ptr;
+	char	*f_name;
 
-	if (!data->envp_list)
-		return (1);
-	lst = data->envp_list;
-	while (lst->next)
+	if (!lst || !*lst)
+		return ;
+	ptr = *lst;
+	f_name = ft_strjoin(name, "=");
+	while (*lst)
 	{
-		printf("%s\n", lst->content);
-		lst = lst->next;
+		if (!ft_strncmp(*lst->content, f_name, ft_strlen(f_name)))
+		{
+			free(*lst->content);
+			lst->content = ft_strdup(content);
+		}
+		*lst = *lst->next;
 	}
-	printf("%s\n", lst->content);
-	return (0);
+	*lst = ptr;
 }
