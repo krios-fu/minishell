@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 23:30:51 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/13 16:22:15 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/13 17:01:25 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,6 @@ void	expansive_token(t_shell *shell)
 							}
 						 j -= len_exp;
 						env = ft_strndup(&shell->data->lst_process->argv[i][j], len_exp); 
-						printf("[[%s]]\n", env);
 						tmp = search_env(shell->data->envp_list, env);
 						free(env);
 						before_exp = ft_strndup(shell->data->lst_process->argv[i], j - 1);

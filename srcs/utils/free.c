@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 18:04:13 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/12 19:45:53 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/13 17:05:01 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	free_matrix(char **str)
 	int i;
 
 	i = 0;
-	if(str)
+	if(str[i])
 	{
 		while(str[i])
 			free(str[i++]);
