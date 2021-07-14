@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 21:30:07 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/12 20:12:31 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/14 20:36:29 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,23 @@ int	get_process(t_data *data, char *line)
 	}
 	free_matrix(line_cmd);
 	return (num_process);
+}
+
+void assign_fd_to_process (t_process *lst_process)
+{
+	t_process	*tmp_process;
+
+	tmp_process = lst_process;
+
+	while (tmp_process)
+	{
+		tmp_process->fd = malloc(sizeof(int) * 2);
+		if (!tmp_process->fd)
+		{
+			free_resources(lst_process);
+			printf("Error malloc");
+			break ;
+		}
+		tmp_process = tmp_process->next;
+	}
 }

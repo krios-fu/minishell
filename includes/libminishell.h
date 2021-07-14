@@ -9,11 +9,26 @@
 # include <readline/history.h>
 
 
+/* ------------pipex------------------ */
+# include <stdlib.h>
+# include <unistd.h>
+# include <stdio.h>
+# include <sys/wait.h>
+# include <errno.h>
+# include <sys/stat.h>
+# include <fcntl.h>
+# include <string.h>
+
+# define	WRITE_END	1
+# define	READ_END		0
+/* ------------pipex------------------ */
+
 typedef	struct s_data
 {
 	t_process		*lst_process;
 	t_list 			*envp_list;
 	t_list			*exp_list;
+	t_list			*tmp_var_list;
 }				t_data;
 
 
@@ -40,7 +55,10 @@ typedef struct s_var
 typedef struct s_shell
 {
 	t_data 		*data;
+	char		**envp;
 }			t_shell;
+
+
 
 
 
@@ -52,6 +70,7 @@ typedef struct s_shell
 void	expansive_token(t_shell *shell);
 
 int		get_process(t_data *data, char *line);
+void	assign_fd_to_process (t_process *lst_process);
 void	free_resources(t_process *process);
 
 
@@ -80,7 +99,7 @@ void	ft_unset(t_data *data);
 */
 
 t_list	*fill_envp_list(char **envp);
-t_list	*sort_env_list(t_list *lst);
+void	sort_env_list(t_list *lst);
 void 	sort_lst(t_list **lst);
 void	print_list(t_list *lst);
 char	*search_env(t_list *envp_list, char *name);
@@ -95,4 +114,12 @@ void    replace_content(t_list **lst, char *content, char *name);
 void	free_resources(t_process *process);
 void	free_matrix(char **str);
 void	free_redirect(t_redirect *redirect);
+
+
+/*
+**	pipex/pipex
+*/
+
+void	start_pipe(t_shell *shell, t_process *lst_process, int *num_p);
+void	get_path(char *cmd, char *envp[], char **f_path);
 #endif
