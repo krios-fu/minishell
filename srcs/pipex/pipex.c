@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 18:15:11 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/15 23:24:37 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/15 23:37:18 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ void	exec_final_child(t_shell *shell, t_process *process, int *fd_back)
 		get_path(process->argv[0],shell->envp, &path);
 		
 		if (start_process(shell) == -1)
-			execve(path, process->argv, NULL);
-		else
-			exit(0);
+		execve(path, process->argv, NULL);
+		// else
+		exit(0);
 	}
 	else
 	{
@@ -46,7 +46,6 @@ void	exec_first_child(t_shell *shell, t_process *process)
 	char *path;
 	pid_t	pid;
 
-	pipe(process->fd);
 	pid = fork();
 	if (pid == 0)
 	{
@@ -77,10 +76,10 @@ void	exect_between_childs(t_shell *shell, t_process *process, int *fd_back)
 		dup2(process->fd[WRITE_END], STDOUT_FILENO);
 		close(process->fd[WRITE_END]);
 		get_path(process->argv[0],shell->envp, &path);
-		if (start_process(shell) == -1)
+		// if (start_process(shell) == -1)
 			execve(path, process->argv, NULL);
-		else
-			exit(0);
+		// else
+			// exit(0);
 	}
 	else
 	{
