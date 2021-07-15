@@ -6,11 +6,11 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 17:48:30 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/13 20:23:23 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/15 16:58:02 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/libminishell.h"
+#include "../../../includes/libminishell.h"
 
 static void	update_pwd(t_data *data, char *new_pwd)
 {
@@ -30,35 +30,54 @@ static void	update_pwd(t_data *data, char *new_pwd)
 	free(pwd);
 }
 
+static void normal_cd(t_data *data)
+{
+	if (special_path(data))
+	{
+		data->lst_process->code_error = 1;
+		return ;
+	}
+	if (chdir(data->lst_process->argv[1]))
+	{
+		data->lst_process->code_error = 1;
+		printf("cd: no such file or directory: %s\n", data->lst_process->argv[1]);
+		return ;
+	}
+	update_pwd(data, data->lst_process->argv[1]);
+}
+
 static void	cdpath(t_data *data)
 {
 	char	*content;
 	char	**paths;
 	char	*tmp;
-	char	*tmp_aux; // mod kevin
+	char	*tmp_aux;
+	int		index;
 
 	content = search_env(data->envp_list, "CDPATH");
 	paths = ft_split(content + 7, ':');
 	free(content);
-	while (*paths)
+	index = 0;
+	while (paths[index])
 	{
-		tmp_aux = ft_strjoin(*paths, "/"); // mod kevin
+		tmp_aux = ft_strjoin(paths[index], "/");
 		tmp = ft_strjoin(tmp_aux, data->lst_process->argv[1]);
-		free(tmp_aux); // mod kevin
+		free(tmp_aux);
 		if (!chdir(tmp))
 		{
-			printf("~%s\n", tmp + ft_strlen(search_env(data->envp_list,
-							"HOME") + 5));
-			free_matrix(paths);
+			printf("%s", tmp);
 			update_pwd(data, tmp);
+			free_matrix(paths);
+			free(tmp);
+			update_pwd(data, tmp);
+			return ;
 		}
 		ft_bzero(tmp, ft_strlen(tmp));
 		free(tmp);
-		paths++;
+		index++;
 	}
-	printf("cd: no such file or directory: %s\n", data->lst_process->argv[1]);
 	free_matrix(paths);
-	data->lst_process->code_error = 1;
+	normal_cd(data);
 }
 
 static void	cd_home(t_data *data)
@@ -66,14 +85,14 @@ static void	cd_home(t_data *data)
 	char	*content;
 
 	content = search_env(data->envp_list, "HOME");
-	if (!content)
+	if (!content[0])
 	{
-		printf(" cd: HOME not set\n");
+		printf("rocket-men: cd: HOME not set\n");
 		free(content);
 		data->lst_process->code_error = 1;
 		return ;
 	}
-	if (chdir(content + 5))
+	if (chdir(content + 5) == -1)
 	{
 		printf("cd: no such file or directory: %s\n", content + 5);
 		free(content);
@@ -87,21 +106,14 @@ static void	cd_home(t_data *data)
 void	ft_cd(t_data *data)
 {
 	if (!data->lst_process->argv[1])
-	{
 		cd_home(data);
-		if (data->lst_process->code_error == 1)
-			return ;
-	}
 	else if (!ft_strncmp(search_env(data->envp_list, "CDPATH"), "CDPATH=", 7))
 	{
-		cdpath(data);
-		if (data->lst_process->code_error == 1)
-			return ;	
+		if (check_path(data->lst_process->argv[1]))
+			normal_cd(data);
+		else
+			cdpath(data);
 	}
-	if (chdir(data->lst_process->argv[1]))
-	{
-		data->lst_process->code_error = 1;
-		return ;
-	}
-	update_pwd(data, data->lst_process->argv[1]);
+	else
+		normal_cd(data);
 }

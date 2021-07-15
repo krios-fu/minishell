@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 11:10:56 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/13 23:14:41 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/14 10:59:59 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ t_list	*sort_env_list(t_list *lst)
 	{
 		swapped = 0;
 		pt = lst;
-		while (pt->next != lptr)  // Era un error de casteo ver ft_lstnew y eliminar comentario :P 
+		while (pt->next != lptr)
 		{
 			if (ft_strcmp((char *)pt->content, (char *)pt->next->content) > 0)
 			{
@@ -134,7 +134,6 @@ t_list	*sort_env_list(t_list *lst)
 		}
 		lptr = pt;
 	}
-//	ft_lstadd_back(lst, 0);
 	return (lst);
 }
 

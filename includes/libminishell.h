@@ -73,7 +73,8 @@ void	ft_env(t_data *data);
 void	ft_export(t_data *data);
 void	ft_pwd(t_data *data);
 void	ft_unset(t_data *data);
-
+int		special_path(t_data *data);
+int		check_path(char *path);
 
 /* 
 ** lst
