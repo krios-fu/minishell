@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 17:48:30 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/15 16:58:02 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/15 20:11:04 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,13 @@ static void	update_pwd(t_data *data, char *new_pwd)
 	replace_content(&data->envp_list, pwd, "PWD");
 	replace_content(&data->exp_list, pwd, "PWD");
 	free(pwd);
+	if (new_pwd)
+		free(new_pwd);
 }
 
 static void normal_cd(t_data *data)
 {
+	
 	if (special_path(data))
 	{
 		data->lst_process->code_error = 1;
@@ -40,10 +43,10 @@ static void normal_cd(t_data *data)
 	if (chdir(data->lst_process->argv[1]))
 	{
 		data->lst_process->code_error = 1;
-		printf("cd: no such file or directory: %s\n", data->lst_process->argv[1]);
+		printf("rocket-men: cd: no such file or directory: %s\n", data->lst_process->argv[1]);
 		return ;
 	}
-	update_pwd(data, data->lst_process->argv[1]);
+	update_pwd(data, getcwd(0, 0));
 }
 
 static void	cdpath(t_data *data)
@@ -65,10 +68,8 @@ static void	cdpath(t_data *data)
 		free(tmp_aux);
 		if (!chdir(tmp))
 		{
-			printf("%s", tmp);
-			update_pwd(data, tmp);
+			printf("%s\n", tmp);
 			free_matrix(paths);
-			free(tmp);
 			update_pwd(data, tmp);
 			return ;
 		}
@@ -83,24 +84,26 @@ static void	cdpath(t_data *data)
 static void	cd_home(t_data *data)
 {
 	char	*content;
+	char	*path;
 
 	content = search_env(data->envp_list, "HOME");
-	if (!content[0])
+	path = ft_strdup(content + 5);
+	free(content);
+	if (!path[0])
 	{
 		printf("rocket-men: cd: HOME not set\n");
-		free(content);
+		free(path);
 		data->lst_process->code_error = 1;
 		return ;
 	}
-	if (chdir(content + 5) == -1)
+	if (chdir(path) == -1)
 	{
 		printf("cd: no such file or directory: %s\n", content + 5);
-		free(content);
+		free(path);
 		data->lst_process->code_error = 1;
 		return ;
 	}
-	update_pwd(data, content + 5);
-	free(content);
+	update_pwd(data, path);
 }
 
 void	ft_cd(t_data *data)

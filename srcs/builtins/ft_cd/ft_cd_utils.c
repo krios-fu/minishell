@@ -6,7 +6,7 @@
 /*   By: jacgarci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 17:55:06 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/15 16:42:24 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/15 17:57:05 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int	check_for_hyphen(t_data *data)
 		free(content);
 		return (1);
 	}
-	path = ft_strdup(content + 4);
+	path = ft_strdup(content + 7);
 	free(content);
 	free(data->lst_process->argv[1]);
 	data->lst_process->argv[1] = path;
@@ -66,11 +66,11 @@ static int	check_for_dot(t_data *data)
 
 int	special_path(t_data *data)
 {
-	if (ft_strncmp(data->lst_process->argv[1], ".", 2))
+	if (!ft_strncmp(data->lst_process->argv[1], ".", 2))
 		return (check_for_dot(data));
-	else if (ft_strncmp(data->lst_process->argv[1], "-", 2))
+	else if (!ft_strncmp(data->lst_process->argv[1], "-", 2))
 		return (check_for_hyphen(data));
-	else if (ft_strncmp(data->lst_process->argv[1], "--", 3))
+	else if (!ft_strncmp(data->lst_process->argv[1], "--", 3))
 		return (check_for_dhyphen(data));
 	//1 si ha habido error
 	return (0);	
