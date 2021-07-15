@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 14:11:39 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/15 22:34:24 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/15 23:18:00 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,7 @@ int	main(int argc, char *argv[], char *envp[])
 				}
 				else
 					assign_fd_to_process(shell->data->lst_process);
-				// printf("n_p %d\n", num_p);
 				process = shell->data->lst_process;
-				
 				while (i < num_p)
 				{	
 					expansive_token(shell);

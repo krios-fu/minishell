@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 18:15:11 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/15 22:51:42 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/15 23:24:37 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void	exec_final_child(t_shell *shell, t_process *process, int *fd_back)
 		
 		if (start_process(shell) == -1)
 			execve(path, process->argv, NULL);
-		exit(0);
+		else
+			exit(0);
 	}
 	else
 	{
@@ -53,9 +54,9 @@ void	exec_first_child(t_shell *shell, t_process *process)
 		dup2(process->fd[WRITE_END], STDOUT_FILENO);
 		close(process->fd[WRITE_END]);
 		get_path(process->argv[0],shell->envp, &path);
-		 if (start_process(shell) == -1)
+		if (start_process(shell) == -1)
 			execve(path, process->argv, NULL);
-		exit(0);
+		 exit(0);
 	}
 	else
 		waitpid(pid, NULL, 0);
@@ -76,9 +77,10 @@ void	exect_between_childs(t_shell *shell, t_process *process, int *fd_back)
 		dup2(process->fd[WRITE_END], STDOUT_FILENO);
 		close(process->fd[WRITE_END]);
 		get_path(process->argv[0],shell->envp, &path);
-	   if (start_process(shell) == -1)
+		if (start_process(shell) == -1)
 			execve(path, process->argv, NULL);
-		exit(0);
+		else
+			exit(0);
 	}
 	else
 	{
@@ -124,14 +126,8 @@ void	start_pipe(t_shell *shell, int *num_p)
 
 	process = &shell->data->lst_process;
 	
-	// printf ("[[%d]]\n", *num_p);
-	// if (*num_p == 1)
-	// {
-		// exec_only_one_process(shell);
-		// return ;
-	// }
 	init_all_pipe(shell);
-	exec_first_child (shell, *process);
+	exec_first_child(shell, *process);
 	while (*num_p > 2)
 	{
 		exect_between_childs(shell, (*process)->next, (*process)->fd);
