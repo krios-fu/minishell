@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 14:11:39 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/15 22:19:20 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/15 21:05:38 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	main(int argc, char *argv[], char *envp[])
 				while (i < num_p)
 				{	
 					expansive_token(shell);
-					// start_process(shell);;
+					// // start_process(shell);;
 					
 					shell->data->lst_process = shell->data->lst_process->next;
 					i++;

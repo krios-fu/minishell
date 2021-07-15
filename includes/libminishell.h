@@ -120,6 +120,6 @@ void	free_redirect(t_redirect *redirect);
 **	pipex/pipex
 */
 
-void	start_pipe(t_shell *shell, t_process *lst_process, int *num_p);
+void	start_pipe(t_shell *shell, int *num_p);
 void	get_path(char *cmd, char *envp[], char **f_path);
 #endif

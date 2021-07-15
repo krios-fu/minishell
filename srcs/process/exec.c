@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/09 21:01:01 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/13 20:11:31 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/15 20:08:39 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,5 @@ int	start_process(t_shell *shell)
 	if (opc >= 0)
 		(*menu[opc])(shell->data);
 	 free(menu);
-	return(0);
+	return(opc);
 }
