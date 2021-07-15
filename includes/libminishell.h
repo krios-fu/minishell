@@ -66,6 +66,7 @@ typedef struct s_shell
 **	process/process
 **
 */
+void	print_error_cmd(char *cmd);
 
 void	expansive_token(t_shell *shell);
 
