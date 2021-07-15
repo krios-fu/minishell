@@ -74,44 +74,9 @@ static void	swap(t_list *a, t_list *b)
 ** original list sorted
 */
 
-int		check_lst_order(t_list **lst)
-{
-	int		i;
-	i = 0;
-	while (lst)
-	{
-		if (ft_strcmp((char *)(*lst)->content, (char *)(*lst)->next->content) > 0)
-			i++;
-		*lst = (*lst)->next;
-	}
-	if(i == ft_lstsize(*lst))
-		return (1);
-	else
-		return (0);
-}
-
-void 	sort_lst(t_list **lst)
-{
-	t_list	*tmp;
-	t_list	*tmp2;
-
-	tmp = *lst;
-	tmp2 = *lst;
-	while(!check_lst_order(lst))
-	{
-		while (tmp->next)
-		{
-			if (ft_strcmp((char *)tmp->content, (char *)tmp->next->content) > 0)
-				swap(tmp, tmp->next);
-			tmp = tmp->next;
-		}
-		tmp = *lst;
-	}
-
-}
 
 
-t_list	*sort_env_list(t_list *lst)
+void	sort_env_list(t_list *lst)
 {
 	t_list	*pt;
 	t_list	*lptr;
@@ -134,7 +99,8 @@ t_list	*sort_env_list(t_list *lst)
 		}
 		lptr = pt;
 	}
-	return (lst);
+//	ft_lstadd_back(lst, 0);
+	// return (lst);
 }
 
 /*
