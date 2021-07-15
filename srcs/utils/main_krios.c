@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 14:11:39 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/15 23:18:00 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/16 01:48:08 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	main(int argc, char *argv[], char *envp[])
 		if (ft_strlen(line) > 0)
 		{
 			if (pre_parse(line) == false)
-				printf("minishell: syntax error near unexpected token\n");
+				printf("rocket-men: syntax error near unexpected token\n");
 			else 
 			{
 				 num_p =  get_process(shell->data, line);

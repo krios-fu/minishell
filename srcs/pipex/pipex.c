@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 18:15:11 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/15 23:37:18 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/16 01:44:08 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	exec_final_child(t_shell *shell, t_process *process, int *fd_back)
 {
 	char *path;
 	pid_t pid;
+	int	status;
+
 
 	close (fd_back[WRITE_END]);
 	pid = fork();
@@ -25,11 +27,14 @@ void	exec_final_child(t_shell *shell, t_process *process, int *fd_back)
 
 		dup2(fd_back[READ_END], STDIN_FILENO); // ok
 		close(fd_back[READ_END]);
-		get_path(process->argv[0],shell->envp, &path);
+		get_path(process->argv[0], shell->envp, &path);
 		
-		if (start_process(shell) == -1)
-		execve(path, process->argv, NULL);
-		// else
+		status = start_process(shell);
+		if (status == -1)
+		{
+			execve(path, process->argv, NULL);
+			print_error_cmd(process->argv[0]);	
+		}
 		exit(0);
 	}
 	else
@@ -45,6 +50,7 @@ void	exec_first_child(t_shell *shell, t_process *process)
 {
 	char *path;
 	pid_t	pid;
+	int		status;
 
 	pid = fork();
 	if (pid == 0)
@@ -53,9 +59,13 @@ void	exec_first_child(t_shell *shell, t_process *process)
 		dup2(process->fd[WRITE_END], STDOUT_FILENO);
 		close(process->fd[WRITE_END]);
 		get_path(process->argv[0],shell->envp, &path);
-		if (start_process(shell) == -1)
+		status = start_process(shell);
+		if (status == -1)
+		{
 			execve(path, process->argv, NULL);
-		 exit(0);
+			print_error_cmd(process->argv[0]);
+		}
+		exit(0);
 	}
 	else
 		waitpid(pid, NULL, 0);
@@ -65,6 +75,7 @@ void	exect_between_childs(t_shell *shell, t_process *process, int *fd_back)
 {
 	char *path;
 	pid_t pid;
+	int status;
 
 	close (fd_back[WRITE_END]);
 	pid = fork();
@@ -76,10 +87,13 @@ void	exect_between_childs(t_shell *shell, t_process *process, int *fd_back)
 		dup2(process->fd[WRITE_END], STDOUT_FILENO);
 		close(process->fd[WRITE_END]);
 		get_path(process->argv[0],shell->envp, &path);
-		// if (start_process(shell) == -1)
+		status = start_process(shell);
+		if (status == -1)
+		{
 			execve(path, process->argv, NULL);
-		// else
-			// exit(0);
+			print_error_cmd(process->argv[0]);
+		}
+		exit(0);
 	}
 	else
 	{
@@ -121,17 +135,24 @@ void	exec_only_one_process(t_shell *shell)
 
 void	start_pipe(t_shell *shell, int *num_p)
 {
-	t_process	**process;
+	t_process	*process;
 
-	process = &shell->data->lst_process;
+	process = shell->data->lst_process;
 	
+	if (*num_p == 1)
+	{
+		exec_only_one_process(shell);
+		return ;
+	}
 	init_all_pipe(shell);
-	exec_first_child(shell, *process);
+	exec_first_child(shell, process);
 	while (*num_p > 2)
 	{
-		exect_between_childs(shell, (*process)->next, (*process)->fd);
-		*process = (*process)->next;
+		shell->data->lst_process = process->next;
+		exect_between_childs(shell, process->next, process->fd);
+		process = process->next;
 		(*num_p)--;
 	}
-	exec_final_child(shell, (*process)->next, (*process)->fd);
+	shell->data->lst_process = process->next;
+	exec_final_child(shell, process->next, process->fd);
 }
