@@ -67,6 +67,11 @@ typedef struct s_shell
 **
 */
 void	print_error_cmd(char *cmd);
+void	print_error_file(char *file);
+
+
+
+
 
 void	expansive_token(t_shell *shell);
 
@@ -124,4 +129,7 @@ void	free_redirect(t_redirect *redirect);
 
 void	start_pipe(t_shell *shell, int *num_p);
 void	get_path(char *cmd, char *envp[], char **f_path);
+int		fd_input_redirect(t_shell *shell);
+int		fd_output_redirect(t_shell *shell);
 #endif
+

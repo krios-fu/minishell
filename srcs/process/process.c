@@ -6,14 +6,14 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 21:30:07 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/14 20:36:29 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/16 19:00:16 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libminishell.h"
 
 
-static t_process	*create_process (char **argv)
+static t_process	*create_process ()
 {
 	t_process *new_process;
 
@@ -23,7 +23,7 @@ static t_process	*create_process (char **argv)
 	new_process->next = NULL;
 	new_process->input = NULL;
 	new_process->output = NULL;
-	new_process->argv = argv;
+	new_process->argv = NULL;
 	return(new_process);
 }
 
@@ -41,13 +41,14 @@ int	get_process(t_data *data, char *line)
 		return (0);
 	while (i < num_process)
 	{
-		new_process = create_process(get_tokens_arg(new_process, line_cmd[i]));
-		if (!new_process || !new_process->argv)
+		new_process = create_process();
+		if (!new_process )
 			{
 				free_matrix(line_cmd);
 				free_resources(new_process);
 				return (0);
 			}
+		new_process->argv = get_tokens_arg(new_process, line_cmd[i]);
 		if (i == 0)
 			data->lst_process = new_process;
 		else
