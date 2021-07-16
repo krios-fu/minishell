@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 17:54:05 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/16 21:34:01 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/16 23:13:43 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,12 @@ int fd_output_redirect(t_shell *shell)
 	output = shell->data->lst_process->output;
 	while (output)
 	{
-		if (ft_strnstr(output->symbol, ">\0", 1))
-			fd = open(output->file, O_WRONLY | O_CREAT | O_TRUNC | O_APPEND,
+		if (!ft_strcmp(output->symbol, ">\0"))
+				fd = open(output->file, O_WRONLY | O_CREAT | O_TRUNC | O_APPEND,
 			S_IRWXU);
+		if (!ft_strcmp(output->symbol, ">>\0"))
+				fd = open(output->file, O_WRONLY | O_CREAT | O_APPEND,
+				S_IRWXU);
 		output = output->next;
 		if (output)
 			close(fd);

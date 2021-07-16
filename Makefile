@@ -6,7 +6,7 @@ NAME = minishell
 # SOURCES #
 SRCS =	srcs/utils/list_utils			\
 		srcs/utils/list_utils2			\
-		srcs/utils/main			\
+		srcs/utils/main					\
 		srcs/prompt/prompt				\
 		srcs/prompt/utils				\
 		srcs/prompt/redirect			\
@@ -28,7 +28,10 @@ SRCS =	srcs/utils/list_utils			\
 		srcs/pipex/pipex				\
 		srcs/pipex/search_path			\
 		srcs/process/error				\
-		srcs/pipex/redirect_input
+		srcs/pipex/redirect_input		\
+		srcs/pipex/child_final			\
+		srcs/pipex/child_first			\
+		srcs/pipex/childs_between
 
 SRCSM = $(addsuffix .c, $(SRCS))
 OBJS = $(SRCSM:.c=.o)
