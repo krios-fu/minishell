@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 18:15:11 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/16 03:35:49 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/16 03:38:10 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ void	exec_first_child(t_shell *shell, t_process *process)
 		status = start_process(shell);
 		if (status == -1)
 		{
-			if (!path)
-				path = process->argv[0];
+			// if (!path)
+				// path = process->argv[0];
 			execve(path, process->argv, NULL);
 			print_error_cmd(process->argv[0]);
 		}
