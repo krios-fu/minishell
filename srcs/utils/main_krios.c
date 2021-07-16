@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 14:11:39 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/16 17:52:45 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/16 23:21:18 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,9 @@ int	main(int argc, char *argv[], char *envp[])
 				free_resources(process);
 			}
 		}
-		free(line);
+		printf("[[%s]]\n", line);
 		add_history(line);
+		free(line);
 	}
 
 	return (0);

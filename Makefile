@@ -28,7 +28,7 @@ SRCS =	srcs/utils/list_utils			\
 		srcs/pipex/pipex				\
 		srcs/pipex/search_path			\
 		srcs/process/error				\
-		srcs/pipex/redirect_input		\
+		srcs/pipex/search_redirect		\
 		srcs/pipex/child_final			\
 		srcs/pipex/child_first			\
 		srcs/pipex/childs_between
