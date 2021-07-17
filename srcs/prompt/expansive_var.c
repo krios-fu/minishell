@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 23:30:51 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/17 20:46:19 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/17 22:59:16 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,9 @@ static void	expansive_swap(t_shell *shell, t_var *var)
 	free(var->token[var->i]);
 	var->token[var->i] = var->after_exp;
 }
+
+
+/* todo: expansive redirect input & output*/
 void	expansive_token(t_shell *shell)
 {
 	t_var	var;

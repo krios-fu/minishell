@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 14:11:39 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/17 20:33:08 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/17 21:27:44 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,11 @@ int	main(int argc, char *argv[], char *envp[])
 		shell->data->lst_process = NULL;
 		line = prompt();
 		// printf("[[%s]]\n", line);
-		add_history(line);
+		if (line && *line)
+		{
+			printf("[[%s]]  [[%d]]", line , add_history(line));
+			rl_redisplay();
+		}
 		if (ft_strlen(line) > 0)
 		{
 			if (pre_parse(line) == false)
@@ -80,6 +84,7 @@ int	main(int argc, char *argv[], char *envp[])
 		}
 
 		free(line);
+
 	}
 
 	return (0);
