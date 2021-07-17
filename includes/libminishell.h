@@ -134,6 +134,8 @@ int		fd_output_redirect(t_shell *shell);
 void	exec_final_child(t_shell *shell, t_process *process, int *fd_back);
 void	exec_first_child(t_shell *shell, t_process *process);
 void	exect_between_childs(t_shell *shell, t_process *process, int *fd_back);
+void	exec_only_one_process(t_shell *shell);
+int		get_fd_builtins (t_shell *shell);
 
 #endif
 

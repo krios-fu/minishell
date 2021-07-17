@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 18:54:04 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/15 21:14:56 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/17 19:49:07 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_echo(t_data *data)
 	index = 1;
 	if (!data->lst_process->argv[index])
 	{
-		printf("\n");
+		ft_putstr_fd("\n", data->lst_process->fd_out);
 		return ;
 	}
 	if (ft_strnstr(data->lst_process->argv[index], "-n\0", 2))
@@ -32,12 +32,14 @@ void	ft_echo(t_data *data)
 	while (data->lst_process->argv[index])
 	{
 		if (data->lst_process->argv[index + 1])
-			printf("%s ", data->lst_process->argv[index]);
+		{
+			ft_putstr_fd(data->lst_process->argv[index], data->lst_process->fd_out);
+			ft_putstr_fd(" ", data->lst_process->fd_out);
+		}
 		else
-			 printf("%s", data->lst_process->argv[index]);
+			ft_putstr_fd(data->lst_process->argv[index], data->lst_process->fd_out);
 		index++;
 	}
 	if (!flag)
-		printf("\n");
-	// return (0);
+		ft_putstr_fd("\n", data->lst_process->fd_out);
 }
