@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 19:25:08 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/17 22:45:05 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/18 21:23:46 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	print_header(void)
 	printf(BLUE"██║╚██╔╝██║██║██║╚██╗██║██║╚════██║██╔══██║██╔══╝  ██║     ██║     \n");
 	printf(GREEN"██║ ╚═╝ ██║██║██║ ╚████║██║███████║██║  ██║███████╗███████╗███████╗\n");
 	printf(GREEN"╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚═╝╚══════╝╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝\n");
-	printf(YELLOW"\t\t\t\t\tBy: Jacgarci && Krios-fu\n");
+	printf(RED"\t\t\t\t\tBy: Jacgarci && Krios-fu\n");
 }
 
 
@@ -49,7 +49,7 @@ char	*prompt()
 	path = getcwd(NULL, 0);
 	split_path = ft_split(path, '/');
 	free(path);
-	path = ft_strjoin(CYAN"rocket-men 🚀 "RED, split_path[get_ultimate_dir(split_path)]);
+	path = ft_strjoin(CYAN"roc"BLUE"ket"GREEN"Men 🚀 "RED, split_path[get_ultimate_dir(split_path)]);
 	prompt = ft_strjoin(path, GREEN" ➜ "WHITE);
 	free(path);
 	line = readline(prompt);

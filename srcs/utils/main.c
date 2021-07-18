@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 14:11:39 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/17 21:27:44 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/18 21:21:04 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ int	main(int argc, char *argv[], char *envp[])
 		// printf("[[%s]]\n", line);
 		if (line && *line)
 		{
-			printf("[[%s]]  [[%d]]", line , add_history(line));
-			rl_redisplay();
+			// printf("[[%s]]  [[%d]]", line , add_history(line));
+			// rl_redisplay();
 		}
 		if (ft_strlen(line) > 0)
 		{
