@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 23:30:51 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/19 12:09:05 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/19 16:09:14 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	expansive_token(t_shell *shell, char **argv)
 			}
 		var.i++;
 	}
-	// del_quotes(shell->data->lst_process);
+	 del_quotes(shell->data->lst_process);
 }
 
 void loop_expa_redirect(t_shell *shell, t_redirect *redirect)

@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 14:11:39 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/19 11:48:17 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/19 12:33:11 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,6 @@ int	main(int argc, char *argv[], char *envp[])
 	 shell->data->exp_list = fill_envp_list(envp);
 	sort_env_list(shell->data->exp_list);
 
-
-
-	 
 	num_p = 0;
 	process = NULL;
 
