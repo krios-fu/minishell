@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 19:20:52 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/18 21:34:07 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/18 21:39:18 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ static void	redirect_output(t_shell *shell)
 		dup2(fd_out, STDOUT_FILENO);
 	}
 }
+
 void	exec_only_one_process(t_shell *shell)
 {
 	pid_t	pid;
