@@ -12,22 +12,36 @@
 
 #include "../../includes/libminishell.h"
 
+static char	*fill_with_dquotes(char *envp)
+{
+	char	**tab;
+	char	*tmp;
+	char	*tmp2;
+	char	*tmp3;
+	char	*result;
+
+	tab = ft_split(envp, '=');
+	tmp = ft_strjoin(tab[0], "=");
+	tmp2 = ft_strjoin(tmp, "\"");
+	tmp3 = ft_strjoin(tmp2, tab[1]);
+	result = ft_strjoin(tmp3, "\"");
+	free(tmp);
+	free(tmp2);
+	free(tmp3);
+	free_matrix(tab);
+	return (result);
+}
+
 t_list	*fill_exp_list(char **envp)
 {
 	t_list	*lst;
-	char	*tmp;
-	char	*tmp2;
-	int	index;
 
-	index = 0;
-	while (envp[index])
+	lst = ft_lstnew(fill_with_dquotes(*envp));
+	envp++;
+	while (*envp)
 	{
-		tmp = ft_strjoin("\"", envp[index]);
-		tmp2 = ft_strjoin(tmp, "\"");
-		ft_lstadd_back(&lst, ft_lstnew(ft_strdup(tmp2)));
-		free(tmp);
-		free(tmp2);
-		index++;
+		ft_lstadd_back(&lst, ft_lstnew(fill_with_dquotes(*envp)));
+		envp++;
 	}
 	return (lst);
 }
