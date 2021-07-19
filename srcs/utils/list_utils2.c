@@ -12,6 +12,26 @@
 
 #include "../../includes/libminishell.h"
 
+t_list	*fill_exp_list(char **envp)
+{
+	t_list	*lst;
+	char	*tmp;
+	char	*tmp2;
+	int	index;
+
+	index = 0;
+	while (envp[index])
+	{
+		tmp = ft_strjoin("\"", envp[index]);
+		tmp2 = ft_strjoin(tmp, "\"");
+		ft_lstadd_back(&lst, ft_lstnew(ft_strdup(tmp2)));
+		free(tmp);
+		free(tmp2);
+		index++;
+	}
+	return (lst);
+}
+
 void	replace_content(t_list **lst, char *content, char *name)
 {
 	t_list	*ptr;

@@ -20,7 +20,7 @@ static int	check_for_dhyphen(t_data *data)
 	content = search_env(data->envp_list, "HOME");
 	if (!content[0])
 	{
-		printf("cd: HOME not set\n");
+		ft_putstr_fd("rocketMen: cd: HOME not set\n", 2);
 		free(content);
 		return (1);
 	}
@@ -39,7 +39,7 @@ static int	check_for_hyphen(t_data *data)
 	content = search_env(data->envp_list, "OLDPWD");
 	if (!content[0])
 	{
-		printf("cd: OLDPWD not set\n");
+		ft_putstr_fd("rocketMen: cd: OLDPWD not set\n", 2);
 		free(content);
 		return (1);
 	}
@@ -47,7 +47,8 @@ static int	check_for_hyphen(t_data *data)
 	free(content);
 	free(data->lst_process->argv[1]);
 	data->lst_process->argv[1] = path;
-	printf("%s\n", path);
+	ft_putstr_fd(path, data->lst_process->fd_out);
+	ft_putstr_fd("\n", data->lst_process->fd_out);
 	return (0);
 }
 

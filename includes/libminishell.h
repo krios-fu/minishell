@@ -99,14 +99,15 @@ void	ft_env(t_data *data);
 void	ft_export(t_data *data);
 void	ft_pwd(t_data *data);
 void	ft_unset(t_data *data);
-int		special_path(t_data *data);
-int		check_path(char *path);
+int	special_path(t_data *data);
+int	check_path(char *path);
 
 /* 
 ** lst
 */
 
 t_list	*fill_envp_list(char **envp);
+t_list	*fill_exp_list(char **envp);
 void	sort_env_list(t_list *lst);
 void 	sort_lst(t_list **lst);
 void	print_list(t_list *lst);
