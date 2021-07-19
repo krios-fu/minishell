@@ -25,7 +25,7 @@ static void	print_export_list(t_data *data)
 		lst = lst->next;
 	}
 }
-
+/*
 void	ft_export(t_data *data)
 {
 	int	index;
@@ -36,11 +36,16 @@ void	ft_export(t_data *data)
 	while (data->lst_process->argv[index])
 	{
 		if (ft_strchr(data->lst_process->argv[index], '='))
-			ft_lstadd_back(&data->envp_list,
-					ft_lstnew(ft_strdup(data->lst_process->argv[index])));
-		ft_lstadd_front(&data->exp_list,
-				ft_lstnew(ft_strdup(data->lst_process->argv[index])));
+			ft_lstadd_back(&data->envp_list, ft_lstnew(ft_strdup(data->lst_process->argv[index])));
+		ft_lstadd_front(&data->exp_list, ft_lstnew(ft_strdup(data->lst_process->argv[index])));
 		index++;
 	}
 	sort_env_list(data->exp_list);
+}
+*/
+void	ft_export(t_data *data)
+{
+	if (!data->lst_process->argv[1])
+		print_export_list(data);
+	
 }

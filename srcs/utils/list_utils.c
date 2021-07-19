@@ -107,15 +107,18 @@ void	sort_env_list(t_list *lst)
 ** Function that recives char **envp as parameter
 ** and returns a pointer to a linked list filled with envp
 */
-t_list	* fill_envp_list(char **envp)
+t_list	*fill_envp_list(char **envp)
 {
+	int	index;
 	t_list *envp_list;
-	envp_list = ft_lstnew(ft_strdup(*envp));
-	envp++;
-	while (*envp)
+
+	index = 0;
+	envp_list = ft_lstnew(ft_strdup(envp[index]));
+	index++;
+	while (envp[index])
 	{
-		ft_lstadd_back(&envp_list, ft_lstnew(ft_strdup(*envp)));
-		envp++;
+		ft_lstadd_back(&envp_list, ft_lstnew(ft_strdup(envp[index])));
+		index++;
 	}
 	return (envp_list);
 }

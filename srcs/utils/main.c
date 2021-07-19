@@ -33,8 +33,8 @@ int	main(int argc, char *argv[], char *envp[])
 //	argv++;
 //	ft_echo(argv);
 
-	 shell->data->envp_list = fill_envp_list(envp);
-	 shell->data->exp_list = fill_envp_list(envp);
+	shell->data->envp_list = fill_envp_list(envp);
+	shell->data->exp_list = fill_exp_list(envp);
 	sort_env_list(shell->data->exp_list);
 
 
