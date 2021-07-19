@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 21:37:30 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/17 19:09:01 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/19 10:55:43 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ enum	e_boolean
 
 typedef struct s_redirect
 {
-	char				*file;
+	char				**file;
 	char				*symbol; 
 	int					pos;
 	struct	s_redirect	*next;

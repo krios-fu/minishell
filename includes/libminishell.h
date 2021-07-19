@@ -73,7 +73,8 @@ void	print_error_file(char *file);
 
 
 
-void	expansive_token(t_shell *shell);
+void	expansive_token(t_shell *shell, char **argv);
+void loop_expa_redirect(t_shell *shell, t_redirect *redirect);
 
 int		get_process(t_data *data, char *line);
 void	assign_fd_to_process (t_process *lst_process);

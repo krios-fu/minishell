@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 14:11:39 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/17 23:06:25 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/19 11:48:17 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ int	main(int argc, char *argv[], char *envp[])
 		// printf("[[%s]]\n", line);
 		if (line && *line)
 		{
-			printf("[[%s]]  [[%d]]", line , add_history(line));
-			rl_redisplay();
+			// printf("[[%s]]  [[%d]]", line , add_history(line));
+			// rl_redisplay();
 		}
 		if (ft_strlen(line) > 0)
 		{
@@ -67,13 +67,20 @@ int	main(int argc, char *argv[], char *envp[])
 					free_resources(shell->data->lst_process);
 				}
 				else
+				{
 					assign_fd_to_process(shell->data->lst_process);
+					if (shell->data->lst_process->input)
+						loop_expa_redirect(shell, shell->data->lst_process->input);
+					if (shell->data->lst_process->output)
+						loop_expa_redirect(shell, shell->data->lst_process->output);
+				}
 				// printf("n_p %d\n", num_p);
 				process = shell->data->lst_process;
 				
 				while (i < num_p)
 				{	
-					expansive_token(shell);
+					expansive_token(shell, shell->data->lst_process->argv);
+					// expansive_token(shell, &shell->data->lst_process->input->file);
 					shell->data->lst_process = shell->data->lst_process->next;
 					i++;
 				}
