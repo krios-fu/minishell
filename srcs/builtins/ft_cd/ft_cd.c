@@ -43,10 +43,9 @@ static void normal_cd(t_data *data)
 	if (chdir(data->lst_process->argv[1]))
 	{
 		data->lst_process->code_error = 1;
-		ft_putstr_fd("rocket-men: cd: ", 2);
+		ft_putstr_fd("rocketMen: cd: ", 2);
 		ft_putstr_fd(data->lst_process->argv[1], 2);
 		ft_putstr_fd(": No such file or directory\n", 2);
-//		printf("rocket-men: cd: %s: No such file or directory\n", data->lst_process->argv[1]);
 		return ;
 	}
 	update_pwd(data, getcwd(0, 0));
@@ -74,10 +73,9 @@ static void	cdpath(t_data *data)
 			tmp_aux = getcwd(0,0);
 			ft_putstr_fd(tmp_aux, data->lst_process->fd_out);
 			ft_putstr_fd("\n", data->lst_process->fd_out);
-			//printf("%s\n", getcwd(0,0));
-			free(tmp_aux);
+			free(tmp);
 			free_matrix(paths);
-			update_pwd(data, tmp);
+			update_pwd(data, tmp_aux);
 			return ;
 		}
 		ft_bzero(tmp, ft_strlen(tmp));
@@ -98,18 +96,16 @@ static void	cd_home(t_data *data)
 	free(content);
 	if (!path[0])
 	{
-		ft_putstr_fd("rocket-men: cd: HOME not set\n", 2);
-//		printf("rocket-men: cd: HOME not set\n");
+		ft_putstr_fd("rocketMen: cd: HOME not set\n", 2);
 		free(path);
 		data->lst_process->code_error = 1;
 		return ;
 	}
 	if (chdir(path) == -1)
 	{
-		ft_putstr_fd("rocket-men: cd: ", 2);
+		ft_putstr_fd("rocketMen: cd: ", 2);
 		ft_putstr_fd(path, 2);
 		ft_putstr_fd(": No such file or directory\n", 2);
-//		printf("rocket-men: cd: %s: No such file or directory\n", path);
 		free(path);
 		data->lst_process->code_error = 1;
 		return ;

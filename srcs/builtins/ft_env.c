@@ -24,8 +24,10 @@ void	ft_env(t_data *data)
 	lst = data->envp_list;
 	while (lst->next)
 	{
-		printf("%s\n", lst->content);
+		ft_putstr_fd(lst->content, data->lst_process->fd_out);
+		ft_putstr_fd("\n", data->lst_process->fd_out);
 		lst = lst->next;
 	}
-	printf("%s\n", lst->content);
+	ft_putstr_fd(lst->content, data->lst_process->fd_out);
+	ft_putstr_fd("\n", data->lst_process->fd_out);
 }
