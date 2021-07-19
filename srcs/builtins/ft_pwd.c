@@ -21,5 +21,6 @@ void	ft_pwd(t_data *data)
 		data->lst_process->code_error = 1;
 		return ;
 	}
-	printf("%s\n", path);
+	ft_putstr_fd(path, data->lst_process->fd_out);
+	ft_putstr_fd(path, data->lst_process->fd_out);
 }
