@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 14:11:39 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/20 00:23:57 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/20 18:50:39 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ int	main(int argc, char *argv[], char *envp[])
 		shell->data->lst_process = NULL;
 		line = prompt();
 		// printf("[[%s]]\n", 89line);
-		tmpline[0] = ft_strdup(line);
-		tmpline[1] = NULL ;
-		expansive_token(shell, tmpline);
-		line = tmpline[0];
+		// tmpline[0] = ft_strdup(line);
+		// tmpline[1] = NULL ;
+		// expansive_token(shell, tmpline);
+		// line = tmpline[0];
 		if (line && *line)
 		{
 			// printf("[[%s]]  [[%d]]", line , add_history(line));
@@ -81,8 +81,8 @@ int	main(int argc, char *argv[], char *envp[])
 				
 				while (i < num_p)
 				{	
-					// expansive_token(shell, shell->data->lst_process->argv);
-					// expansive_token(shell, &shell->data->lst_process->input->file);
+					expansive_token(shell, shell->data->lst_process->argv);
+					expansive_token(shell, shell->data->lst_process->input->file);
 					shell->data->lst_process = shell->data->lst_process->next;
 					i++;
 				}
