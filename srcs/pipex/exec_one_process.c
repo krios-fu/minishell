@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 19:20:52 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/18 21:39:18 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/20 19:57:58 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	exec_only_one_process(t_shell *shell)
 	char 	*path;
 
 	shell->data->lst_process->fd_out = get_fd_builtins(shell);
-	if (start_process(shell) == -1)
+	if (shell->data->lst_process->fd_out != -2 && start_process(shell) == -1)
 	{
 		if(shell->data->lst_process->fd_out > 2)
 			close(shell->data->lst_process->fd_out);
