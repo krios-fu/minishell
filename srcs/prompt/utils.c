@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 21:01:33 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/20 19:45:41 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/21 21:42:44 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ void ft_addlst_back_process(t_process *process, t_process *new_process)
 	tmp_process->next = new_process;	
 }
 
- int	get_num_words(char **str)
- {
+int	get_num_words(char **str)
+{
 	int	i;
 	char **tmp;
 
@@ -73,4 +73,43 @@ void ft_addlst_back_process(t_process *process, t_process *new_process)
 		i++;
 	free(tmp);
 	return(i);
- }
+}
+
+/* 
+char	**ft_matrixjoin(const char **matrix1, const char **matrix2)
+{
+	int		len;
+	char	**dst;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	len =  get_num_words(matrix1) + get_num_words(matrix2);
+	dst = (char **)malloc(sizeof(char*) * len + 1);
+	if(!dst)
+		return(NULL);
+	while (matrix1[i])
+	{
+		dst[i] = ft_strdup(matrix1[i]);
+		if (!dst[i])
+		{
+			free_matrix(dst);
+			return (NULL);
+		}
+		i++;
+	}
+	while(matrix2[j])
+	{
+		dst[i] = ft_strdup(matrix2[j]);
+		if (!dst[i])
+		{
+			free_matrix(dst);
+			return (NULL);
+		}
+		j++;
+		i++;
+	}
+	dst[len] = NULL;
+	return (dst);
+} */

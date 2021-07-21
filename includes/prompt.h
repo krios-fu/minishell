@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 21:37:30 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/20 19:33:59 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/21 21:31:05 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ char			*ft_isspace(char *str);
 void			ft_addlst_back_redirect(t_redirect *redirect, t_redirect *new_redirect);
 void			ft_addlst_back_process(t_process *process, t_process *new_process);
  int			get_num_words(char **str);
+ char			**ft_matrixjoin(const char **matrix1, const char **matrix2);
 /*
 **	functions prompt/ redirect
 */
