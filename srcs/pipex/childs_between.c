@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 22:48:45 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/20 19:59:19 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/22 00:38:39 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,6 @@ void	exect_between_childs(t_shell *shell, t_process *process, int *fd_back)
 	{
 		close(fd_back[READ_END]);
 		close(process->fd[WRITE_END]);
-		waitpid(pid, NULL, 0);
+		// waitpid(pid, NULL, 0);
 	}
 }

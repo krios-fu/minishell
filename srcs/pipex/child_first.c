@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 22:39:47 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/20 20:00:24 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/22 00:38:49 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,6 @@ void	exec_first_child(t_shell *shell, t_process *process)
 		}
 		exit(0);
 	}
-	else
-		waitpid(pid, NULL, 0);
+	// else
+		// waitpid(pid, NULL, 0);
 }
