@@ -11,7 +11,8 @@ SRCS =	srcs/utils/list_utils			\
 		srcs/prompt/utils				\
 		srcs/prompt/redirect			\
 		srcs/builtins/ft_env			\
-		srcs/builtins/ft_export			\
+		srcs/builtins/ft_export/ft_export		\
+		srcs/builtins/ft_export/ft_export_utils		\
 		srcs/builtins/ft_pwd			\
 	 	srcs/builtins/ft_unset			\
 		srcs/builtins/ft_echo			\
