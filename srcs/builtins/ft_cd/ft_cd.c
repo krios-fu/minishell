@@ -22,11 +22,11 @@ static void	update_pwd(t_data *data, char *new_pwd)
 	old_pwd = ft_strjoin("OLD", tmp);
 	free(tmp);
 	replace_content(&data->envp_list, old_pwd, "OLDPWD");
-	replace_content(&data->exp_list, old_pwd, "OLDPWD");
+	replace_content(&data->exp_list, fill_with_dquotes(old_pwd), "OLDPWD");
 	free(old_pwd);
 	pwd = ft_strjoin("PWD=", new_pwd);
 	replace_content(&data->envp_list, pwd, "PWD");
-	replace_content(&data->exp_list, pwd, "PWD");
+	replace_content(&data->exp_list, fill_with_dquotes(pwd), "PWD");
 	free(pwd);
 	if (new_pwd)
 		free(new_pwd);

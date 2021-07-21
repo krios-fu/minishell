@@ -12,7 +12,7 @@
 
 #include "../../includes/libminishell.h"
 
-static char	*fill_with_dquotes(char *envp)
+char	*fill_with_dquotes(char *envp)
 {
 	char	**tab;
 	char	*tmp;

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/libminishell.h"
+#include "../../../includes/libminishell.h"
 
 static void	print_export_list(t_data *data)
 {
@@ -43,9 +43,55 @@ void	ft_export(t_data *data)
 	sort_env_list(data->exp_list);
 }
 */
+static void	envp_part(t_data *data, char *var)
+{
+	char	*name;
+
+	name = get_name(var);
+	if (already_exist(data->envp_list, var))
+		replace_content(&data->envp_list, var, name);
+	else
+		if (ft_strchr(var, '='))
+			ft_lstadd_back(&data->envp_list, ft_lstnew(ft_strdup(var)));
+	free(name);
+}
+
+//	if (already_exist(data->exp_list, var))
+static void	exp_part(t_data *data, char *var)
+{
+	char	*name;
+
+	name = get_name(var);
+	if (already_exist(data->exp_list, var))
+		replace_content(&data->exp_list, fill_with_dquotes(var), name);
+	else
+	{
+		if (ft_strchr(var, '='))
+			ft_lstadd_back(&data->exp_list, ft_lstnew(fill_with_dquotes(var)));
+	//	else
+	//		si var esta en lista de locales
+	//			export a envp y exp
+	//		else
+	//			export solo a exp
+	}
+	free(name);
+}
+
 void	ft_export(t_data *data)
 {
+	int	index;
+
 	if (!data->lst_process->argv[1])
+	{
 		print_export_list(data);
-	
+		return ;
+	}
+	index = 1;
+	while (data->lst_process->argv[index])
+	{
+		envp_part(data, data->lst_process->argv[index]);
+		exp_part(data, data->lst_process->argv[index]);
+		index++;
+	}
+	sort_env_list(data->exp_list);
 }
