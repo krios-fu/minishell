@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 19:20:52 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/22 00:38:27 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/22 14:03:34 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,6 @@ void	exec_only_one_process(t_shell *shell)
 			close(shell->data->lst_process->fd[WRITE_END]);
 			close(shell->data->lst_process->fd[READ_END]);
 		}
-		// waitpid(pid, NULL, 0);
+		waitpid(pid, NULL, 0);
 	}
 }
