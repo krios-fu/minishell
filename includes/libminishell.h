@@ -5,6 +5,7 @@
 # include "prompt.h"
 # include <stdlib.h>
 # include <stdio.h>
+# include <signal.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 
@@ -91,7 +92,7 @@ int		start_process(t_shell *shell);
 /*
 ** Builtins
 */
-
+void	signal_handler(int number);
 void 	ft_cd(t_data *data);
 void	ft_echo(t_data *data);
 void	ft_env(t_data *data);
@@ -110,7 +111,8 @@ void	sort_env_list(t_list *lst);
 void 	sort_lst(t_list **lst);
 void	print_list(t_list *lst);
 char	*search_env(t_list *envp_list, char *name);
-void    replace_content(t_list **lst, char *content, char *name);
+void    replace_content_envp(t_data *data, char *content, char *name);
+void    replace_content_exp(t_data *data, char *content, char *name);
 t_list	*fill_exp_list(char **envp);
 char    *fill_with_dquotes(char *envp);
 int     already_exist(t_list *lst, char *var);

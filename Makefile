@@ -34,7 +34,8 @@ SRCS =	srcs/utils/list_utils			\
 		srcs/pipex/child_first			\
 		srcs/pipex/childs_between		\
 		srcs/pipex/exec_one_process		\
-		srcs/pipex/utils
+		srcs/pipex/utils				\
+		srcs/utils/signals
 
 SRCSM = $(addsuffix .c, $(SRCS))
 OBJS = $(SRCSM:.c=.o)
