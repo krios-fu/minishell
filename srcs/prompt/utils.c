@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 21:01:33 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/21 21:42:44 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/22 20:00:41 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,50 +66,60 @@ int	get_num_words(char **str)
 	int	i;
 	char **tmp;
 
+	i = 0;
+	if (!str[0])
+		return (0);
+	if (ft_strchr(str[0], '='))
+		return (1);
 	tmp = ft_split(str[0], ' ');
 
-	i = 0;
 	while (tmp[i])
 		i++;
-	free(tmp);
+	free_matrix(tmp);
 	return(i);
 }
 
-/* 
-char	**ft_matrixjoin(const char **matrix1, const char **matrix2)
+static	int get_num_words_join(char **argv)
 {
-	int		len;
-	char	**dst;
-	int		i;
-	int		j;
-
+	int i;
+	int len;
 	i = 0;
-	j = 0;
-	len =  get_num_words(matrix1) + get_num_words(matrix2);
-	dst = (char **)malloc(sizeof(char*) * len + 1);
-	if(!dst)
-		return(NULL);
-	while (matrix1[i])
+
+	len = 0;
+	while (argv[i])
 	{
-		dst[i] = ft_strdup(matrix1[i]);
-		if (!dst[i])
-		{
-			free_matrix(dst);
-			return (NULL);
-		}
+		len += get_num_words(&argv[i]);
 		i++;
 	}
-	while(matrix2[j])
+	return (len);
+}
+
+char	**final_token(char **argv)
+{
+	t_var	var;
+	int		k;
+	char	**tmp;
+	char	**aux;
+
+	var.i = 0;
+	var.j = 0;
+	k = 0;
+	var.len_exp = get_num_words_join(argv);
+	tmp = (char **)malloc(sizeof(char *) * (var.len_exp + 1));
+	while (argv[var.i])
 	{
-		dst[i] = ft_strdup(matrix2[j]);
-		if (!dst[i])
+		if (!ft_strchr(argv[var.i], '='))
 		{
-			free_matrix(dst);
-			return (NULL);
+			aux = ft_split(argv[var.i], ' ');
+			while (aux[var.j])
+				tmp[k++] = ft_strdup(aux[(var.j)++]);
+			free_matrix(aux);
+			var.j = 0;
 		}
-		j++;
-		i++;
+		else
+			tmp[k++] = ft_strdup(argv[var.i]);
+		(var.i)++;
 	}
-	dst[len] = NULL;
-	return (dst);
-} */
+	tmp[var.len_exp] = NULL;
+	return(tmp);
+}

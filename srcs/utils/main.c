@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 14:11:39 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/20 19:21:55 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/22 18:54:10 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int argc, char *argv[], char *envp[])
 	int i;
 	int num_p;
 	char 		**tmpline;
-	tmpline = (char **)malloc(sizeof(char *)*2);
+
 
 	(void)argc;
 	(void)argv;
@@ -47,6 +47,8 @@ int	main(int argc, char *argv[], char *envp[])
 		i = 0;
 		shell->data->lst_process = NULL;
 		line = prompt();
+		add_history(line);
+		// rl_replace_line();
 		// printf("[[%s]]\n", 89line);
 		// tmpline[0] = ft_strdup(line);
 		// tmpline[1] = NULL ;
@@ -82,10 +84,11 @@ int	main(int argc, char *argv[], char *envp[])
 				while (i < num_p)
 				{	
 					expansive_token(shell, shell->data->lst_process->argv);
+					tmpline = shell->data->lst_process->argv;
+					shell->data->lst_process->argv	= final_token(shell->data->lst_process->argv);
+					free_matrix(tmpline);
 					loop_expa_redirect(shell, shell->data->lst_process->input);
 					loop_expa_redirect(shell, shell->data->lst_process->output);
-					// if (*shell->data->lst_process->input->file)
-						// expansive_token(shell, shell->data->lst_process->input->file);
 					shell->data->lst_process = shell->data->lst_process->next;
 					i++;
 				}
