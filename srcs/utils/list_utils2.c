@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 17:20:31 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/13 20:25:05 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/22 17:29:06 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,24 +46,55 @@ t_list	*fill_exp_list(char **envp)
 	return (lst);
 }
 
-void	replace_content(t_list **lst, char *content, char *name)
+void    replace_content_exp(t_data *data, char *content, char *name)
 {
 	t_list	*ptr;
 	char	*f_name;
 
-	if (!lst || !*lst)
-		return ;
-	ptr = *lst;
+	ptr = data->exp_list;
 	f_name = ft_strjoin(name, "=");
-	while (*lst)
+	while (data->exp_list)
 	{
-		if (!ft_strncmp((char *)(*lst)->content, f_name, ft_strlen(f_name)))
+		if (!ft_strncmp(data->exp_list->content, f_name, ft_strlen(f_name)))
 		{
-			free((*lst)->content);
-			(*lst)->content = ft_strdup(content);
+			free(data->exp_list->content);
+			data->exp_list->content = content;
+			free(f_name);
+			data->exp_list = ptr;
+			return ;
 		}
-		*lst = (*lst)->next;
+		data->exp_list = data->exp_list->next;
 	}
-	 free(f_name); // mod kevin
-	*lst = ptr;
+	data->exp_list = ptr;
+	ft_lstadd_back(&(data->exp_list), ft_lstnew(content));
+	free(f_name);
+	sort_env_list(data->exp_list);
 }
+
+
+void	replace_content_envp(t_data *data, char *content, char *name)
+{
+	t_list	*ptr;
+	char	*f_name;
+
+	ptr = data->envp_list;
+	f_name = ft_strjoin(name, "=");
+	while (data->envp_list)
+	{
+		if (!ft_strncmp(data->envp_list->content, f_name, ft_strlen(f_name)))
+		{
+			free(data->envp_list->content);
+			data->envp_list->content = ft_strdup(content);
+			free(f_name);
+			data->envp_list = ptr;
+			return ;
+		}
+		data->envp_list = data->envp_list->next;
+	}
+	data->envp_list = ptr;
+	ft_lstadd_back(&(data->envp_list), ft_lstnew(ft_strdup(content)));
+	free(f_name);
+}
+
+
+

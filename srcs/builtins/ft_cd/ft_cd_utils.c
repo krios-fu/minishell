@@ -6,7 +6,7 @@
 /*   By: jacgarci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 17:55:06 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/15 17:57:05 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/22 17:29:33 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ int	special_path(t_data *data)
 		return (check_for_hyphen(data));
 	else if (!ft_strncmp(data->lst_process->argv[1], "--", 3))
 		return (check_for_dhyphen(data));
-	//1 si ha habido error
 	return (0);	
 }
 

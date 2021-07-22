@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 14:11:39 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/22 18:54:10 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/22 21:59:49 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	main(int argc, char *argv[], char *envp[])
 	process = NULL;
 
 	print_header();
+	// signal(SIGINT, signal_handler);
 	while (1)
 	{
 		i = 0;
