@@ -1,5 +1,6 @@
 INCLUDES = -I$(LIBFT) -I includes/
 
+
 # FILE NAME #
 NAME = minishell
 
@@ -35,7 +36,8 @@ SRCS =	srcs/utils/list_utils			\
 		srcs/pipex/childs_between		\
 		srcs/pipex/exec_one_process		\
 		srcs/pipex/utils				\
-		srcs/utils/signals
+		srcs/utils/signals				\
+
 
 SRCSM = $(addsuffix .c, $(SRCS))
 OBJS = $(SRCSM:.c=.o)

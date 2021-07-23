@@ -6,13 +6,27 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 17:54:05 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/20 20:07:50 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/23 02:19:28 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libminishell.h"
 
+int	fd_input_eof(t_redirect *input)
+{
+	char		*tmp;
+	int			fd;
 
+	fd = open(".tmp", O_RDWR | O_CREAT | O_TRUNC | O_APPEND,
+			S_IRWXU);
+	tmp = readline("> ");
+	while (ft_strcmp(tmp, input->file[0]))
+	{
+		ft_putendl_fd(tmp, fd);
+		tmp = readline("> ");
+	}
+	return (fd);
+}
 
 int	fd_input_redirect(t_shell *shell)
 {
@@ -23,7 +37,7 @@ int	fd_input_redirect(t_shell *shell)
 	input = shell->data->lst_process->input;
 	while (input)
 	{
-		if (ft_strnstr(input->symbol, "<\0", 1))
+		if (!ft_strcmp(input->symbol, "<\0"))
 		{
 			if (get_num_words(input->file) >=2)
 				{
@@ -36,6 +50,13 @@ int	fd_input_redirect(t_shell *shell)
 				print_error_file(input->file[0]);
 				return (-1);
 			}
+		}
+		if (!ft_strcmp(input->symbol, "<<\0"))
+		{
+			// close(fd);
+			fd = fd_input_eof(input);
+			close (fd);
+			fd  = open(".tmp", O_RDONLY);
 		}
 		input = input->next;
 		if (input)
