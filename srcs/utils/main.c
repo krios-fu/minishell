@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 14:11:39 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/23 18:11:11 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/23 22:58:45 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	main(int argc, char *argv[], char *envp[])
 //	set_input_mode();
 	while (1)
 	{
+
 		i = 0;
 		shell->data->lst_process = NULL;
 		
@@ -59,12 +60,8 @@ int	main(int argc, char *argv[], char *envp[])
 			reset_input_mode();
 		}
 */	
-		if (!line)
-		{
-			printf("exit\n");
-			exit(0);
-		}
-		if (ft_strlen(line) > 0)
+
+		if (line && ft_strlen(line) > 0)
 		{
 			if (pre_parse(line) == false)
 				printf("minishell: syntax error near unexpected token\n");
@@ -101,6 +98,11 @@ int	main(int argc, char *argv[], char *envp[])
 				start_pipe(shell, &num_p);
 				free_resources(process);
 			}
+		}
+		if (!line)
+		{
+			write(1, CYAN"roc"BLUE"ket"GREEN"Men 👋 "RED"exit\n", 49);
+			exit(0);
 		}
 		free(line);
 	}

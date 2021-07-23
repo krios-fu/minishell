@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/22 18:50:41 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/23 18:24:41 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/23 20:02:34 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void	signal_handler(int number)
 	{
 		printf("\n");
 		rl_on_new_line();
-		printf("\b\b");
 		rl_replace_line("", 0);
 		rl_redisplay();
 	}	
