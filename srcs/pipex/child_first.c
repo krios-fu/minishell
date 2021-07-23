@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 22:39:47 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/22 00:38:49 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/23 05:20:37 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ void	exec_first_child(t_shell *shell, t_process *process)
 	pid_t	pid;
 
 	pid = fork();
-	process->fd_out = get_fd_builtins(shell);
 	if (pid == 0)
 	{
+		process->fd_out = get_fd_builtins(shell);
 		close(process->fd[READ_END]);
 		redirect_input(shell);
 		redirect_output(shell, process);

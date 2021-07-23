@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 17:54:05 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/23 03:31:10 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/23 05:51:41 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ int	fd_input_eof(t_redirect *input)
 	// ft_putendl_fd(CYAN">", STDOUT_FILENO);
 	tmp = readline("🌗"CYAN" > "WHITE);
 	rl_redisplay();
-	ft_putendl_fd(tmp, fd);
+	if(ft_strcmp(tmp, input->file[0]))
+		ft_putendl_fd(tmp, fd);
 	while (ft_strcmp(tmp, input->file[0]))
 	{
 		free(tmp);
@@ -76,6 +77,7 @@ int fd_output_redirect(t_shell *shell)
 {
 	t_redirect *output;
 	int			fd;
+	DIR			*dir;
 
 	fd = -1;
 	output = shell->data->lst_process->output;
@@ -87,8 +89,20 @@ int fd_output_redirect(t_shell *shell)
 			return (-2);
 		}
 		if (!ft_strcmp(output->symbol, ">\0"))
-				fd = open(output->file[0], O_WRONLY | O_CREAT | O_TRUNC | O_APPEND,
-			S_IRWXU);
+		{
+			dir = opendir(output->file[0]);
+			if (dir)
+			{
+				closedir(dir);
+				ft_putstr_fd("rocketmen: ", 2);
+				ft_putstr_fd(*output->file, 2);
+				ft_putendl_fd(": Is a directory", 2);
+				return (-2);
+			}
+			fd = open(output->file[0], O_WRONLY | O_CREAT | O_TRUNC | O_APPEND,
+				S_IRWXU);
+			
+		}
 		if (!ft_strcmp(output->symbol, ">>\0"))
 				fd = open(output->file[0], O_WRONLY | O_CREAT | O_APPEND,
 				S_IRWXU);

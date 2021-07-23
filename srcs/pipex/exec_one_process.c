@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 19:20:52 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/23 02:51:03 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/23 05:10:00 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ static void	redirect_output(t_shell *shell)
 		dup2(shell->data->lst_process->fd[WRITE_END], STDOUT_FILENO);
 		close(shell->data->lst_process->fd[WRITE_END]);
 		dup2(fd_out, STDOUT_FILENO);
+		close(fd_out);
 	}
 }
 

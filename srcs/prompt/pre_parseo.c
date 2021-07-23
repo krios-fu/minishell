@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 20:35:34 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/23 03:47:01 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/23 04:09:55 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	pre_parse(char *line)
 			if (*line == '|' || *line == false)
 				return (0);
 		}
-		if (!is_redirect(*line))
+		if (*line &&!is_redirect(*line))
 			line++;
 	}
 	return (1);
