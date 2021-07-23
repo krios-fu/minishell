@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 15:56:22 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/15 22:27:21 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/23 04:50:42 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,10 @@ void	get_path(char *cmd, char *envp[], char **f_path)
 		free(path_cmd);
 		i++;
 	}
+	path = getcwd(NULL, 0);
+	path_cmd = ft_strjoin(path, &cmd[1]); 
+	*f_path = path_cmd;
+	free(path);
 	free_matrix(paths);
 }
 

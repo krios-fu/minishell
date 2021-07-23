@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 21:00:26 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/09 20:03:51 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/19 11:14:25 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,22 @@ int		is_redirect(int c)
 char	*set_file_redirect(t_redirect *redirect, char *line)
 {
 	int	i;
+	char **file;
+
+	file = malloc(sizeof(char *) * 2);
 
 	i = 0;
 	 line = ft_isspace(line);
 	while(line[i])
 	{
-		if(ft_isascii(line[i]) && line[i] != ' ' && !is_redirect(line[i]))
+		if((ft_isascii(line[i]) ) && line[i] != ' ' && !is_redirect(line[i]))
 			i++;
 		else
 			break ;
 	}
-	redirect->file = ft_strndup(line, i);
+	file[0] = ft_strndup(line, i);
+	file [1] = NULL;
+	redirect->file = file;
 	return(&line[i]);
 }
 

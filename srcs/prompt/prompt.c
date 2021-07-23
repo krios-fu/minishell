@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 19:25:08 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/18 21:23:46 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/23 03:58:09 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,12 @@ char	*prompt()
 	path = getcwd(NULL, 0);
 	split_path = ft_split(path, '/');
 	free(path);
+	if (!*split_path)
+	{
+		split_path = malloc(sizeof(char *) * 2);
+		split_path[0] = ft_strdup("/");
+		split_path[1] = NULL;
+	}
 	path = ft_strjoin(CYAN"roc"BLUE"ket"GREEN"Men 🚀 "RED, split_path[get_ultimate_dir(split_path)]);
 	prompt = ft_strjoin(path, GREEN" ➜ "WHITE);
 	free(path);

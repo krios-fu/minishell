@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 21:37:30 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/17 19:09:01 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/22 18:50:50 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ enum	e_boolean
 
 typedef struct s_redirect
 {
-	char				*file;
+	char				**file;
 	char				*symbol; 
 	int					pos;
 	struct	s_redirect	*next;
@@ -101,7 +101,9 @@ char			**get_tokens_arg(t_process *process, char *line);
 char			*ft_isspace(char *str);
 void			ft_addlst_back_redirect(t_redirect *redirect, t_redirect *new_redirect);
 void			ft_addlst_back_process(t_process *process, t_process *new_process);
-
+ int			get_num_words(char **str);
+ char			**ft_matrixjoin(const char **matrix1, const char **matrix2);
+char			**final_token(char **argv);
 /*
 **	functions prompt/ redirect
 */

@@ -1,5 +1,6 @@
 INCLUDES = -I$(LIBFT) -I includes/
 
+
 # FILE NAME #
 NAME = minishell
 
@@ -59,7 +60,7 @@ $(NAME): $(OBJS) ./includes/libminishell.h ./includes/prompt.h
 	@echo "$(BLUE)==========CREATING LIBFT==========$(RESET)"
 	@make -sC ./libft
 	@echo "$(BLUE)==========CREATING MINISHELL==========$(RESET)"
-	@$(CC) $(INCLUDES) ${OBJS} $(LIBFT) -o ${NAME} -lreadline 
+	@$(CC) $(INCLUDES) ${OBJS} $(LIBFT) -o ${NAME} -lreadline -lreadline -L/Users/$(USER)/.brew/opt/readline/lib -I/Users/$(USER)/.brew/opt/readline/include
 	@echo "Success creating minishell file"
 # -g3 -fsanitize=address
 clean:

@@ -6,11 +6,11 @@
 /*   By: jacgarci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 14:09:12 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/23 14:10:07 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/23 14:17:33 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes.h"
+#include "../../includes/libminishell.h"
 
 void	ft_exit(t_data *data)
 {

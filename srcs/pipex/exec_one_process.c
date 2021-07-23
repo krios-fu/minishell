@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 19:20:52 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/18 21:34:07 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/23 05:10:00 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,17 @@ static void	redirect_output(t_shell *shell)
 		dup2(shell->data->lst_process->fd[WRITE_END], STDOUT_FILENO);
 		close(shell->data->lst_process->fd[WRITE_END]);
 		dup2(fd_out, STDOUT_FILENO);
+		close(fd_out);
 	}
 }
+
 void	exec_only_one_process(t_shell *shell)
 {
 	pid_t	pid;
 	char 	*path;
 
 	shell->data->lst_process->fd_out = get_fd_builtins(shell);
-	if (start_process(shell) == -1)
+	if (shell->data->lst_process->fd_out != -2 && start_process(shell) == -1)
 	{
 		if(shell->data->lst_process->fd_out > 2)
 			close(shell->data->lst_process->fd_out);
@@ -58,6 +60,7 @@ void	exec_only_one_process(t_shell *shell)
 				exit(0);
 			execve(path, shell->data->lst_process->argv, shell->envp);
 			print_error_cmd(shell->data->lst_process->argv[0]);
+			exit(1);
 		}
 		else
 		{

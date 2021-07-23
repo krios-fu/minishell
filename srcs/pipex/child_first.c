@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 22:39:47 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/18 21:31:04 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/23 05:20:37 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,18 +49,16 @@ void	exec_first_child(t_shell *shell, t_process *process)
 {
 	char *path;
 	pid_t	pid;
-	int		status;
 
 	pid = fork();
-	process->fd_out = get_fd_builtins(shell);
 	if (pid == 0)
 	{
+		process->fd_out = get_fd_builtins(shell);
 		close(process->fd[READ_END]);
 		redirect_input(shell);
 		redirect_output(shell, process);
 		get_path(process->argv[0],shell->envp, &path);
-		status = start_process(shell);
-		if (status == -1)
+		if (process->fd_out != -2 && start_process(shell) == -1)
 		{
 			if (!*process->argv)
 				exit(0);
@@ -69,6 +67,6 @@ void	exec_first_child(t_shell *shell, t_process *process)
 		}
 		exit(0);
 	}
-	else
-		waitpid(pid, NULL, 0);
+	// else
+		// waitpid(pid, NULL, 0);
 }

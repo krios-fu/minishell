@@ -6,11 +6,14 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 11:40:34 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/22 16:55:24 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/23 18:14:29 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/libminishell.h"
+
+//No actualizar variable cuando no tiene valor
+//NO imprimir varianle _
 
 static void	print_export_list(t_data *data)
 {

@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 14:11:39 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/23 14:13:39 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/23 18:11:11 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	main(int argc, char *argv[], char *envp[])
 	char 		*line;
 	int i;
 	int num_p;
+	char 		**tmpline;
+//	char		c;
 
 
 	(void)argc;
@@ -36,17 +38,31 @@ int	main(int argc, char *argv[], char *envp[])
 	process = NULL;
 
 	print_header();
-	//signal(SIGINT, signal_handler);
+	signal(SIGINT, signal_handler);
+//	set_input_mode();
 	while (1)
 	{
 		i = 0;
 		shell->data->lst_process = NULL;
+		
 		line = prompt();
-		// printf("[[%s]]\n", line);
-		if (line && *line)
+		add_history(line);
+/*		read(STDIN_FILENO, &c, 1);
+		if (c == 4)
 		{
-			// printf("[[%s]]  [[%d]]", line , add_history(line));
-			// rl_redisplay();
+			printf("ctrl-D detected\n");
+			exit(0);
+		}
+		else
+		{
+			printf("ctrl-D not detected\n");
+			reset_input_mode();
+		}
+*/	
+		if (!line)
+		{
+			printf("exit\n");
+			exit(0);
 		}
 		if (ft_strlen(line) > 0)
 		{
@@ -60,13 +76,24 @@ int	main(int argc, char *argv[], char *envp[])
 					free_resources(shell->data->lst_process);
 				}
 				else
+				{
 					assign_fd_to_process(shell->data->lst_process);
+					if (shell->data->lst_process->input)
+						loop_expa_redirect(shell, shell->data->lst_process->input);
+					if (shell->data->lst_process->output)
+						loop_expa_redirect(shell, shell->data->lst_process->output);
+				}
 				// printf("n_p %d\n", num_p);
 				process = shell->data->lst_process;
 				
 				while (i < num_p)
 				{	
-					expansive_token(shell);
+					expansive_token(shell, shell->data->lst_process->argv);
+					tmpline = shell->data->lst_process->argv;
+					shell->data->lst_process->argv	= final_token(shell->data->lst_process->argv);
+					free_matrix(tmpline);
+					loop_expa_redirect(shell, shell->data->lst_process->input);
+					loop_expa_redirect(shell, shell->data->lst_process->output);
 					shell->data->lst_process = shell->data->lst_process->next;
 					i++;
 				}
@@ -75,9 +102,7 @@ int	main(int argc, char *argv[], char *envp[])
 				free_resources(process);
 			}
 		}
-
 		free(line);
-
 	}
 
 	return (0);

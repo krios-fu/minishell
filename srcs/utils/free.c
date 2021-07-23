@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 18:04:13 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/17 20:34:37 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/23 03:01:05 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	free_redirect(t_redirect *redirect)
 
 	while (redirect)
 	{
+		free (redirect->file[0]);
+		free (redirect->file[1]);
 		free (redirect->file);
 		free(redirect->symbol);
 		tmp = redirect->next;
@@ -50,9 +52,14 @@ void	free_resources(t_process *process)
 		free_redirect(process->input);
 		free_redirect(process->output);
 		if (process->fd)
+		{
+			close(process->fd[0]);
+			close(process->fd[1]);
 			free(process->fd);
+		}
 		tmp = process->next;
 		free(process);
 		process = tmp;
 	}
+	unlink(".tmp");
 }
