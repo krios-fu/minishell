@@ -6,6 +6,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <signal.h>
+# include <termios.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 #include <dirent.h>
@@ -24,6 +25,8 @@
 # define	WRITE_END	1
 # define	READ_END		0
 /* ------------pipex------------------ */
+
+struct termios saved_attributes;
 
 typedef	struct s_data
 {
@@ -95,12 +98,15 @@ int		start_process(t_shell *shell);
 ** Builtins
 */
 void	signal_handler(int number);
+void	reset_input_mode(void);
+void    set_input_mode(void);
 void 	ft_cd(t_data *data);
 void	ft_echo(t_data *data);
 void	ft_env(t_data *data);
 void	ft_export(t_data *data);
 void	ft_pwd(t_data *data);
 void	ft_unset(t_data *data);
+void	ft_exit(t_data *data);
 int	special_path(t_data *data);
 int	check_path(char *path);
 

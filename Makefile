@@ -5,39 +5,39 @@ INCLUDES = -I$(LIBFT) -I includes/
 NAME = minishell
 
 # SOURCES #
-SRCS =	srcs/utils/list_utils			\
-		srcs/utils/list_utils2			\
-		srcs/utils/main					\
-		srcs/prompt/prompt				\
-		srcs/prompt/utils				\
-		srcs/prompt/redirect			\
-		srcs/builtins/ft_env			\
+SRCS =	srcs/utils/list_utils					\
+		srcs/utils/list_utils2					\
+		srcs/utils/main							\
+		srcs/prompt/prompt						\
+		srcs/prompt/utils						\
+		srcs/prompt/redirect					\
+		srcs/builtins/ft_env					\
 		srcs/builtins/ft_export/ft_export		\
-		srcs/builtins/ft_export/ft_export_utils		\
-		srcs/builtins/ft_pwd			\
-	 	srcs/builtins/ft_unset			\
-		srcs/builtins/ft_echo			\
-		srcs/builtins/ft_cd/ft_cd		\
-		srcs/builtins/ft_cd/ft_cd_utils	\
-		srcs/prompt/parseo 				\
-		srcs/prompt/pre_parseo			\
-		srcs/process/exec				\
-		srcs/process/process			\
-		srcs/prompt/parseo_tokens		\
-		srcs/prompt/expansive_var		\
-		srcs/utils/free					\
-		srcs/prompt/parseo_quote		\
-		srcs/pipex/pipex				\
-		srcs/pipex/search_path			\
-		srcs/process/error				\
-		srcs/pipex/search_redirect		\
-		srcs/pipex/child_final			\
-		srcs/pipex/child_first			\
-		srcs/pipex/childs_between		\
-		srcs/pipex/exec_one_process		\
-		srcs/pipex/utils				\
-		srcs/utils/signals				\
-
+		srcs/builtins/ft_export/ft_export_utils	\
+		srcs/builtins/ft_pwd					\
+	 	srcs/builtins/ft_unset					\
+		srcs/builtins/ft_echo					\
+		srcs/builtins/ft_cd/ft_cd				\
+		srcs/builtins/ft_cd/ft_cd_utils			\
+		srcs/builtins/ft_exit					\
+		srcs/prompt/parseo 						\
+		srcs/prompt/pre_parseo					\
+		srcs/process/exec						\
+		srcs/process/process					\
+		srcs/prompt/parseo_tokens				\
+		srcs/prompt/expansive_var				\
+		srcs/utils/free							\
+		srcs/prompt/parseo_quote				\
+		srcs/pipex/pipex						\
+		srcs/pipex/search_path					\
+		srcs/process/error						\
+		srcs/pipex/search_redirect				\
+		srcs/pipex/child_final					\
+		srcs/pipex/child_first					\
+		srcs/pipex/childs_between				\
+		srcs/pipex/exec_one_process				\
+		srcs/pipex/utils						\
+		srcs/utils/signals
 
 SRCSM = $(addsuffix .c, $(SRCS))
 OBJS = $(SRCSM:.c=.o)
