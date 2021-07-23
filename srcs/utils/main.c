@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 14:11:39 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/22 21:59:49 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/23 02:49:32 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,10 @@ int	main(int argc, char *argv[], char *envp[])
 	{
 		i = 0;
 		shell->data->lst_process = NULL;
+		
 		line = prompt();
-		add_history(line);
 		// rl_replace_line();
+		add_history(line);
 		// printf("[[%s]]\n", 89line);
 		// tmpline[0] = ft_strdup(line);
 		// tmpline[1] = NULL ;

@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 20:35:34 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/10 20:23:13 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/23 03:47:01 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,11 @@ int	pre_parse(char *line)
 	{
 		line = ft_isspace(line);
 		if (is_redirect(*line))
-		{
-			line++;
+		{	
+			while(is_redirect(*line))
+				line++;
 			line = ft_isspace(line);
-			if (*line == '|' || *line == false)
+			if (*line == '|' || *line == false || is_redirect(*line))
 				return (0);
 		}
 		if (*line == '|')

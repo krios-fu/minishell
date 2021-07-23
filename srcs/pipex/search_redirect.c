@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 17:54:05 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/23 02:19:28 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/23 03:31:10 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,20 @@ int	fd_input_eof(t_redirect *input)
 
 	fd = open(".tmp", O_RDWR | O_CREAT | O_TRUNC | O_APPEND,
 			S_IRWXU);
-	tmp = readline("> ");
+	// ft_putendl_fd(CYAN">", STDOUT_FILENO);
+	tmp = readline("🌗"CYAN" > "WHITE);
+	rl_redisplay();
+	ft_putendl_fd(tmp, fd);
 	while (ft_strcmp(tmp, input->file[0]))
 	{
-		ft_putendl_fd(tmp, fd);
-		tmp = readline("> ");
+		free(tmp);
+		tmp = readline("🌗"CYAN" > "WHITE);
+		rl_redisplay();
+		if(ft_strcmp(tmp, input->file[0]))
+			ft_putendl_fd(tmp, fd);
 	}
+	free(tmp);
+	ft_putstr_fd(WHITE"", STDOUT_FILENO);
 	return (fd);
 }
 
@@ -53,7 +61,6 @@ int	fd_input_redirect(t_shell *shell)
 		}
 		if (!ft_strcmp(input->symbol, "<<\0"))
 		{
-			// close(fd);
 			fd = fd_input_eof(input);
 			close (fd);
 			fd  = open(".tmp", O_RDONLY);
