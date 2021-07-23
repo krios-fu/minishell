@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signals.c                                          :+:      :+:    :+:   */
+/*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jacgarci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/22 18:50:41 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/23 11:42:54 by jacgarci         ###   ########.fr       */
+/*   Created: 2021/07/23 14:09:12 by jacgarci          #+#    #+#             */
+/*   Updated: 2021/07/23 14:10:07 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/libminishell.h"
+#include "../../includes.h"
 
-void	signal_handler(int number)
+void	ft_exit(t_data *data)
 {
-	(void)number;
-	//if (number == SIGINT)
-	printf("señalessss");	
+	(void)data;
+	exit(0);
 }

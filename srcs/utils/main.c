@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 14:11:39 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/22 19:00:50 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/23 14:13:39 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,28 +23,20 @@ int	main(int argc, char *argv[], char *envp[])
 
 	(void)argc;
 	(void)argv;
-	// (void)envp;
 
 	shell = (t_shell *)malloc(sizeof(t_shell));
 	shell->data = (t_data *)malloc(sizeof(t_data));
 	shell->envp = envp;
-//	(void)envp;
-
-//	argv++;
-//	ft_echo(argv);
 
 	shell->data->envp_list = fill_envp_list(envp);
 	shell->data->exp_list = fill_exp_list(envp);
 	sort_env_list(shell->data->exp_list);
 
-
-
-	 
 	num_p = 0;
 	process = NULL;
 
 	print_header();
-	signal(SIGINT, signal_handler);
+	//signal(SIGINT, signal_handler);
 	while (1)
 	{
 		i = 0;
