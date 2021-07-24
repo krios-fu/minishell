@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 17:54:05 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/23 05:51:41 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/23 16:38:09 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int	fd_input_eof(t_redirect *input)
 
 	fd = open(".tmp", O_RDWR | O_CREAT | O_TRUNC | O_APPEND,
 			S_IRWXU);
-	// ft_putendl_fd(CYAN">", STDOUT_FILENO);
 	tmp = readline("🌗"CYAN" > "WHITE);
 	rl_redisplay();
 	if(ft_strcmp(tmp, input->file[0]))

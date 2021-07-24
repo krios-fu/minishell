@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signals.c                                          :+:      :+:    :+:   */
+/*   ft_list_undefine.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/22 18:50:41 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/24 15:21:27 by jacgarci         ###   ########.fr       */
+/*   Created: 2021/07/23 21:09:55 by krios-fu          #+#    #+#             */
+/*   Updated: 2021/07/24 15:10:06 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libminishell.h"
 
-void	signal_handler(int number)
+void	ft_lst_undefine(t_data	*data)
 {
-	if (number == SIGINT)
-	{
-		printf("\n");
-		rl_on_new_line();
-		rl_replace_line("", 0);
-		rl_redisplay();
-	}
-}
+	t_var	var;
 
-void	signals()
-{
-	signal(SIGINT, signal_handler);
-	signal(SIGQUIT, SIG_IGN);
+	var.tmp = data->lst_process->argv;
+	var.i = 0;
+	data->tmp_var_list = ft_lstnew(ft_strdup(var.tmp[var.i]));
+	while (var.tmp[var.i])
+	{
+		ft_lstadd_back(&data->tmp_var_list, ft_lstnew(ft_strdup(var.tmp[var.i])));
+		(var.i)++;
+	}
 }
