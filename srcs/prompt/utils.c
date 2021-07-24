@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 21:01:33 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/22 20:00:41 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/24 19:42:40 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,13 @@ char	**final_token(char **argv)
 	var.i = 0;
 	var.j = 0;
 	k = 0;
+	if (!argv)
+	{
+		tmp = malloc(sizeof(char *) * 2);
+		tmp[0] = ft_strdup("");
+		tmp[1] = NULL;
+		return(tmp);
+	}
 	var.len_exp = get_num_words_join(argv);
 	tmp = (char **)malloc(sizeof(char *) * (var.len_exp + 1));
 	while (argv[var.i])

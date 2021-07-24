@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 14:11:39 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/23 22:58:45 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/24 19:43:26 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,18 +48,6 @@ int	main(int argc, char *argv[], char *envp[])
 		
 		line = prompt();
 		add_history(line);
-/*		read(STDIN_FILENO, &c, 1);
-		if (c == 4)
-		{
-			printf("ctrl-D detected\n");
-			exit(0);
-		}
-		else
-		{
-			printf("ctrl-D not detected\n");
-			reset_input_mode();
-		}
-*/	
 
 		if (line && ft_strlen(line) > 0)
 		{
@@ -87,7 +75,7 @@ int	main(int argc, char *argv[], char *envp[])
 				{	
 					expansive_token(shell, shell->data->lst_process->argv);
 					tmpline = shell->data->lst_process->argv;
-					shell->data->lst_process->argv	= final_token(shell->data->lst_process->argv);
+					shell->data->lst_process->argv	= final_token(ft_lst_undefine(shell->data));
 					free_matrix(tmpline);
 					loop_expa_redirect(shell, shell->data->lst_process->input);
 					loop_expa_redirect(shell, shell->data->lst_process->output);
