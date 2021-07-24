@@ -38,7 +38,7 @@ SRCS =	srcs/utils/list_utils					\
 		srcs/pipex/exec_one_process				\
 		srcs/pipex/utils						\
 		srcs/utils/signals						\
-		srcs/builtins/ft_list_undefine
+		srcs/builtins/ft_list_undefine			
 
 SRCSM = $(addsuffix .c, $(SRCS))
 OBJS = $(SRCSM:.c=.o)
