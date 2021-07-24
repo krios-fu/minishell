@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 14:11:39 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/24 21:09:33 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/24 23:41:52 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	main(int argc, char *argv[], char *envp[])
 	process = NULL;
 
 	print_header();
+	print_welcome(shell);
 	signals();
 	while (1)
 	{

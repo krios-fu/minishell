@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 19:25:08 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/23 20:04:40 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/24 23:57:40 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,18 @@ void	print_header(void)
 	printf(BLUE"██║╚██╔╝██║██║██║╚██╗██║██║╚════██║██╔══██║██╔══╝  ██║     ██║     \n");
 	printf(GREEN"██║ ╚═╝ ██║██║██║ ╚████║██║███████║██║  ██║███████╗███████╗███████╗\n");
 	printf(GREEN"╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚═╝╚══════╝╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝\n");
-	printf(RED"\t\t\t\t\tBy: Jacgarci && Krios-fu\n");
+	printf(RED"Jacgarci && Krios-fu");
+
 }
 
+void	print_welcome(t_shell *shell)
+{
+	char *logname;
 
+	logname = search_env(shell->data->envp_list, "LOGNAME");
+	printf("\t\t\t    ✨ "CYAN"Wel"BLUE"co"GREEN"me "WHITE"%s ✨\n\n", &logname[8]);
+	free(logname);
+}
 
 static int get_ultimate_dir(char **path)
 {
@@ -34,12 +42,12 @@ static int get_ultimate_dir(char **path)
 
 	i = 0;
 	while (path[i])
-	{
 		i++;
-	}
 	return(i -1);
 }
-char	*prompt()
+
+
+char	*prompt(void)
 {
 	char	*line;
 	char	*prompt;

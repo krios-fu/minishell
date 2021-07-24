@@ -63,6 +63,7 @@ typedef struct s_shell
 
 
 
+void			print_welcome(t_shell *shell);
 
 
 /*

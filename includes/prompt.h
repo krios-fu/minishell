@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 21:37:30 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/22 18:50:50 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/24 23:53:14 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # define GRAY	"\033[1;30m"
 # define CYAN	"\033[1;36m"
 # define RED	"\033[1;31m"
-# define WHITE	"\033[0;37m"
+# define WHITE	"\033[1;37m"
 
 typedef int t_bool;
 
@@ -70,6 +70,7 @@ typedef	struct s_process
 
 char			*prompt();
 void			print_header(void);
+
 
 
 /*
