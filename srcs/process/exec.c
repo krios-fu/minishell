@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/09 21:01:01 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/15 20:08:39 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/24 14:51:30 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,15 @@ void	*menu_builtins (void)
 
 	void (**menu)(t_data *);
 
-	menu = malloc(sizeof(*menu) * 6);
+	menu = malloc(sizeof(*menu) * 8);
 	menu[0] = &ft_cd;
 	menu[1] = &ft_echo;
 	menu[2] = &ft_env;
 	menu[3] = &ft_export;
 	menu[4] = &ft_pwd;
 	menu[5] = &ft_unset;
+	menu[6] = &ft_lst_undefine;
+	menu[7] = (void *)0;
 	return (menu);
 }
 
@@ -44,7 +46,8 @@ int	search_builtins(char *bcmd)
 		return (4);
 	if (ft_strnstr("unset\0", bcmd,  ft_strlen(bcmd)))
 		return (5);
-
+	if (ft_strchr(bcmd, '='))
+		return (6);
 	return (-1);
 }
 

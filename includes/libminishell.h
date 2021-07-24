@@ -107,6 +107,7 @@ void	ft_export(t_data *data);
 void	ft_pwd(t_data *data);
 void	ft_unset(t_data *data);
 void	ft_exit(t_data *data);
+void	ft_lst_undefine(t_data	*data);
 int	special_path(t_data *data);
 int	check_path(char *path);
 
