@@ -26,8 +26,6 @@
 # define	READ_END		0
 /* ------------pipex------------------ */
 
-struct termios saved_attributes;
-
 typedef	struct s_data
 {
 	t_process		*lst_process;
@@ -98,6 +96,7 @@ int		start_process(t_shell *shell);
 ** Builtins
 */
 void	signal_handler(int number);
+void	signals(void);
 void	reset_input_mode(void);
 void    set_input_mode(void);
 void 	ft_cd(t_data *data);
@@ -126,6 +125,7 @@ t_list	*fill_exp_list(char **envp);
 char    *fill_with_dquotes(char *envp);
 int     already_exist(t_list *lst, char *var);
 char    *get_name(char *var);
+char	**get_env(t_data *data);
 
 
 /*
@@ -153,4 +153,3 @@ void	exec_only_one_process(t_shell *shell);
 int		get_fd_builtins (t_shell *shell);
 
 #endif
-

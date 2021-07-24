@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 14:11:39 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/24 19:43:26 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/24 21:09:33 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,7 @@ int	main(int argc, char *argv[], char *envp[])
 	process = NULL;
 
 	print_header();
-	signal(SIGINT, signal_handler);
-//	set_input_mode();
+	signals();
 	while (1)
 	{
 
@@ -48,7 +47,6 @@ int	main(int argc, char *argv[], char *envp[])
 		
 		line = prompt();
 		add_history(line);
-
 		if (line && ft_strlen(line) > 0)
 		{
 			if (pre_parse(line) == false)
