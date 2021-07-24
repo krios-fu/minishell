@@ -98,6 +98,7 @@ int		start_process(t_shell *shell);
 ** Builtins
 */
 void	signal_handler(int number);
+void	signals(void);
 void	reset_input_mode(void);
 void    set_input_mode(void);
 void 	ft_cd(t_data *data);

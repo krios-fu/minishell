@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 17:20:31 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/22 17:29:06 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/24 13:25:55 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,18 @@ char	*fill_with_dquotes(char *envp)
 	char	*result;
 
 	tab = ft_split(envp, '=');
-	tmp = ft_strjoin(tab[0], "=");
-	tmp2 = ft_strjoin(tmp, "\"");
-	tmp3 = ft_strjoin(tmp2, tab[1]);
-	result = ft_strjoin(tmp3, "\"");
-	free(tmp);
-	free(tmp2);
-	free(tmp3);
+	if (tab[1])
+	{
+		tmp = ft_strjoin(tab[0], "=");
+		tmp2 = ft_strjoin(tmp, "\"");
+		tmp3 = ft_strjoin(tmp2, tab[1]);
+		result = ft_strjoin(tmp3, "\"");
+		free(tmp);
+		free(tmp2);
+		free(tmp3);
+	}
+	else
+		result = ft_strjoin(envp, "\"\"");
 	free_matrix(tab);
 	return (result);
 }

@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 14:11:39 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/23 18:11:11 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/24 13:05:43 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,7 @@ int	main(int argc, char *argv[], char *envp[])
 	process = NULL;
 
 	print_header();
-	signal(SIGINT, signal_handler);
-//	set_input_mode();
+	signals();
 	while (1)
 	{
 		i = 0;
@@ -47,18 +46,6 @@ int	main(int argc, char *argv[], char *envp[])
 		
 		line = prompt();
 		add_history(line);
-/*		read(STDIN_FILENO, &c, 1);
-		if (c == 4)
-		{
-			printf("ctrl-D detected\n");
-			exit(0);
-		}
-		else
-		{
-			printf("ctrl-D not detected\n");
-			reset_input_mode();
-		}
-*/	
 		if (!line)
 		{
 			printf("exit\n");
