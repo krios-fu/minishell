@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 21:37:30 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/25 18:07:32 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/25 18:21:41 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ int				pre_parse(char *line);
 /*
 **	functions prompt/ parseo
 */
+
 int				num_arg_process (char *line, t_process *lst_process);
 void			change_status_quote(char *line, t_parseo *parse);
 char			**get_lines_cmd(char *line, int num_process);

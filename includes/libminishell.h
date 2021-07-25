@@ -98,6 +98,7 @@ int		start_process(t_shell *shell);
 /*
 ** Builtins
 */
+int		min_atoi(char *str);
 void	signal_handler(int number);
 void	signals(void);
 void	reset_input_mode(void);
@@ -112,7 +113,7 @@ void	ft_exit(t_data *data);
 char	**ft_lst_undefine(t_data	*data);
 int		special_path(t_data *data);
 int		check_path(char *path);
-
+int		get_var_len(char *str);
 /* 
 ** lst
 */
@@ -122,11 +123,12 @@ void	sort_env_list(t_list *lst);
 void 	sort_lst(t_list **lst);
 void	print_list(t_list *lst);
 char	*search_env(t_list *envp_list, char *name);
+char    *search_exp(t_list *lst, char *name);
 void    replace_content_envp(t_data *data, char *content, char *name);
 void    replace_content_exp(t_data *data, char *content, char *name);
 t_list	*fill_exp_list(char **envp);
 char    *fill_with_dquotes(char *envp);
-int     already_exist(t_list *lst, char *var);
+int     already_exist(t_list *lst, char *var, int type);
 char    *get_name(char *var);
 char	**get_env(t_data *data);
 
