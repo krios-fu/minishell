@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 17:54:05 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/23 16:38:09 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/25 21:16:50 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,8 @@ int fd_output_redirect(t_shell *shell)
 	output = shell->data->lst_process->output;
 	while (output)
 	{
-		if (get_num_words(output->file) >= 2)
+
+		if (get_num_words(output->file) >= 2 || !*output->file[0])
 		{
 			ft_putstr_fd("rocketMen: ambiguous redirect\n", 2);
 			return (-2);

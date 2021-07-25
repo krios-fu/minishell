@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 18:04:13 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/23 03:01:05 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/25 21:02:13 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ void	free_resources(t_process *process)
 	
 	while (process)
 	{
-		free_matrix(process->argv);
+		if (process->argv)
+			free_matrix(process->argv);
 		free_redirect(process->input);
 		free_redirect(process->output);
 		if (process->fd)

@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 21:31:40 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/24 18:15:48 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/25 20:56:09 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ char	**get_tokens_arg(t_process *process, char *line)
 	len = 0;
 	pos_arg = 0;
 	size = num_arg_process(line, process);
+	if(size == 0)
+		return(NULL);
 	arguments = (char **)malloc(sizeof(char *) * (size + 1));
 	while (pos_arg < size)
 	{

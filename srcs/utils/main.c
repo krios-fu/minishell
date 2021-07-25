@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 14:11:39 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/25 19:04:12 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/25 21:10:59 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,18 +57,14 @@ int	main(int argc, char *argv[], char *envp[])
 			else 
 			{
 				 num_p =  get_process(shell->data, line);
-				if (num_p == 0)
-				{
-					free_resources(shell->data->lst_process);
-				}
-				else
+
+				if (num_p > 0)
 				{
 					assign_fd_to_process(shell->data->lst_process);
 					if (shell->data->lst_process->input)
 						loop_expa_redirect(shell, shell->data->lst_process->input);
 					if (shell->data->lst_process->output)
 						loop_expa_redirect(shell, shell->data->lst_process->output);
-				}
 				process = shell->data->lst_process;
 				while (i < num_p)
 				{	
@@ -76,14 +72,13 @@ int	main(int argc, char *argv[], char *envp[])
 					tmpline = shell->data->lst_process->argv;
 					shell->data->lst_process->argv	= final_token(ft_lst_undefine(shell->data));
 					free_matrix(tmpline);
-					loop_expa_redirect(shell, shell->data->lst_process->input);
-					loop_expa_redirect(shell, shell->data->lst_process->output);
 					shell->data->lst_process = shell->data->lst_process->next;
 					i++;
 				}
 				shell->data->lst_process = process;
 				start_pipe(shell, &num_p);
 				free_resources(process);
+				}
 			}
 		}
 		if (!line)

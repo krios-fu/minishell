@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 21:21:42 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/16 20:06:39 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/25 21:21:50 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	num_arg_process(char *line, t_process *lst_process)
 	}
 	if (parse.quotes_d == true || parse.quotes_s == true)
 	{
-		printf("Error quote\n");
+		ft_putstr_fd("rocketMen: syntax error: unexpected open quote\n", 2);
 		return (0);
 	}
 	return (parse.num_arg);

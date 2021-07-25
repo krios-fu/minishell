@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 21:30:07 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/24 18:22:55 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/25 21:02:49 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,19 @@ int	get_process(t_data *data, char *line)
 	{
 		new_process = create_process();
 		if (!new_process )
-			{
-				free_matrix(line_cmd);
-				free_resources(new_process);
-				return (0);
-			}
+		{
+			free_matrix(line_cmd);
+			free_resources(new_process);
+			return (0);
+		}
 		new_process->argv = get_tokens_arg(new_process, line_cmd[i]);
+		new_process->fd = NULL;
+		if (!new_process->argv)
+		{
+			free_matrix(line_cmd);
+			free_resources(new_process);
+			return (0);
+		}
 		if (i == 0)
 			data->lst_process = new_process;
 		else
