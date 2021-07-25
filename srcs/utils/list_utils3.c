@@ -6,11 +6,32 @@
 /*   By: jacgarci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 16:04:27 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/24 16:38:54 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/25 15:59:03 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libminishell.h"
+
+int	min_atoi(char *str)
+{
+	long	nb;
+	int		i;
+
+	nb = 0;
+	i = 0;
+	if (!*str)
+		return (0);
+	while (str[i] && ft_isdigit(str[i]))
+	{
+		nb += str[i] - '0';
+		if (str[i + 1] != '\0')
+			nb *= 10;
+		else
+			return (nb);
+		i++;
+	}
+	return (-1);
+}
 
 static int	get_list_length(t_list *lst)
 {

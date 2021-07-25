@@ -98,6 +98,7 @@ int		start_process(t_shell *shell);
 /*
 ** Builtins
 */
+int		min_atoi(char *str);
 void	signal_handler(int number);
 void	signals(void);
 void	reset_input_mode(void);
