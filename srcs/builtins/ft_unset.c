@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 18:23:51 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/25 17:25:24 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/25 18:22:30 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	unset_arg(t_data *data, char *arg)
 	char	*exp_var;
 
 	envp_var = search_env(data->envp_list, arg);
-	exp_var = search_exp(data->exp_list, arg);
+	exp_var = search_env(data->exp_list, arg);
 	if (envp_var)
 		ft_lstdelone(&data->envp_list, (void *)envp_var);
 	if (exp_var)

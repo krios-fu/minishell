@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 17:20:31 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/25 18:14:34 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/25 18:20:38 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,15 +78,16 @@ void    replace_content_exp(t_data *data, char *content, char *name)
 void	replace_content_envp(t_data *data, char *content, char *name)
 {
 	t_list	*ptr;
+	int		name_len;
 
 	ptr = data->envp_list;
+	name_len = get_var_len(name);
 	while (data->envp_list)
 	{
 		if (name_len == get_var_len(data->exp_list->content))
 		{
 			free(data->envp_list->content);
 			data->envp_list->content = ft_strdup(content);
-			free(f_name);
 			data->envp_list = ptr;
 			return ;
 		}
@@ -94,7 +95,6 @@ void	replace_content_envp(t_data *data, char *content, char *name)
 	}
 	data->envp_list = ptr;
 	ft_lstadd_back(&(data->envp_list), ft_lstnew(ft_strdup(content)));
-	free(f_name);
 }
 
 

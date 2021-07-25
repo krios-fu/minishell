@@ -118,6 +118,7 @@ int		check_path(char *path);
 ** lst
 */
 
+int     get_var_len(char *str);
 t_list	*fill_envp_list(char **envp);
 void	sort_env_list(t_list *lst);
 void 	sort_lst(t_list **lst);
@@ -128,7 +129,7 @@ void    replace_content_envp(t_data *data, char *content, char *name);
 void    replace_content_exp(t_data *data, char *content, char *name);
 t_list	*fill_exp_list(char **envp);
 char    *fill_with_dquotes(char *envp);
-int     already_exist(t_list *lst, char *var, int type);
+int     already_exist(t_list *lst, char *var);
 char    *get_name(char *var);
 char	**get_env(t_data *data);
 

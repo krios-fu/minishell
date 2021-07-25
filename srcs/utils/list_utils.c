@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 11:10:56 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/25 18:06:16 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/25 18:17:08 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	*search_exp(t_list *lst, char *name)
 }
 */
 
-int		get_env_var_len(char *str)
+int		get_var_len(char *str)
 {
 	int	count;
 
