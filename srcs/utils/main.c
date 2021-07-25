@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 14:11:39 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/25 21:10:59 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/25 23:14:06 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@ int	main(int argc, char *argv[], char *envp[])
 
 	shell = (t_shell *)malloc(sizeof(t_shell));
 	shell->data = (t_data *)malloc(sizeof(t_data));
-	shell->envp = envp;
-
+	shell->status = false;
 	shell->data->envp_list = fill_envp_list(envp);
 	shell->data->exp_list = fill_exp_list(envp);
 	shell->data->tmp_var_list = NULL;
@@ -44,12 +43,19 @@ int	main(int argc, char *argv[], char *envp[])
 	signals();
 	while (1)
 	{
-
 		i = 0;
 		shell->data->lst_process = NULL;
-		
-		line = prompt();
-		add_history(line);
+		/*if (shell->status == true)
+		{
+			printf("%d", shell->status);
+			printf("\r");
+			rl_redisplay();
+			shell->status = false;
+			printf("%d", shell->status);
+			
+		}*/
+			line = prompt();
+			add_history(line);
 		if (line && ft_strlen(line) > 0)
 		{
 			if (pre_parse(line) == false)
@@ -79,6 +85,8 @@ int	main(int argc, char *argv[], char *envp[])
 				start_pipe(shell, &num_p);
 				free_resources(process);
 				}
+				else
+					shell->data->error_code[0] = 258;
 			}
 		}
 		if (!line)

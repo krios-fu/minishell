@@ -1,30 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signals.c                                          :+:      :+:    :+:   */
+/*   start.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/22 18:50:41 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/25 23:04:34 by krios-fu         ###   ########.fr       */
+/*   Created: 2021/07/25 21:51:37 by krios-fu          #+#    #+#             */
+/*   Updated: 2021/07/25 21:52:31 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libminishell.h"
 
-void	signal_handler(int number)
-{
-	if (number == SIGINT)
-	{
-		printf("\n");
-		rl_on_new_line();
-		rl_replace_line("", 0);
-		rl_redisplay();
-	}
-}
 
-void	signals()
-{
-	signal(SIGINT, signal_handler);
-	signal(SIGQUIT, SIG_IGN);
-}
+

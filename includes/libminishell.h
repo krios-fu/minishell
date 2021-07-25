@@ -57,16 +57,18 @@ typedef struct s_var
 ** Struct for minishell variables
 */
 
+typedef int	t_status;
+
 typedef struct s_shell
 {
 	t_data 		*data;
-	char		**envp;
+	t_bool		status;
 }			t_shell;
 
 
 
 void			print_welcome(t_shell *shell);
-
+char			*prompt();
 
 /*
 **	process/process

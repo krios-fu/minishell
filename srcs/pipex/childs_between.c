@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 22:48:45 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/25 05:26:50 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/25 22:22:47 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	exect_between_childs(t_shell *shell, t_process *process, int *fd_back)
 		close(process->fd[READ_END]);
 		redirect_input(shell, fd_back);
 		redirect_output(shell, process);
-		get_path(process->argv[0],shell->envp, &path);
+		get_path(process->argv[0], get_env(shell->data), &path);
 
 		if (process->fd_out != -2 && start_process(shell) == -1)
 		{

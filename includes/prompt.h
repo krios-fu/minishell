@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 21:37:30 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/25 18:55:16 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/25 22:41:18 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ typedef	struct s_process
 **	functions prompt/ prompt
 */
 
-char			*prompt();
+
 void			print_header(void);
 
 

@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 19:25:08 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/24 23:57:40 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/25 22:48:12 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,14 @@ static int get_ultimate_dir(char **path)
 }
 
 
-char	*prompt(void)
+char	*prompt()
 {
 	char	*line;
 	char	*prompt;
 	char	*path;
 	char	**split_path;
 
+	line = NULL;
 	path = getcwd(NULL, 0);
 	split_path = ft_split(path, '/');
 	free(path);
@@ -66,6 +67,7 @@ char	*prompt(void)
 	path = ft_strjoin(CYAN"roc"BLUE"ket"GREEN"Men 🚀 "RED, split_path[get_ultimate_dir(split_path)]);
 	prompt = ft_strjoin(path, GREEN" ➜ "WHITE);
 	free(path);
+
 	line = readline(prompt);
 	free(prompt);
 	free_matrix(split_path);
