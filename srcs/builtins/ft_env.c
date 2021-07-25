@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 16:14:55 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/25 02:08:32 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/25 19:04:21 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_env(t_data *data)
 
 	if (!data->envp_list)
 	{
-		data->error_code = 1;
+		data->error_code[0] = 1;
 		return ;
 	}
 	lst = data->envp_list;

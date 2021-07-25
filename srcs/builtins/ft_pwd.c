@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 17:30:01 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/25 02:08:52 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/25 19:04:29 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_pwd(t_data *data)
 
 	if (!getcwd(path, sizeof(path)))
 	{
-		data->error_code = 1;
+		data->error_code[0] = 1;
 		return ;
 	}
 	ft_putstr_fd(path, data->lst_process->fd_out);

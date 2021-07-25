@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 21:01:33 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/24 19:42:40 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/25 18:54:00 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	get_num_words(char **str)
 	return(i);
 }
 
-static	int get_num_words_join(char **argv)
+int get_num_words_join(char **argv)
 {
 	int i;
 	int len;

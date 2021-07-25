@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 17:48:30 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/25 02:09:43 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/25 19:04:39 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ static void normal_cd(t_data *data)
 	
 	if (special_path(data))
 	{
-		data->error_code = 1;
+		data->error_code[0] = 1;
 		return ;
 	}
 	if (chdir(data->lst_process->argv[1]))
 	{
-		data->error_code = 1;
+		data->error_code[0] = 1;
 		ft_putstr_fd("rocketMen: cd: ", 2);
 		ft_putstr_fd(data->lst_process->argv[1], 2);
 		ft_putstr_fd(": No such file or directory\n", 2);
@@ -98,7 +98,7 @@ static void	cd_home(t_data *data)
 	{
 		ft_putstr_fd("rocketMen: cd: HOME not set\n", 2);
 		free(path);
-		data->error_code = 1;
+		data->error_code[0] = 1;
 		return ;
 	}
 	if (chdir(path) == -1)
@@ -107,7 +107,7 @@ static void	cd_home(t_data *data)
 		ft_putstr_fd(path, 2);
 		ft_putstr_fd(": No such file or directory\n", 2);
 		free(path);
-		data->error_code = 1;
+		data->error_code[0] = 1;
 		return ;
 	}
 	update_pwd(data, path);

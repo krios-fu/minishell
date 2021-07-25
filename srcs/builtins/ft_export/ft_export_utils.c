@@ -6,7 +6,7 @@
 /*   By: jacgarci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 13:09:24 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/25 17:11:59 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/25 18:21:19 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,13 @@ char	*get_name(char *var)
 	return (name);
 }
 
-int	already_exist(t_list *lst, char *var, int type)
+int	already_exist(t_list *lst, char *var)
 {
 	char	*tmp;
 	char	*name;
 
 	name = get_name(var);
-	if (!type)
-		tmp = search_env(lst, name);
-	else
-		tmp = search_exp(lst, name);
+	tmp = search_env(lst, name);
 	printf("name: %s tmp: %s\n", name, tmp);
 	if (!tmp[0])
 	{
