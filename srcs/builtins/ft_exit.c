@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 14:09:12 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/25 01:21:11 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/25 01:26:11 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,6 @@ void	ft_exit(t_data *data)
 	char *logname;
 
 	logname = search_env(data->envp_list, "LOGNAME");
-	printf(CYAN"roc"BLUE"ket"GREEN"Men 👋 "RED"%s\n"WHITE, logname);
+	printf(CYAN"roc"BLUE"ket"GREEN"Men 👋 "RED"bye"WHITE" %s\n", &logname[8]);
 	exit(0);
 }

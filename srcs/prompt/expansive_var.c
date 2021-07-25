@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 23:30:51 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/24 22:57:13 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/25 06:02:42 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,25 @@ static void	len_expansive(t_var *var)
 static void	expansive_swap(t_shell *shell, t_var *var)
 {
 	var->j -= var->len_exp;
-	var->env = ft_strndup(&var->token[var->i][var->j], var->len_exp); 
-	var->content = search_env(shell->data->envp_list, var->env);
-	free(var->env);
-	var->before_exp = ft_strndup(var->token[var->i], var->j - 1);
-	var->join_befor_tmp = ft_strjoin(var->before_exp,
-		&var->content[var->len_exp + 1]);
+	var->env = ft_strndup(&var->token[var->i][var->j], var->len_exp);
+	if (*var->env == '?' && var->len_exp == 1)
+	{
+		var->content = ft_itoa(shell->data->error_code);
+		var->before_exp = ft_strndup(var->token[var->i], var->j - 1);
+		var->join_befor_tmp = ft_strjoin(var->before_exp,
+		var->content);
+		
+	}
+	else
+	{
+		var->content = search_env(shell->data->envp_list, var->env);
+		var->before_exp = ft_strndup(var->token[var->i], var->j - 1);
+		var->join_befor_tmp = ft_strjoin(var->before_exp,
+			&var->content[var->len_exp + 1]);
+	}
 	var->after_exp = ft_strjoin(var->join_befor_tmp,
 		&var->token[var->i][var->j + var->len_exp]);
+	free(var->env);
 	free(var->content);
 	free(var->before_exp);
 	free(var->join_befor_tmp);

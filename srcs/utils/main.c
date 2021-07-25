@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 14:11:39 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/24 23:41:52 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/25 05:20:58 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	main(int argc, char *argv[], char *envp[])
 
 	shell->data->envp_list = fill_envp_list(envp);
 	shell->data->exp_list = fill_exp_list(envp);
+	shell->data->error_code = 0;
 	sort_env_list(shell->data->exp_list);
 
 	num_p = 0;
@@ -67,9 +68,7 @@ int	main(int argc, char *argv[], char *envp[])
 					if (shell->data->lst_process->output)
 						loop_expa_redirect(shell, shell->data->lst_process->output);
 				}
-				// printf("n_p %d\n", num_p);
 				process = shell->data->lst_process;
-				
 				while (i < num_p)
 				{	
 					expansive_token(shell, shell->data->lst_process->argv);
@@ -91,6 +90,7 @@ int	main(int argc, char *argv[], char *envp[])
 			write(1, CYAN"roc"BLUE"ket"GREEN"Men 👋 "RED"exit\n", 49);
 			exit(0);
 		}
+		// printf("[[%d]] \n", shell->data->error_code);
 		free(line);
 	}
 

@@ -17,7 +17,8 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <sys/wait.h>
-# include <errno.h>
+// # include <errno.h>
+#include <sys/errno.h>
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <string.h>
@@ -32,6 +33,7 @@ typedef	struct s_data
 	t_list 			*envp_list;
 	t_list			*exp_list;
 	t_list			*tmp_var_list;
+	int				error_code;
 }				t_data;
 
 

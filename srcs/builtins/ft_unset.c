@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 18:23:51 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/13 20:34:11 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/25 02:09:07 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	invalid_arg(t_data *data, char *arg)
 		ft_putstr_fd("rocketMen: unset: `", 2);
 		ft_putstr_fd(arg, 2);
 		ft_putstr_fd("': not a valid identifier\n", 2);
-		data->lst_process->code_error = 1;
+		data->error_code = 1;
 		return (1);
 	}
 	return (0);
