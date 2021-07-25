@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 15:56:22 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/24 23:12:53 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/25 20:00:03 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	get_path(char *cmd, char *envp[], char **f_path)
 	int		i;
 	int		fd;
 
+	path = NULL;
 	i = 0;
 	if (*cmd == '.')
 	{
@@ -45,7 +46,18 @@ void	get_path(char *cmd, char *envp[], char **f_path)
 			return ;
 		}
 	}
+
+	if (!mini_path(envp))
+	{
+		*f_path = NULL;
+		return ;
+	}
 	paths = ft_split(ft_strchr(mini_path(envp), '/'), ':');
+	if (!paths)
+	{
+		*f_path = NULL;
+		return ;
+	}
 	while (paths[i])
 	{
 		path = ft_strjoin(paths[i], "/");

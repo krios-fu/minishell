@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 23:30:51 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/25 19:05:02 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/25 20:23:52 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static void	len_expansive(t_var *var)
 	var->len_exp = 0;
 	while (var->token[var->i][var->j] && (var->token[var->i][var->j] != ' '
 		&& var->token[var->i][var->j] != '$' && var->token[var->i][var->j] != '/'
+		&& var->token[var->i][var->j] != '='
 			&& !is_quote(var->token[var->i][var->j])))
 		{
 			var->len_exp++;

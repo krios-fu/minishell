@@ -6,7 +6,7 @@
 /*   By: jacgarci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 13:09:24 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/25 18:21:19 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/25 19:33:34 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*get_name(char *var)
 	index = 0;
 	while (var[index] != '=')
 		index++;
-	name = ft_strndup(var, index);
+	name = ft_strndup(var, index + 1);
 	return (name);
 }
 
@@ -33,7 +33,6 @@ int	already_exist(t_list *lst, char *var)
 
 	name = get_name(var);
 	tmp = search_env(lst, name);
-	printf("name: %s tmp: %s\n", name, tmp);
 	if (!tmp[0])
 	{
 		free(name);

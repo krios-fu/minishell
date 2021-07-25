@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 17:20:31 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/25 18:24:21 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/25 19:42:48 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,13 @@ void    replace_content_exp(t_data *data, char *content, char *name)
 	{
 		if (name_len == get_var_len(data->exp_list->content))
 		{
-			free(data->exp_list->content);
-			data->exp_list->content = content;
-			data->exp_list = ptr;
-			return ;
+			if (!ft_strncmp(data->exp_list->content, name, name_len))
+			{
+				free(data->exp_list->content);
+				data->exp_list->content = content;
+				data->exp_list = ptr;
+				return ;
+			}
 		}
 		data->exp_list = data->exp_list->next;
 	}
@@ -84,12 +87,15 @@ void	replace_content_envp(t_data *data, char *content, char *name)
 	name_len = get_var_len(name);
 	while (data->envp_list)
 	{
-		if (name_len == get_var_len(data->exp_list->content))
+		if (name_len == get_var_len(data->envp_list->content))
 		{
-			free(data->envp_list->content);
-			data->envp_list->content = ft_strdup(content);
-			data->envp_list = ptr;
-			return ;
+			if (!ft_strncmp(data->envp_list->content, name, name_len))
+			{
+				free(data->envp_list->content);
+				data->envp_list->content = ft_strdup(content);
+				data->envp_list = ptr;
+				return ;
+			}
 		}
 		data->envp_list = data->envp_list->next;
 	}

@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 19:20:52 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/25 19:07:56 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/25 19:52:20 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	exec_only_one_process(t_shell *shell)
 		{
 			redirect_input(shell);
 			redirect_output(shell);
-			get_path(shell->data->lst_process->argv[0], shell->envp, &path);
+			get_path(shell->data->lst_process->argv[0], get_env(shell->data), &path);
 			if (!*shell->data->lst_process->argv)
 				exit(0);
 			execve(path, shell->data->lst_process->argv, get_env(shell->data));
