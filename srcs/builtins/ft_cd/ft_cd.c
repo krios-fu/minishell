@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 17:48:30 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/25 02:09:43 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/25 20:32:43 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,9 +115,12 @@ static void	cd_home(t_data *data)
 
 void	ft_cd(t_data *data)
 {
+	char	*tmp;
+
+	tmp = search_env(data->envp_list, "CDPATH");
 	if (!data->lst_process->argv[1])
 		cd_home(data);
-	else if (!ft_strncmp(search_env(data->envp_list, "CDPATH"), "CDPATH=", 7))
+	else if (tmp[0])
 	{
 		if (check_path(data->lst_process->argv[1]))
 			normal_cd(data);
@@ -126,4 +129,6 @@ void	ft_cd(t_data *data)
 	}
 	else
 		normal_cd(data);
+	free(tmp);
+	data->error_code = 0;
 }
