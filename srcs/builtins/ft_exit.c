@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 14:09:12 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/25 15:58:16 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/25 18:32:38 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,16 @@ void	ft_exit(t_data *data)
 		ft_putstr_fd(": numeric argument required\n", 2);
 		exit(255);
 	}
-	if (*data->lst_process->argv[2])
+	if (get_num_words(data->lst_process->argv) > 2)
 	{
 		ft_putstr_fd("rocketMen: exit: too many arguments\n", 2);
 		data->error_code = 1;
 		return ;
 	}
 	if (data->lst_process->argv[1])
-		exit(min_atoi(data->lst_process->argv[1]));
+	{
+		code = min_atoi(data->lst_process->argv[1]);
+		exit(code);
+	}
+	exit(0);
 }
