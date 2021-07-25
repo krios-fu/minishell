@@ -123,11 +123,12 @@ void	sort_env_list(t_list *lst);
 void 	sort_lst(t_list **lst);
 void	print_list(t_list *lst);
 char	*search_env(t_list *envp_list, char *name);
+char    *search_exp(t_list *lst, char *name);
 void    replace_content_envp(t_data *data, char *content, char *name);
 void    replace_content_exp(t_data *data, char *content, char *name);
 t_list	*fill_exp_list(char **envp);
 char    *fill_with_dquotes(char *envp);
-int     already_exist(t_list *lst, char *var);
+int     already_exist(t_list *lst, char *var, int type);
 char    *get_name(char *var);
 char	**get_env(t_data *data);
 

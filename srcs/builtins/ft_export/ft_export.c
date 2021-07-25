@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 11:40:34 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/25 16:05:00 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/25 17:15:50 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void	envp_part(t_data *data, char *var)
 	char	*name;
 
 	name = get_name(var);
-	if (already_exist(data->envp_list, var))
+	if (already_exist(data->envp_list, var, 0))
 	{
 		if (ft_strchr(var, '='))
 			replace_content_envp(data, var, name);
@@ -81,7 +81,7 @@ static void	exp_part(t_data *data, char *var)
 	char	*name;
 
 	name = get_name(var);
-	if (already_exist(data->exp_list, var))
+	if (already_exist(data->exp_list, var, 1))
 	{
 		if (ft_strchr(var, '='))
 			replace_content_exp(data, fill_with_dquotes(var), name);

@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 11:10:56 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/22 17:28:41 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/25 18:06:16 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,52 @@
 ** Function that recives a list and a name
 ** and returns the list content that have the name
 */
+/*
+char	*search_exp(t_list *lst, char *name)
+{
+	t_list	*ptr;
+	char	*tmp;
+
+	tmp = 0;
+	ptr = lst;
+	if (ft_strchr(name, '='))
+		return (search_env(lst, name));
+	else
+	{
+		while (ptr)
+		{
+			if (!ft_strncmp(ptr->content, name, ft_strlen(name)))
+				return (ft_strdup(ptr->content));
+			ptr = ptr->next;
+		}
+	}
+	return (ft_strdup(""));
+}
+*/
+
+int		get_env_var_len(char *str)
+{
+	int	count;
+
+	count = 0;
+	while (str[count] && str[count] != '=')
+		count++;
+	return (count);
+}
+
 char	*search_env(t_list *envp_list, char *name)
 {
-	char	*f_name;
 	t_list	*lst;
+	int		name_len;
 
-	f_name = ft_strjoin(name, "=");
 	lst = envp_list;
+	name_len = get_var_len(name);
 	while (lst)
 	{
-		if (!ft_strncmp(lst->content, f_name, ft_strlen(f_name)))
-		{
-			free(f_name);
+		if (name_len == get_var_len(lst->content))
 			return (ft_strdup(lst->content));
-		}
 		lst = lst->next;
 	}
-	free(f_name);
 	return (ft_strdup(""));
 }
 

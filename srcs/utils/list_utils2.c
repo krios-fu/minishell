@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 17:20:31 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/24 16:04:22 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/25 18:14:34 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,17 +54,16 @@ t_list	*fill_exp_list(char **envp)
 void    replace_content_exp(t_data *data, char *content, char *name)
 {
 	t_list	*ptr;
-	char	*f_name;
+	int		name_len;
 
 	ptr = data->exp_list;
-	f_name = ft_strjoin(name, "=");
+	name_len = get_var_len(name);
 	while (data->exp_list)
 	{
-		if (!ft_strncmp(data->exp_list->content, f_name, ft_strlen(f_name)))
+		if (name_len == get_var_len(data->exp_list->content))
 		{
 			free(data->exp_list->content);
 			data->exp_list->content = content;
-			free(f_name);
 			data->exp_list = ptr;
 			return ;
 		}
@@ -72,7 +71,6 @@ void    replace_content_exp(t_data *data, char *content, char *name)
 	}
 	data->exp_list = ptr;
 	ft_lstadd_back(&(data->exp_list), ft_lstnew(content));
-	free(f_name);
 	sort_env_list(data->exp_list);
 }
 
@@ -80,13 +78,11 @@ void    replace_content_exp(t_data *data, char *content, char *name)
 void	replace_content_envp(t_data *data, char *content, char *name)
 {
 	t_list	*ptr;
-	char	*f_name;
 
 	ptr = data->envp_list;
-	f_name = ft_strjoin(name, "=");
 	while (data->envp_list)
 	{
-		if (!ft_strncmp(data->envp_list->content, f_name, ft_strlen(f_name)))
+		if (name_len == get_var_len(data->exp_list->content))
 		{
 			free(data->envp_list->content);
 			data->envp_list->content = ft_strdup(content);
