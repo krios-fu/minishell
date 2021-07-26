@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 14:09:12 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/25 18:32:38 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/26 13:31:40 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,6 @@ void	ft_exit(t_data *data)
 		code = min_atoi(data->lst_process->argv[1]);
 		exit(code);
 	}
+	data->error_code = 0;
 	exit(0);
 }

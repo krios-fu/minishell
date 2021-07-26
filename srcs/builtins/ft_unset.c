@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 18:23:51 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/25 18:22:30 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/26 13:59:58 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,9 @@
 
 static int	invalid_arg(t_data *data, char *arg)
 {
-	if (ft_strchr(arg, '='))
+	if (ft_strchr(arg, '=') || !check_arg_name(arg))
 	{
-		ft_putstr_fd("rocketMen: unset: `", 2);
-		ft_putstr_fd(arg, 2);
-		ft_putstr_fd("': not a valid identifier\n", 2);
+		not_valid_identifier("unset", arg);
 		data->error_code = 1;
 		return (1);
 	}
@@ -46,7 +44,10 @@ void	ft_unset(t_data *data)
 
 	index = 1;
 	if (!data->lst_process->argv[index])
+	{
+		data->error_code = 0;
 		return ;
+	}
 	while (data->lst_process->argv[index])
 	{
 		if (invalid_arg(data, data->lst_process->argv[index]))
@@ -54,4 +55,5 @@ void	ft_unset(t_data *data)
 		unset_arg(data, data->lst_process->argv[index]);
 		index++;
 	}
+	data->error_code = 0;
 }

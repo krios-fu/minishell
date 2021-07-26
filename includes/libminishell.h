@@ -107,6 +107,8 @@ void 	ft_cd(t_data *data);
 void	ft_echo(t_data *data);
 void	ft_env(t_data *data);
 void	ft_export(t_data *data);
+int 	check_arg_name(char *arg);
+void    not_valid_identifier(char *builtin, char *arg);
 void	ft_pwd(t_data *data);
 void	ft_unset(t_data *data);
 void	ft_exit(t_data *data);

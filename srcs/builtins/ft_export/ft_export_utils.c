@@ -6,11 +6,28 @@
 /*   By: jacgarci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 13:09:24 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/25 19:33:34 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/26 14:01:04 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/libminishell.h"
+
+void	not_valid_identifier(char *builtin, char *arg)
+{
+	if (!ft_strcmp(builtin, "export"))
+		ft_putstr_fd("rocketMen: export: `", 2);
+	else if (!ft_strcmp(builtin, "unset"))
+		ft_putstr_fd("rocketMen: unset: `", 2);
+	ft_putstr_fd(arg, 2);
+	ft_putstr_fd("': not a valid identifier\n", 2);
+}
+
+int	check_arg_name(char *arg)
+{
+	if (ft_isalpha(arg[0]) || arg[0] == '_')
+		return (1);
+	return (0);
+}
 
 char	*get_name(char *var)
 {

@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 11:40:34 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/25 18:21:38 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/26 14:04:19 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,9 +108,16 @@ void	ft_export(t_data *data)
 	index = 1;
 	while (data->lst_process->argv[index])
 	{
+		if (!check_arg_name(data->lst_process->argv[index]))
+		{
+			not_valid_identifier("export", data->lst_process->argv[index]);
+			data->error_code = 1;
+			return ;
+		}
 		envp_part(data, data->lst_process->argv[index]);
 		exp_part(data, data->lst_process->argv[index]);
 		index++;
 	}
 	sort_env_list(data->exp_list);
+	data->error_code = 0;
 }
