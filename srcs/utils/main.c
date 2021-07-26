@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 14:11:39 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/25 23:14:06 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/26 01:31:42 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	main(int argc, char *argv[], char *envp[])
 
 	print_header();
 	print_welcome(shell);
-	signals();
+	// signals();
 	while (1)
 	{
 		i = 0;
@@ -54,7 +54,7 @@ int	main(int argc, char *argv[], char *envp[])
 			printf("%d", shell->status);
 			
 		}*/
-			line = prompt();
+			line = prompt(shell);
 			add_history(line);
 		if (line && ft_strlen(line) > 0)
 		{

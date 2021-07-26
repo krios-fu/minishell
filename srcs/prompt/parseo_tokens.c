@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 21:31:40 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/25 20:56:09 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/26 01:17:26 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	len_token(char *line)
 		(parse.i)++;
 		change_status_quote(line, &parse);
 	}
+	
 	return (parse.i);
 }
 
