@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 19:25:08 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/26 00:56:05 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/26 15:02:03 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ char	*prompt(t_shell  *shell)
 		split_path[0] = ft_strdup("/");
 		split_path[1] = NULL;
 	}
-	if (shell->data->error_code[0] == 0)
+	if (shell->data->error_code == 0)
 	{
 		path = ft_strjoin(CYAN"roc"BLUE"ket"GREEN"Men 🚀 "RED, split_path[get_ultimate_dir(split_path)]);
 		prompt = ft_strjoin(path, GREEN" ➜ "WHITE);
@@ -80,6 +80,6 @@ char	*prompt(t_shell  *shell)
 	line = readline(prompt);
 	free(prompt);
 	free_matrix(split_path);
-	shell->data->error_code[0] = 0;
+	// shell->data->error_code[0] = 0;
 	return (line);
 }

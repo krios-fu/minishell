@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 11:10:56 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/25 19:42:43 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/26 14:51:38 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,29 +16,6 @@
 ** Function that recives a list and a name
 ** and returns the list content that have the name
 */
-/*
-char	*search_exp(t_list *lst, char *name)
-{
-	t_list	*ptr;
-	char	*tmp;
-
-	tmp = 0;
-	ptr = lst;
-	if (ft_strchr(name, '='))
-		return (search_env(lst, name));
-	else
-	{
-		while (ptr)
-		{
-			if (!ft_strncmp(ptr->content, name, ft_strlen(name)))
-				return (ft_strdup(ptr->content));
-			ptr = ptr->next;
-		}
-	}
-	return (ft_strdup(""));
-}
-*/
-
 int		get_var_len(char *str)
 {
 	int	count;

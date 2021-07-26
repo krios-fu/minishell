@@ -6,12 +6,36 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 17:20:31 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/25 19:42:48 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/26 14:51:39 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libminishell.h"
 
+char	*fill_with_dquotes(char *envp)
+{
+	char	*tmp;
+	int		index;
+
+	tmp = ft_calloc(sizeof(char *), (ft_strlen(envp) + 1));
+	index = 0;
+	while (envp[index] != '=')
+	{
+		tmp[index] = envp[index];
+		index++;
+	}
+	tmp[index] = envp[index];
+	index++;
+	tmp[index++] = '\"';
+	while (envp[index - 1])
+	{
+		tmp[index] = envp[index - 1];
+		index++;
+	}
+	tmp[index] = '\"';
+	return (tmp);
+}
+/*
 char	*fill_with_dquotes(char *envp)
 {
 	char	**tab;
@@ -36,7 +60,7 @@ char	*fill_with_dquotes(char *envp)
 	free_matrix(tab);
 	return (result);
 }
-
+*/
 t_list	*fill_exp_list(char **envp)
 {
 	t_list	*lst;

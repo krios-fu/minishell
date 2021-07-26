@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 19:20:52 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/25 19:52:20 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/26 14:58:32 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,9 @@ void	exec_only_one_process(t_shell *shell)
 		if (WIFEXITED(status))
 		{
 			if (WEXITSTATUS(status) == 255)
-				shell->data->error_code[0] = 127;
+				shell->data->error_code = 127;
 			else
-				shell->data->error_code[0] = WEXITSTATUS(status);
+				shell->data->error_code = WEXITSTATUS(status);
 		}
 	}
 	// else

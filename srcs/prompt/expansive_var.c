@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 23:30:51 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/25 21:30:16 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/26 14:57:58 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	expansive_swap(t_shell *shell, t_var *var)
 	var->env = ft_strndup(&var->token[var->i][var->j], var->len_exp);
 	if (*var->env == '?' && var->len_exp == 1)
 	{
-		var->content = ft_itoa(shell->data->error_code[0]);
+		var->content = ft_itoa(shell->data->error_code);
 		var->before_exp = ft_strndup(var->token[var->i], var->j - 1);
 		var->join_befor_tmp = ft_strjoin(var->before_exp,
 		var->content);

@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 14:11:39 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/26 01:31:42 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/26 15:01:45 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	main(int argc, char *argv[], char *envp[])
 	shell->data->envp_list = fill_envp_list(envp);
 	shell->data->exp_list = fill_exp_list(envp);
 	shell->data->tmp_var_list = NULL;
-	shell->data->error_code[0] = 0;
+	shell->data->error_code = 0;
 	sort_env_list(shell->data->exp_list);
 
 	num_p = 0;
@@ -86,7 +86,7 @@ int	main(int argc, char *argv[], char *envp[])
 				free_resources(process);
 				}
 				else
-					shell->data->error_code[0] = 258;
+					shell->data->error_code = 258;
 			}
 		}
 		if (!line)

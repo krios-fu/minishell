@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 18:54:04 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/24 16:40:29 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/26 13:30:56 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,5 @@ void	ft_echo(t_data *data)
 	}
 	if (!flag)
 		ft_putstr_fd("\n", data->lst_process->fd_out);
+	data->error_code = 0;
 }

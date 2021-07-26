@@ -33,7 +33,7 @@ typedef	struct s_data
 	t_list 			*envp_list;
 	t_list			*exp_list;
 	t_list			*tmp_var_list;
-	int				error_code[1];
+	int				error_code;
 }				t_data;
 
 
@@ -109,6 +109,8 @@ void 	ft_cd(t_data *data);
 void	ft_echo(t_data *data);
 void	ft_env(t_data *data);
 void	ft_export(t_data *data);
+int 	check_arg_name(char *arg);
+void    not_valid_identifier(char *builtin, char *arg);
 void	ft_pwd(t_data *data);
 void	ft_unset(t_data *data);
 void	ft_exit(t_data *data);

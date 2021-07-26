@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 18:15:11 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/25 22:47:41 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/26 14:58:22 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ void	start_pipe(t_shell *shell, int *num_p)
 	if (WIFEXITED(process->next->status))
 	{
 		if (WEXITSTATUS(process->next->status) == 255)
-			shell->data->error_code[0]= 127;
+			shell->data->error_code= 127;
 		else
-			shell->data->error_code[0] = WEXITSTATUS(process->next->status);
+			shell->data->error_code = WEXITSTATUS(process->next->status);
 	}
 }

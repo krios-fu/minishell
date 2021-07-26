@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 14:09:12 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/25 19:42:35 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/26 14:57:45 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ void	ft_exit(t_data *data)
 	{
 		printf("exit\n");
 		ft_putstr_fd("rocketMen: exit: too many arguments\n", 2);
-		data->error_code[0] = 1;
-		printf("%d***\n", data->error_code[0]);
+		data->error_code = 1;
+		// printf("%d***\n", data->error_code[0]);
 		return ;
 	}
 	if (data->lst_process->argv[1])
@@ -54,4 +54,6 @@ void	ft_exit(t_data *data)
 		exit(min_atoi(data->lst_process->argv[1]));
 	}
 	message_exit(data);
+	data->error_code = 0;
+	exit(0);
 }
