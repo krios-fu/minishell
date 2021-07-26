@@ -6,7 +6,7 @@
 /*   By: jacgarci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 13:09:24 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/26 14:01:04 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/26 18:53:14 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	check_arg_name(char *arg)
 char	*get_name(char *var)
 {
 	char	*name;
-	int	index;
+	int		index;
 
 	if (!ft_strchr(var, '='))
 		return (ft_strdup(var));

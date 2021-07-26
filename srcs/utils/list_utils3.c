@@ -6,11 +6,20 @@
 /*   By: jacgarci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 16:04:27 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/25 15:59:03 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/26 16:40:28 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libminishell.h"
+
+void	fill_slung_dash(t_data *data)
+{
+	char	*tmp;
+
+	tmp = search_env(data->envp_list, "USER");
+	data->swung_dash = ft_strjoin("/Users/", tmp + 5);
+	free(tmp);
+}
 
 int	min_atoi(char *str)
 {

@@ -6,13 +6,13 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 17:48:30 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/26 14:57:34 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/26 18:47:00 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/libminishell.h"
 
-static void	update_pwd(t_data *data, char *new_pwd)
+void	update_pwd(t_data *data, char *new_pwd)
 {
 	char	*tmp;
 	char	*pwd;
@@ -32,9 +32,8 @@ static void	update_pwd(t_data *data, char *new_pwd)
 		free(new_pwd);
 }
 
-static void normal_cd(t_data *data)
+static void	normal_cd(t_data *data)
 {
-	
 	if (special_path(data))
 	{
 		data->error_code = 1;
@@ -55,33 +54,12 @@ static void	cdpath(t_data *data)
 {
 	char	*content;
 	char	**paths;
-	char	*tmp;
-	char	*tmp_aux;
-	int		index;
 
 	content = search_env(data->envp_list, "CDPATH");
 	paths = ft_split(content + 7, ':');
 	free(content);
-	index = 0;
-	while (paths[index])
-	{
-		tmp_aux = ft_strjoin(paths[index], "/");
-		tmp = ft_strjoin(tmp_aux, data->lst_process->argv[1]);
-		free(tmp_aux);
-		if (!chdir(tmp))
-		{
-			tmp_aux = getcwd(0,0);
-			ft_putstr_fd(tmp_aux, data->lst_process->fd_out);
-			ft_putstr_fd("\n", data->lst_process->fd_out);
-			free(tmp);
-			free_matrix(paths);
-			update_pwd(data, tmp_aux);
-			return ;
-		}
-		ft_bzero(tmp, ft_strlen(tmp));
-		free(tmp);
-		index++;
-	}
+	if (cdpath_loop(data, paths))
+		return ;
 	free_matrix(paths);
 	normal_cd(data);
 }

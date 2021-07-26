@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 14:11:39 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/26 15:01:45 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/26 17:44:31 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,15 @@ int	main(int argc, char *argv[], char *envp[])
 	shell->data->tmp_var_list = NULL;
 	shell->data->error_code = 0;
 	sort_env_list(shell->data->exp_list);
+	//funcion que mete HOME en virgulilla
+	fill_slung_dash(shell->data);
 
 	num_p = 0;
 	process = NULL;
 
 	print_header();
 	print_welcome(shell);
-	// signals();
+//	signals();
 	while (1)
 	{
 		i = 0;
@@ -91,7 +93,7 @@ int	main(int argc, char *argv[], char *envp[])
 		}
 		if (!line)
 		{
-			write(1, CYAN"roc"BLUE"ket"GREEN"Men 👋 "RED"exit\n", 49);
+			write(1, "\n"CYAN"roc"BLUE"ket"GREEN"Men 👋 "RED"exit\n", 49);
 			exit(0);
 		}
 		// printf("[[%d]] \n", shell->data->error_code);

@@ -1,4 +1,4 @@
-INCLUDES = -I$(LIBFT) -I includes/
+INCLUDES = -I$(LIBFT) -I includes/ -lreadline
 
 
 # FILE NAME #
@@ -20,6 +20,7 @@ SRCS =	srcs/utils/list_utils					\
 		srcs/builtins/ft_echo					\
 		srcs/builtins/ft_cd/ft_cd				\
 		srcs/builtins/ft_cd/ft_cd_utils			\
+		srcs/builtins/ft_cd/ft_cd_utils2		\
 		srcs/builtins/ft_exit					\
 		srcs/prompt/parseo 						\
 		srcs/prompt/pre_parseo					\

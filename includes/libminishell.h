@@ -34,6 +34,7 @@ typedef	struct s_data
 	t_list			*exp_list;
 	t_list			*tmp_var_list;
 	int				error_code;
+	char			*swung_dash;
 }				t_data;
 
 
@@ -100,12 +101,17 @@ int		start_process(t_shell *shell);
 /*
 ** Builtins
 */
+
+void	fill_slung_dash(t_data *data);
 int		min_atoi(char *str);
 void	signal_handler(int number);
 void	signals(void);
 void	reset_input_mode(void);
 void    set_input_mode(void);
 void 	ft_cd(t_data *data);
+void    update_pwd(t_data *data, char *new_pwd);
+int 	check_for_swung_dash(t_data *data);
+int 	cdpath_loop(t_data *data, char **paths);
 void	ft_echo(t_data *data);
 void	ft_env(t_data *data);
 void	ft_export(t_data *data);

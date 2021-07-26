@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 16:14:55 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/26 14:56:22 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/26 17:51:19 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_env(t_data *data)
 {
-	t_list *lst;
+	t_list	*lst;
 
 	if (!data->envp_list)
 	{
