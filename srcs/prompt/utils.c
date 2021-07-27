@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 21:01:33 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/26 01:56:17 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/26 15:38:46 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,11 @@ void ft_addlst_back_process(t_process *process, t_process *new_process)
 int	get_num_words(char **str)
 {
 	int	i;
+	static int b;
 	char **tmp;
 
 	i = 0;
+	b = 0;
 	if (!str[0])
 		return (0);
 	if (ft_strchr(str[0], '='))

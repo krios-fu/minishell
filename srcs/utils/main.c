@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 14:11:39 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/26 15:01:45 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/26 15:41:30 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int	main(int argc, char *argv[], char *envp[])
 		}
 		if (!line)
 		{
-			write(1, CYAN"roc"BLUE"ket"GREEN"Men 👋 "RED"exit\n", 49);
+			write(1, CYAN"\nroc"BLUE"ket"GREEN"Men 👋 "RED"exit\n", 49);
 			exit(0);
 		}
 		// printf("[[%d]] \n", shell->data->error_code);
