@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 14:11:39 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/28 00:18:04 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/28 01:34:09 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	main(int argc, char *argv[], char *envp[])
 	char 		*line;
 	int i;
 	int num_p;
-	char 		**tmpline;
+	// char 		**tmpline;
 
 //	char		c;
 
@@ -77,15 +77,18 @@ int	main(int argc, char *argv[], char *envp[])
 				process = shell->data->lst_process;
 				while (i < num_p)
 				{	
-					 expansive_token(shell, shell->data->lst_process->argv);
-					tmpline = shell->data->lst_process->argv;
-					shell->data->lst_process->argv	= final_token(ft_lst_undefine(shell->data));
-					free_matrix(tmpline);
+					
+					expansive_token(shell, shell->data->lst_process->argv);
+					// tmpline = shell->data->lst_process->argv;
+					// shell->data->lst_process->argv	= ft_lst_undefine(shell->data);
+
 					shell->data->lst_process = shell->data->lst_process->next;
 					i++;
 				}
 				shell->data->lst_process = process;
 				start_pipe(shell, &num_p);
+				// shell->data->lst_process->argv = tmpline;
+				// free_matrix(tmpline);
 				free_resources(process);
 				}
 				else

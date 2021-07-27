@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 21:21:42 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/26 01:10:40 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/28 01:49:11 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	num_arg_process(char *line, t_process *lst_process)
 		if (is_redirect(c) && parse.quotes_d == false && parse.quotes_s == false)
 			line = get_redirect(line, lst_process);
 		c = *line;
-		if (c == ' ' || is_redirect(c))
+		if ((c == ' ' || is_redirect(c)) && (parse.quotes_d == false && parse.quotes_s == false))
 			parse.flag = false;
 		change_status_quote(line, &parse);
 		state_var(line, &parse);

@@ -70,6 +70,8 @@ typedef struct s_shell
 
 void			print_welcome(t_shell *shell);
 char			*prompt(t_shell *shell);
+int get_num_words_matrix (char **str);
+
 
 /*
 **	process/process

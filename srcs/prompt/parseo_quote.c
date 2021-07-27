@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 18:29:37 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/13 18:52:59 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/28 01:18:59 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	del_quotes(t_process *process)
 	t_var var;
 
 	var.i = 0;
+		// printf("[[%s]]\n",process->argv[0]);
 	var.token = process->argv;
 	while (var.token[var.i])
 	{
