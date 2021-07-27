@@ -41,6 +41,7 @@ typedef struct s_var
 {
 	int		i;
 	int		j;
+	t_bool bool;
 	int		len_exp;
 	char	*content;
 	char	*before_exp;

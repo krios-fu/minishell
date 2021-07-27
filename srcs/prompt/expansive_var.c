@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 23:30:51 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/26 14:57:58 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/28 00:35:16 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,16 @@ static void	expansive_swap(t_shell *shell, t_var *var)
 		var->content);
 		
 	}
-	else
+	else if (var->bool == true)
 	{
 		var->content = search_env(shell->data->envp_list, var->env);
 		var->before_exp = ft_strndup(var->token[var->i], var->j - 1);
 		var->join_befor_tmp = ft_strjoin(var->before_exp,
 			&var->content[var->len_exp + 1]);
+	}
+	else if (var->bool == false)
+	{
+		/* split ft_strjoin */
 	}
 	var->after_exp = ft_strjoin(var->join_befor_tmp,
 		&var->token[var->i][var->j + var->len_exp]);
@@ -62,6 +66,7 @@ void	expansive_token(t_shell *shell, char **argv)
 	var.i = 0;
 	var.len_exp = 0;
 	var.token = argv;
+	var.bool = false;
 	while (var.token[var.i])
 	{
 		var.j = 0;
@@ -73,6 +78,10 @@ void	expansive_token(t_shell *shell, char **argv)
 		}
 			while(var.token[var.i][var.j])
 			{
+				if (var.token[var.i][var.j] == '\"' && var.bool == false)
+					var.bool = true;
+				else if (var.token[var.i][var.j] == '\"' && var.bool == true)
+					var.bool = false;
 				if (var.token[var.i][var.j] == '$')
 					{
 						len_expansive(&var);

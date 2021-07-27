@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 14:11:39 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/26 15:41:30 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/28 00:18:04 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	main(int argc, char *argv[], char *envp[])
 	int i;
 	int num_p;
 	char 		**tmpline;
+
 //	char		c;
 
 
@@ -56,8 +57,10 @@ int	main(int argc, char *argv[], char *envp[])
 		}*/
 			line = prompt(shell);
 			add_history(line);
+		
 		if (line && ft_strlen(line) > 0)
 		{
+
 			if (pre_parse(line) == false)
 				printf("minishell: syntax error near unexpected token\n");
 			else 
@@ -74,7 +77,7 @@ int	main(int argc, char *argv[], char *envp[])
 				process = shell->data->lst_process;
 				while (i < num_p)
 				{	
-					expansive_token(shell, shell->data->lst_process->argv);
+					 expansive_token(shell, shell->data->lst_process->argv);
 					tmpline = shell->data->lst_process->argv;
 					shell->data->lst_process->argv	= final_token(ft_lst_undefine(shell->data));
 					free_matrix(tmpline);
