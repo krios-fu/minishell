@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 14:11:39 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/26 17:44:31 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/26 19:02:42 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int	main(int argc, char *argv[], char *envp[])
 	shell->data->tmp_var_list = NULL;
 	shell->data->error_code = 0;
 	sort_env_list(shell->data->exp_list);
-	//funcion que mete HOME en virgulilla
 	fill_slung_dash(shell->data);
 
 	num_p = 0;
