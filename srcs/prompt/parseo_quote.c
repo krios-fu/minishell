@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 18:29:37 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/28 01:18:59 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/28 19:09:37 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,18 @@ int	is_quote(char c)
 
 static	int	check_split_quote(char *arg)
 {
-	int quote_d;
-	int quote_s;
-	int i;
+	int	quote_d;
+	int	quote_s;
+	int	i;
 
-	i = 0;
 	quote_d = 0;
 	quote_s = 0;
+	i = 0;
 	while (arg[i])
 	{
 		if (is_quote(arg[i]))
 		{
-			if(arg[i] == '\'')
+			if (arg[i] == '\'')
 				quote_s++;
 			else
 				quote_d++;
@@ -46,7 +46,7 @@ static	int	check_split_quote(char *arg)
 
 static char	get_quotes_split(char *arg)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (arg[i])
@@ -60,16 +60,16 @@ static char	get_quotes_split(char *arg)
 
 void	del_quotes(t_process *process)
 {
-	t_var var;
+	t_var	var;
 
 	var.i = 0;
-		// printf("[[%s]]\n",process->argv[0]);
 	var.token = process->argv;
 	while (var.token[var.i])
 	{
 		var.tmp_join = ft_strdup("");
 		var.j = 0;
-		var.tmp = ft_split(var.token[var.i], get_quotes_split(var.token[var.i]));
+		var.tmp = ft_split(var.token[var.i],
+				get_quotes_split(var.token[var.i]));
 		while (var.tmp[var.j])
 		{
 			var.aux = var.tmp_join;

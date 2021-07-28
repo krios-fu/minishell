@@ -6,16 +6,11 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 21:21:42 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/28 01:49:11 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/28 19:07:50 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libminishell.h"
-
-/*
-**	quotes_s = '
-**	quotes_d = "
-*/
 
 static void	state_var(char *line, t_parseo *parse)
 {
@@ -28,6 +23,16 @@ static void	state_var(char *line, t_parseo *parse)
 	}
 }
 
+static int	error_quote(t_parseo parse)
+{
+	if (parse.quotes_d == true || parse.quotes_s == true)
+	{
+		ft_putstr_fd("rocketMen: syntax error: unexpected open quote\n", 2);
+		return (0);
+	}
+	return (parse.num_arg);
+}
+
 int	num_arg_process(char *line, t_process *lst_process)
 {
 	t_parseo	parse;
@@ -38,27 +43,23 @@ int	num_arg_process(char *line, t_process *lst_process)
 	parse.num_arg = 0;
 	parse.flag = false;
 	parse.i = 0;
-	c = '\0';
 	while (*line)
 	{
 		c = *line;
-		if (is_redirect(c) && parse.quotes_d == false && parse.quotes_s == false)
+		if (is_redirect(c) && parse.quotes_d == false
+			&& parse.quotes_s == false)
 			line = get_redirect(line, lst_process);
 		c = *line;
-		if ((c == ' ' || is_redirect(c)) && (parse.quotes_d == false && parse.quotes_s == false))
+		if ((c == ' ' || is_redirect(c)) && (parse.quotes_d == false
+				&& parse.quotes_s == false))
 			parse.flag = false;
 		change_status_quote(line, &parse);
 		state_var(line, &parse);
 		if (!*line)
-			break;
+			break ;
 		line++;
 	}
-	if (parse.quotes_d == true || parse.quotes_s == true)
-	{
-		ft_putstr_fd("rocketMen: syntax error: unexpected open quote\n", 2);
-		return (0);
-	}
-	return (parse.num_arg);
+	return (error_quote(parse));
 }
 
 static char	*next_line_process(char *line)

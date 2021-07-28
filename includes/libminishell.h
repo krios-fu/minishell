@@ -68,6 +68,21 @@ typedef struct s_shell
 
 
 
+
+/*  expansive*/
+void	len_expansive(t_var *var);
+int get_num_words_matrix (char **str);
+char	**matrixjoin(char **str1, char **str2, int insec_point);
+void	expansive_swap_case1(t_shell *shell, t_var *var);
+void	expansive_swap_case2(t_shell *shell, t_var *var);
+void	expansive_swap_case3(t_shell *shell, t_var *var);
+void	expansive_swap(t_shell *shell, t_var *var);
+
+
+
+
+
+
 void			print_welcome(t_shell *shell);
 char			*prompt(t_shell *shell);
 int get_num_words_matrix (char **str);
