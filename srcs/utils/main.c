@@ -79,7 +79,7 @@ int	main(int argc, char *argv[], char *envp[])
 				{	
 					expansive_token(shell, shell->data->lst_process->argv);
 					// tmpline = shell->data->lst_process->argv;
-					// shell->data->lst_process->argv	= ft_lst_undefine(shell->data);
+					shell->data->lst_process->argv	= ft_lst_undefine(shell->data);
 
 					shell->data->lst_process = shell->data->lst_process->next;
 					i++;
