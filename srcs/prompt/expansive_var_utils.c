@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 20:07:12 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/28 20:35:41 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/28 22:07:43 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,21 @@ char	**matrixjoin(char **str1, char **str2, int insec_point)
 	return (new_matrix);
 }
 
-void	loop_expa_redirect(t_shell *shell, t_redirect *redirect)
+void	loop_expa_redirect_input(t_shell *shell, t_redirect *redirect)
 {
 	while (redirect)
 	{
 		if (ft_strcmp(redirect->symbol, "<<\0"))
-			expansive_token(shell, redirect->file);
+			expansive_token_input(shell, redirect->file);
+		redirect = redirect->next;
+	}
+}
+
+void	loop_expa_redirect_output(t_shell *shell, t_redirect *redirect)
+{
+	while (redirect)
+	{
+		expansive_token_output(shell, redirect->file);
 		redirect = redirect->next;
 	}
 }

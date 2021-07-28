@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 18:04:13 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/28 20:54:24 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/28 22:38:16 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	free_redirect(t_redirect *redirect)
 	{
 		if (redirect->file[0])
 		{
-			printf("*\n");
 			free (redirect->file[0]);
 			free (redirect->file[1]);
 			free (redirect->file);
