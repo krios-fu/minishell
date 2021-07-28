@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 20:24:34 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/28 20:39:50 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/28 23:30:33 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,12 @@ void	expansive_swap_case3(t_shell *shell, t_var *var)
 		tmp_matrix[var->i] = ft_strjoin(var->join_befor_tmp,
 				&var->token[var->i][var->j + var->len_exp]);
 		free_matrix(var->token);
+		free(var->before_exp);
 		var->token = tmp_matrix;
 		var->i += (get_num_words_matrix(split_matrix) - 1);
 		var->i = 0;
 		var->j = 0;
+		free_matrix(split_matrix);
 	}
 	 else
 		free(var->content);
