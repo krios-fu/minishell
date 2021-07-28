@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 23:30:51 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/28 15:58:41 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/28 18:52:47 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	len_expansive(t_var *var)
 	var->len_exp = 0;
 	while (var->token[var->i][var->j] && (var->token[var->i][var->j] != ' '
 		&& var->token[var->i][var->j] != '$' && var->token[var->i][var->j] != '/'
-		&& var->token[var->i][var->j] != '='
+		&& var->token[var->i][var->j] != '=' && var->token[var->i][var->j] != '\0'
 			&& !is_quote(var->token[var->i][var->j])))
 		{
 			var->len_exp++;
@@ -105,18 +105,23 @@ static void	expansive_swap(t_shell *shell, t_var *var)
 	else
 	{
 		var->content = search_env(shell->data->envp_list, var->env);
-		var->before_exp = ft_strndup(var->token[var->i], var->j - 1);
-		split_matrix = ft_split(&var->content[var->len_exp + 1], ' ');
-		tmp_matrix = matrixjoin(var->token, split_matrix, var->i);
-		var->join_befor_tmp = ft_strjoin(var->before_exp,
-			tmp_matrix[var->i]);
-		tmp_matrix[var->i] = ft_strjoin(var->join_befor_tmp,
-		&var->token[var->i][var->j + var->len_exp]);
-		free_matrix( var->token);
-		var->token = tmp_matrix;
-		var->i += (get_num_words_matrix(split_matrix) - 1);
-		var->i = 0;
-		var->j = 0;
+		if (*var->content)
+		{
+			var->before_exp = ft_strndup(var->token[var->i], var->j - 1);
+			split_matrix = ft_split(&var->content[var->len_exp + 1], ' ');
+			tmp_matrix = matrixjoin(var->token, split_matrix, var->i);
+			var->join_befor_tmp = ft_strjoin(var->before_exp,
+				tmp_matrix[var->i]);
+			tmp_matrix[var->i] = ft_strjoin(var->join_befor_tmp,
+			&var->token[var->i][var->j + var->len_exp]);
+			free_matrix( var->token);
+			var->token = tmp_matrix;
+			var->i += (get_num_words_matrix(split_matrix) - 1);
+			var->i = 0;
+			var->j = 0;
+		}
+		 else
+			free(var->content);
 		return ;
 		
 	}
@@ -166,9 +171,6 @@ void	expansive_token(t_shell *shell, char **argv)
 			}
 		var.i++;
 	}
-
-	//  argv = var.token;
-	 
 	shell->data->lst_process->argv = var.token;
 	del_quotes(shell->data->lst_process);
 }

@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 20:35:34 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/23 04:09:55 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/28 20:04:33 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,27 +17,29 @@
 **	if there are two consecutive pipes it returns -1
 */
 
+static void	init_parse(t_parseo *parse)
+{
+	(*parse).i = 0;
+	(*parse).num_arg = 1;
+	(*parse).quotes_s = false;
+	(*parse).quotes_d = false;
+}
+
 int	get_num_pipe(char *line)
 {
 	t_parseo	parse;
-	char		*tmp;
 
-	parse.i = 0;
-	tmp = line;
-	parse.num_arg = 1;
-	parse.quotes_s = false;
-	parse.quotes_d = false;
+	init_parse(&parse);
 	line = ft_isspace(line);
 	if (*line != '|')
 	{
-		while(line[parse.i])
+		while (line[parse.i])
 		{
 			change_status_quote(line, &parse);
 			if (line[parse.i] == '|'
-					&& parse.quotes_d == false && parse.quotes_s == false)
+				&& parse.quotes_d == false && parse.quotes_s == false)
 			{
-				tmp = &(line[parse.i]);
-				*tmp = '\0';
+				*&(line[parse.i]) = '\0';
 				line = ft_isspace(&line[parse.i + 1]);
 				parse.i = 0;
 				if ((line[(parse.i)] == '|' || line[(parse.i)] == '\0'))
@@ -46,7 +48,7 @@ int	get_num_pipe(char *line)
 			}
 			(parse.i)++;
 		}
-		return(parse.num_arg);
+		return (parse.num_arg);
 	}
 	return (-1);
 }
@@ -58,7 +60,7 @@ int	pre_parse(char *line)
 		line = ft_isspace(line);
 		if (is_redirect(*line))
 		{	
-			while(is_redirect(*line))
+			while (is_redirect(*line))
 				line++;
 			line = ft_isspace(line);
 			if (*line == '|' || *line == false || is_redirect(*line))
@@ -71,7 +73,7 @@ int	pre_parse(char *line)
 			if (*line == '|' || *line == false)
 				return (0);
 		}
-		if (*line &&!is_redirect(*line))
+		if (*line && !is_redirect(*line))
 			line++;
 	}
 	return (1);

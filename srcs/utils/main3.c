@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 14:11:39 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/28 20:11:05 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/28 19:11:05 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	main(int argc, char *argv[], char *envp[])
 
 	print_header();
 	print_welcome(shell);
+	// signals();
 	while (1)
 	{
 		i = 0;
@@ -54,9 +55,9 @@ int	main(int argc, char *argv[], char *envp[])
 			printf("%d", shell->status);
 			
 		}*/
-			signals();
 			line = prompt(shell);
 			add_history(line);
+		
 		if (line && ft_strlen(line) > 0)
 		{
 
@@ -69,23 +70,22 @@ int	main(int argc, char *argv[], char *envp[])
 				if (num_p > 0)
 				{
 					assign_fd_to_process(shell->data->lst_process);
-					// if (shell->data->lst_process->input)
-						// loop_expa_redirect(shell, shell->data->lst_process->input);
-					// if (shell->data->lst_process->output)
-						// loop_expa_redirect(shell, shell->data->lst_process->output);
+	//				if (shell->data->lst_process->input)
+	//					loop_expa_redirect(shell, shell->data->lst_process->input);
+	//				if (shell->data->lst_process->output)
+	//					loop_expa_redirect(shell, shell->data->lst_process->output);
 				process = shell->data->lst_process;
 				while (i < num_p)
 				{	
 					expansive_token(shell, shell->data->lst_process->argv);
 					// tmpline = shell->data->lst_process->argv;
-					 shell->data->lst_process->argv	= ft_lst_undefine(shell->data);
+					shell->data->lst_process->argv	= ft_lst_undefine(shell->data);
 
 					shell->data->lst_process = shell->data->lst_process->next;
 					i++;
 				}
 				shell->data->lst_process = process;
-	
-
+				printf("**%s**\n", shell->data->lst_process->argv[0]);
 				start_pipe(shell, &num_p);
 				// shell->data->lst_process->argv = tmpline;
 				// free_matrix(tmpline);
