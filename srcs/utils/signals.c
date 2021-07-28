@@ -3,14 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jacgarci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/22 18:50:41 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/25 23:04:34 by krios-fu         ###   ########.fr       */
+/*   Created: 2021/07/27 12:20:19 by jacgarci          #+#    #+#             */
+/*   Updated: 2021/07/28 16:23:58 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libminishell.h"
+
+void	signal_child(int number)
+{
+	if (number == SIGQUIT)
+	{
+		write(2, "Quit: 3\n", 8);
+		signal(SIGQUIT, SIG_DFL);
+	}
+	if (number == SIGINT)
+		printf("\n");
+}
 
 void	signal_handler(int number)
 {
@@ -23,7 +34,7 @@ void	signal_handler(int number)
 	}
 }
 
-void	signals()
+void	signals(void)
 {
 	signal(SIGINT, signal_handler);
 	signal(SIGQUIT, SIG_IGN);

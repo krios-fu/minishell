@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jacgarci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/05 16:14:55 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/26 14:56:22 by krios-fu         ###   ########.fr       */
+/*   Created: 2021/07/27 11:45:14 by jacgarci          #+#    #+#             */
+/*   Updated: 2021/07/27 18:36:28 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,18 @@
 
 void	ft_env(t_data *data)
 {
-	t_list *lst;
+	t_list	*lst;
 
 	if (!data->envp_list)
 	{
+		data->error_code = 1;
+		return ;
+	}
+	if (data->lst_process->argv[1])
+	{
+		ft_putstr_fd("env: ", 2);
+		ft_putstr_fd(data->lst_process->argv[1], 2);
+		ft_putstr_fd(": No such file or directory\n", 2);
 		data->error_code = 1;
 		return ;
 	}

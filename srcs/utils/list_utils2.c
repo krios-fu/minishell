@@ -6,11 +6,21 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 17:20:31 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/26 14:51:39 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/28 16:03:49 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libminishell.h"
+
+int	get_var_len(char *str)
+{
+	int	count;
+
+	count = 0;
+	while (str[count] && str[count] != '=')
+		count++;
+	return (count);
+}
 
 char	*fill_with_dquotes(char *envp)
 {
@@ -35,32 +45,7 @@ char	*fill_with_dquotes(char *envp)
 	tmp[index] = '\"';
 	return (tmp);
 }
-/*
-char	*fill_with_dquotes(char *envp)
-{
-	char	**tab;
-	char	*tmp;
-	char	*tmp2;
-	char	*tmp3;
-	char	*result;
 
-	tab = ft_split(envp, '=');
-	if (tab[1])
-	{
-		tmp = ft_strjoin(tab[0], "=");
-		tmp2 = ft_strjoin(tmp, "\"");
-		tmp3 = ft_strjoin(tmp2, tab[1]);
-		result = ft_strjoin(tmp3, "\"");
-		free(tmp);
-		free(tmp2);
-		free(tmp3);
-	}
-	else
-		result = ft_strjoin(envp, "\"\"");
-	free_matrix(tab);
-	return (result);
-}
-*/
 t_list	*fill_exp_list(char **envp)
 {
 	t_list	*lst;
@@ -75,7 +60,7 @@ t_list	*fill_exp_list(char **envp)
 	return (lst);
 }
 
-void    replace_content_exp(t_data *data, char *content, char *name)
+void	replace_content_exp(t_data *data, char *content, char *name)
 {
 	t_list	*ptr;
 	int		name_len;
@@ -101,7 +86,6 @@ void    replace_content_exp(t_data *data, char *content, char *name)
 	sort_env_list(data->exp_list);
 }
 
-
 void	replace_content_envp(t_data *data, char *content, char *name)
 {
 	t_list	*ptr;
@@ -126,6 +110,3 @@ void	replace_content_envp(t_data *data, char *content, char *name)
 	data->envp_list = ptr;
 	ft_lstadd_back(&(data->envp_list), ft_lstnew(ft_strdup(content)));
 }
-
-
-

@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 11:10:56 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/26 14:51:38 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/28 15:54:46 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,6 @@
 ** Function that recives a list and a name
 ** and returns the list content that have the name
 */
-int		get_var_len(char *str)
-{
-	int	count;
-
-	count = 0;
-	while (str[count] && str[count] != '=')
-		count++;
-	return (count);
-}
-
 char	*search_env(t_list *envp_list, char *name)
 {
 	t_list	*lst;
@@ -67,11 +57,8 @@ void	print_list(t_list *lst)
 */
 static void	swap(t_list *a, t_list *b)
 {
-	t_list aux;
+	t_list	aux;
 
-	// // aux = malloc(sizeof(t_list)); mod kevin le
-	// if (!aux)
-		// return ;
 	aux.content = b->content;
 	b->content = a->content;
 	a->content = aux.content;
@@ -82,9 +69,6 @@ static void	swap(t_list *a, t_list *b)
 ** element of a list returns a pointer to the 
 ** original list sorted
 */
-
-
-
 void	sort_env_list(t_list *lst)
 {
 	t_list	*pt;
@@ -116,8 +100,8 @@ void	sort_env_list(t_list *lst)
 */
 t_list	*fill_envp_list(char **envp)
 {
-	int	index;
-	t_list *envp_list;
+	int		index;
+	t_list	*envp_list;
 
 	index = 0;
 	envp_list = ft_lstnew(ft_strdup(envp[index]));

@@ -6,22 +6,30 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 20:35:34 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/28 19:21:24 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/28 20:54:14 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libminishell.h"
 
+/*
+**	this function returns the number of pipes and replaces the | by '\0'.
+**	if there are two consecutive pipes it returns -1
+*/
+
+static void	init_parse(t_parseo *parse)
+{
+	(*parse).i = 0;
+	(*parse).num_arg = 1;
+	(*parse).quotes_s = false;
+	(*parse).quotes_d = false;
+}
+
 int	get_num_pipe(char *line)
 {
 	t_parseo	parse;
-	char		*tmp;
 
-	parse.i = 0;
-	tmp = line;
-	parse.num_arg = 1;
-	parse.quotes_s = false;
-	parse.quotes_d = false;
+	init_parse(&parse);
 	line = ft_isspace(line);
 	if (*line != '|')
 	{
@@ -31,8 +39,7 @@ int	get_num_pipe(char *line)
 			if (line[parse.i] == '|'
 				&& parse.quotes_d == false && parse.quotes_s == false)
 			{
-				tmp = &(line[parse.i]);
-				*tmp = '\0';
+				*&(line[parse.i]) = '\0';
 				line = ft_isspace(&line[parse.i + 1]);
 				parse.i = 0;
 				if ((line[(parse.i)] == '|' || line[(parse.i)] == '\0'))

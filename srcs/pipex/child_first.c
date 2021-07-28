@@ -6,24 +6,24 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 22:39:47 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/25 05:34:55 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/28 17:03:45 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libminishell.h"
 
-static void redirect_input (t_shell *shell)
+static void	redirect_input (t_shell *shell)
 {
-	int fd_file;
+	int	fd_file;
 
 	fd_file = fd_input_redirect(shell);
 	if (fd_file == -1)
 		exit (-1);
 	else if (fd_file > 0)
-		{
-			dup2(fd_file, STDIN_FILENO);
-			close(fd_file);
-		}
+	{
+		dup2(fd_file, STDIN_FILENO);
+		close(fd_file);
+	}
 }
 
 static void	redirect_output(t_shell *shell, t_process *process)
@@ -35,7 +35,7 @@ static void	redirect_output(t_shell *shell, t_process *process)
 	{
 		dup2(process->fd[WRITE_END], STDOUT_FILENO);
 		close(process->fd[WRITE_END]);
-		dup2(fd_out, STDOUT_FILENO);	
+		dup2(fd_out, STDOUT_FILENO);
 		close (fd_out);
 	}
 	else
@@ -47,7 +47,7 @@ static void	redirect_output(t_shell *shell, t_process *process)
 
 void	exec_first_child(t_shell *shell, t_process *process)
 {
-	char *path;
+	char	*path;
 
 	process->pid = fork();
 	if (process->pid == 0)
@@ -62,12 +62,10 @@ void	exec_first_child(t_shell *shell, t_process *process)
 			if (!*process->argv)
 				exit(0);
 			execve(path, process->argv, get_env(shell->data));
-			if(ft_strlen(process->argv[0]))
+			if (ft_strlen(process->argv[0]))
 				print_error_cmd(process->argv[0]);
 			exit(127);
 		}
 		exit(0);
 	}
-	// else
-		// waitpid(pid, NULL, 0);
 }

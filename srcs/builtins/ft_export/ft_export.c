@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jacgarci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/07 11:40:34 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/26 14:04:19 by jacgarci         ###   ########.fr       */
+/*   Created: 2021/07/27 11:45:52 by jacgarci          #+#    #+#             */
+/*   Updated: 2021/07/27 18:57:49 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	envp_part(t_data *data, char *var)
 	free(name);
 }
 
-static void check_var_list(t_data *data, char *var, char *name)
+static void	check_var_list(t_data *data, char *var, char *name)
 {
 	char	*tmp;
 
@@ -67,7 +67,8 @@ static void check_var_list(t_data *data, char *var, char *name)
 		if (*tmp)
 		{
 			ft_lstadd_back(&(data->envp_list), ft_lstnew(ft_strdup(tmp)));
-			ft_lstadd_back(&(data->exp_list), ft_lstnew(fill_with_dquotes(tmp)));
+			ft_lstadd_back(&(data->exp_list),
+				ft_lstnew(fill_with_dquotes(tmp)));
 			ft_lstdelone(&data->tmp_var_list, tmp);
 		}
 		else
@@ -89,7 +90,8 @@ static void	exp_part(t_data *data, char *var)
 	else
 	{
 		if (ft_strchr(var, '='))
-			ft_lstadd_back(&(data->exp_list), ft_lstnew(fill_with_dquotes(var)));
+			ft_lstadd_back(&(data->exp_list),
+				ft_lstnew(fill_with_dquotes(var)));
 		else
 			check_var_list(data, var, name);
 	}
@@ -106,6 +108,8 @@ void	ft_export(t_data *data)
 		return ;
 	}
 	index = 1;
+	if (data->num_p > 1)
+		return ;
 	while (data->lst_process->argv[index])
 	{
 		if (!check_arg_name(data->lst_process->argv[index]))

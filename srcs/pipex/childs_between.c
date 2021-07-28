@@ -6,16 +6,21 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 22:48:45 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/25 22:22:47 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/28 17:08:15 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libminishell.h"
 
-
-static void redirect_input (t_shell *shell, int *fd_back)
+static void	close_fd_parent(t_process *process, int *fd_back)
 {
-	int fd_file;
+	close(fd_back[READ_END]);
+	close(process->fd[WRITE_END]);
+}
+
+static void	redirect_input (t_shell *shell, int *fd_back)
+{
+	int	fd_file;
 
 	fd_file = fd_input_redirect(shell);
 	if (fd_file == -1)
@@ -34,7 +39,7 @@ static void redirect_input (t_shell *shell, int *fd_back)
 
 static void	redirect_output(t_shell *shell, t_process *process)
 {
-	int fd_out;
+	int	fd_out;
 
 	fd_out = fd_output_redirect(shell);
 	if (fd_out >= 0)
@@ -50,10 +55,10 @@ static void	redirect_output(t_shell *shell, t_process *process)
 		close(process->fd[WRITE_END]);
 	}
 }
+
 void	exect_between_childs(t_shell *shell, t_process *process, int *fd_back)
 {
-	char *path;
-	// pid_t pid;
+	char	*path;
 
 	close (fd_back[WRITE_END]);
 	process->pid = fork();
@@ -64,21 +69,17 @@ void	exect_between_childs(t_shell *shell, t_process *process, int *fd_back)
 		redirect_input(shell, fd_back);
 		redirect_output(shell, process);
 		get_path(process->argv[0], get_env(shell->data), &path);
-
 		if (process->fd_out != -2 && start_process(shell) == -1)
 		{
 			if (!*process->argv)
 				exit(0);
+			signal(SIGQUIT, signal_child);
 			execve(path, process->argv, get_env(shell->data));
-			if(ft_strlen(process->argv[0]))
+			if (ft_strlen(process->argv[0]))
 				print_error_cmd(process->argv[0]);
 		}
 		exit(0);
 	}
 	else
-	{
-		close(fd_back[READ_END]);
-		close(process->fd[WRITE_END]);
-		// waitpid(pid, NULL, 0);
-	}
+		close_fd_parent(process, fd_back);
 }

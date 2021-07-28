@@ -2,15 +2,17 @@
 # define LIBMINISHELL_H
 
 # include "../libft/libft.h"
+# include "data.h"
 # include "prompt.h"
+# include "builtins.h"
+# include "utils.h"
 # include <stdlib.h>
 # include <stdio.h>
 # include <signal.h>
 # include <termios.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-#include <dirent.h>
-
+# include <dirent.h>
 
 /* ------------pipex------------------ */
 # include <stdlib.h>
@@ -18,7 +20,7 @@
 # include <stdio.h>
 # include <sys/wait.h>
 // # include <errno.h>
-#include <sys/errno.h>
+# include <sys/errno.h>
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <string.h>
@@ -27,59 +29,8 @@
 # define	READ_END		0
 /* ------------pipex------------------ */
 
-typedef	struct s_data
-{
-	t_process		*lst_process;
-	t_list 			*envp_list;
-	t_list			*exp_list;
-	t_list			*tmp_var_list;
-	int				error_code;
-}				t_data;
-
-
-typedef struct s_var
-{
-	int		i;
-	int		j;
-	t_bool bool;
-	int		len_exp;
-	char	*content;
-	char	*before_exp;
-	char	*after_exp;
-	char	*join_befor_tmp;
-	char	*env;
-	char	**token;
-	char 	**tmp;
-	char 	*tmp_join;
-	char 	*aux;
-}				t_var;
-
-/*
-** Struct for minishell variables
-*/
-
-typedef int	t_status;
-
-typedef struct s_shell
-{
-	t_data 		*data;
-	t_bool		status;
-}			t_shell;
-
-
-
-
-
-
-
-
-
-
-
-void			print_welcome(t_shell *shell);
-char			*prompt(t_shell *shell);
-int get_num_words_matrix (char **str);
-
+void	print_welcome(t_shell *shell);
+char	*prompt(t_shell *shell);
 
 /*
 **	process/process
@@ -87,23 +38,15 @@ int get_num_words_matrix (char **str);
 */
 void	print_error_cmd(char *cmd);
 void	print_error_file(char *file);
-
-
-
-
-
 void	expansive_token(t_shell *shell, char **argv);
-void loop_expa_redirect(t_shell *shell, t_redirect *redirect);
-
+void	loop_expa_redirect(t_shell *shell, t_redirect *redirect);
 int		get_process(t_data *data, char *line);
 void	assign_fd_to_process (t_process *lst_process);
 void	free_resources(t_process *process);
 
-
 /* 
 ** process / exect
 */
-
 void	*menu_builtins (void);
 int		search_builtins(char *bcmd);
 int		start_process(t_shell *shell);
@@ -111,58 +54,25 @@ int		start_process(t_shell *shell);
 /*
 ** Builtins
 */
-int		min_atoi(char *str);
-void	signal_handler(int number);
-void	signals(void);
 void	reset_input_mode(void);
-void    set_input_mode(void);
-void 	ft_cd(t_data *data);
-void	ft_echo(t_data *data);
-void	ft_env(t_data *data);
-void	ft_export(t_data *data);
-int 	check_arg_name(char *arg);
-void    not_valid_identifier(char *builtin, char *arg);
-void	ft_pwd(t_data *data);
-void	ft_unset(t_data *data);
-void	ft_exit(t_data *data);
-char	**ft_lst_undefine(t_data	*data);
-int		special_path(t_data *data);
-int		check_path(char *path);
-int		get_var_len(char *str);
+void	set_input_mode(void);
+
 /* 
 ** lst
 */
-
-int     get_var_len(char *str);
-t_list	*fill_envp_list(char **envp);
-void	sort_env_list(t_list *lst);
-void 	sort_lst(t_list **lst);
-void	print_list(t_list *lst);
-char	*search_env(t_list *envp_list, char *name);
-char    *search_exp(t_list *lst, char *name);
-void    replace_content_envp(t_data *data, char *content, char *name);
-void    replace_content_exp(t_data *data, char *content, char *name);
-t_list	*fill_exp_list(char **envp);
-char    *fill_with_dquotes(char *envp);
-int     already_exist(t_list *lst, char *var);
-char    *get_name(char *var);
-char	**get_env(t_data *data);
-
+void	sort_lst(t_list **lst);
 
 /*
 **
 ** utils free
 */
-
 void	free_resources(t_process *process);
 void	free_matrix(char **str);
 void	free_redirect(t_redirect *redirect);
 
-
 /*
 **	pipex/pipex
 */
-
 void	start_pipe(t_shell *shell, int *num_p);
 void	get_path(char *cmd, char *envp[], char **f_path);
 int		fd_input_redirect(t_shell *shell);

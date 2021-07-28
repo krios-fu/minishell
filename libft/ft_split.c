@@ -3,72 +3,82 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jacgarci <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/16 16:20:13 by jacgarci          #+#    #+#             */
-/*   Updated: 2019/11/17 17:16:39 by jacgarci         ###   ########.fr       */
+/*   Created: 2020/01/22 17:40:49 by krios-fu          #+#    #+#             */
+/*   Updated: 2021/07/28 20:09:23 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
-static size_t	count_segment(char const *s, char c)
+static size_t	ft_numstring(const char *s, char c)
 {
-	size_t	counter;
-	int		i;
+	size_t	count;
+	size_t	flag;
 
-	counter = 0;
-	i = 0;
-	while (s[i])
+	count = 0;
+	flag = 0;
+	if (!s)
+		return (0);
+	while (*s != '\0')
 	{
-		if (s[i] == c)
+		if (*s == c)
+			flag = 0;
+		else if (flag == 0)
 		{
-			i++;
-			continue ;
+			flag = 1;
+			count++;
 		}
-		counter++;
-		while (s[i] && s[i] != c)
-			i++;
+		s++;
 	}
-	return (counter);
+	return (count);
 }
 
-static void		*destroy_strs(char **strs)
+static size_t	ft_numchar(const char *s, char c)
 {
-	int i;
+	size_t	count;
 
-	i = 0;
-	while (strs[i] != NULL)
-		free(strs[i++]);
-	free(strs);
+	count = 0;
+	while (s[count] != c && s[count] != '\0')
+		count++;
+	return (count);
+}
+
+static char	**ft_free_matrix(const char **matrix, size_t len_matrix)
+{
+	while (len_matrix--)
+		free((void *)matrix[len_matrix]);
+	free(matrix);
 	return (NULL);
 }
 
-char			**ft_split(char const *s, char c)
+char	**ft_split(const char *s, char c)
 {
-	char	**strs;
-	size_t	tab_counter;
+	char	**matrix;
+	size_t	len;
 	size_t	i;
-	size_t	j;
+	size_t	sl;
 
-	if (s == NULL)
+	i = 0;
+	sl = 0;
+	len = ft_numstring(s, c);
+	matrix = (char **)malloc(sizeof(char *) * (len + 1));
+	if (!matrix)
 		return (NULL);
-	tab_counter = count_segment(s, c);
-	if ((strs = (char**)malloc(sizeof(char*) * (tab_counter + 1))) == NULL)
-		return (NULL);
-	tab_counter = 0;
-	j = -1;
-	while (s[++j])
+	while (i < len)
 	{
-		if (s[j] == c)
-			continue ;
-		i = 0;
-		while (s[j + i] && s[j + i] != c)
-			i++;
-		if ((strs[tab_counter++] = ft_strndup(&s[j], i)) == NULL)
-			return (destroy_strs(strs));
-		j += i - 1;
+		while (*s == c)
+			s++;
+		sl = ft_numchar((const char *)s, c);
+		matrix[i] = (char *)malloc(sizeof(char) * sl + 1);
+		if (!matrix[i])
+			return (ft_free_matrix((const char **)matrix, len));
+		ft_strlcpy(matrix[i], s, sl + 1);
+		s = (ft_strchr(s, (int)c));
+		i++;
 	}
-	strs[tab_counter] = NULL;
-	return (strs);
+	matrix[i] = 0;
+	return (matrix);
 }
