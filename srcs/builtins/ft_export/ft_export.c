@@ -6,7 +6,7 @@
 /*   By: jacgarci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/27 11:45:52 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/27 11:45:56 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/27 18:57:49 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,8 @@ void	ft_export(t_data *data)
 		return ;
 	}
 	index = 1;
+	if (data->num_p > 1)
+		return ;
 	while (data->lst_process->argv[index])
 	{
 		if (!check_arg_name(data->lst_process->argv[index]))

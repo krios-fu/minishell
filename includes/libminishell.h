@@ -9,8 +9,7 @@
 # include <termios.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-#include <dirent.h>
-
+# include <dirent.h>
 
 /* ------------pipex------------------ */
 # include <stdlib.h>
@@ -18,7 +17,7 @@
 # include <stdio.h>
 # include <sys/wait.h>
 // # include <errno.h>
-#include <sys/errno.h>
+# include <sys/errno.h>
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <string.h>
@@ -27,16 +26,18 @@
 # define	READ_END		0
 /* ------------pipex------------------ */
 
-typedef	struct s_data
+pid_t	state;
+
+typedef struct s_data
 {
 	t_process		*lst_process;
-	t_list 			*envp_list;
+	t_list			*envp_list;
 	t_list			*exp_list;
 	t_list			*tmp_var_list;
 	int				error_code;
 	char			*swung_dash;
+	int				num_p;
 }				t_data;
-
 
 typedef struct s_var
 {
@@ -49,14 +50,16 @@ typedef struct s_var
 	char	*join_befor_tmp;
 	char	*env;
 	char	**token;
-	char 	**tmp;
-	char 	*tmp_join;
-	char 	*aux;
+	char	**tmp;
+	char	*tmp_join;
+	char	*aux;
 }				t_var;
 
 /*
 ** Struct for minishell variables
 */
+# include "builtins.h"
+# include "utils.h"
 
 typedef int	t_status;
 
@@ -102,46 +105,13 @@ int		start_process(t_shell *shell);
 ** Builtins
 */
 
-void	fill_slung_dash(t_data *data);
-int		min_atoi(char *str);
-void	signal_handler(int number);
-void	signals(void);
 void	reset_input_mode(void);
 void    set_input_mode(void);
-void 	ft_cd(t_data *data);
-void    update_pwd(t_data *data, char *new_pwd);
-int 	check_for_swung_dash(t_data *data);
-int 	cdpath_loop(t_data *data, char **paths);
-void	ft_echo(t_data *data);
-void	ft_env(t_data *data);
-void	ft_export(t_data *data);
-int 	check_arg_name(char *arg);
-void    not_valid_identifier(char *builtin, char *arg);
-void	ft_pwd(t_data *data);
-void	ft_unset(t_data *data);
-void	ft_exit(t_data *data);
-char	**ft_lst_undefine(t_data	*data);
-int		special_path(t_data *data);
-int		check_path(char *path);
-int		get_var_len(char *str);
 /* 
 ** lst
 */
 
-int     get_var_len(char *str);
-t_list	*fill_envp_list(char **envp);
-void	sort_env_list(t_list *lst);
 void 	sort_lst(t_list **lst);
-void	print_list(t_list *lst);
-char	*search_env(t_list *envp_list, char *name);
-char    *search_exp(t_list *lst, char *name);
-void    replace_content_envp(t_data *data, char *content, char *name);
-void    replace_content_exp(t_data *data, char *content, char *name);
-t_list	*fill_exp_list(char **envp);
-char    *fill_with_dquotes(char *envp);
-int     already_exist(t_list *lst, char *var);
-char    *get_name(char *var);
-char	**get_env(t_data *data);
 
 
 /*

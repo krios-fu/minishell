@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 19:20:52 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/26 14:58:32 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/28 12:30:34 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,20 @@ void	exec_only_one_process(t_shell *shell)
 			execve(path, shell->data->lst_process->argv, get_env(shell->data));
 			if(ft_strlen(shell->data->lst_process->argv[0]))
 				print_error_cmd(shell->data->lst_process->argv[0]);
-			 exit(127);
+			exit(127);
 		}
 		else
 		{
+			signal(SIGQUIT, signal_child);
+			signal(SIGINT, signal_child);
 			close(shell->data->lst_process->fd[WRITE_END]);
 			close(shell->data->lst_process->fd[READ_END]);
 		}
 		waitpid(shell->data->lst_process->pid, &status, 0);
+		if (status == 2)
+			shell->data->error_code = 130;
+		if (status == 3)
+			shell->data->error_code = 131;
 		if (WIFEXITED(status))
 		{
 			if (WEXITSTATUS(status) == 255)

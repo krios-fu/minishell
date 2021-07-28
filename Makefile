@@ -39,8 +39,8 @@ SRCS =	srcs/utils/list_utils					\
 		srcs/pipex/childs_between				\
 		srcs/pipex/exec_one_process				\
 		srcs/pipex/utils						\
-		srcs/builtins/ft_list_undefine			
-#srcs/utils/signals						
+		srcs/builtins/ft_list_undefine			\
+		srcs/utils/signals						
 
 SRCSM = $(addsuffix .c, $(SRCS))
 OBJS = $(SRCSM:.c=.o)
@@ -59,11 +59,11 @@ RM = rm -rf
 
 all: $(NAME)
 
-$(NAME): $(OBJS) ./includes/libminishell.h ./includes/prompt.h
+$(NAME): $(OBJS) ./includes/libminishell.h ./includes/prompt.h ./includes/builtins.h ./includes/utils.h
 	@echo "$(BLUE)==========CREATING LIBFT==========$(RESET)"
 	@make -sC ./libft
 	@echo "$(BLUE)==========CREATING MINISHELL==========$(RESET)"
-	@$(CC) $(INCLUDES) ${OBJS} $(LIBFT) -o ${NAME} -lreadline 
+	@$(CC) $(INCLUDES) ${OBJS} $(LIBFT) -o ${NAME} -lreadline -L/Users/$(USER)/.brew/opt/readline/lib -I/Users/$(USER)/.brew/opt/readline/include
 	@echo "Success creating minishell file"
 # -g3 -fsanitize=address
 clean:

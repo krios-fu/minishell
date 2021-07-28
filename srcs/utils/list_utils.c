@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 11:10:56 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/26 14:51:38 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/27 13:16:58 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,6 @@
 ** Function that recives a list and a name
 ** and returns the list content that have the name
 */
-int		get_var_len(char *str)
-{
-	int	count;
-
-	count = 0;
-	while (str[count] && str[count] != '=')
-		count++;
-	return (count);
-}
-
 char	*search_env(t_list *envp_list, char *name)
 {
 	t_list	*lst;

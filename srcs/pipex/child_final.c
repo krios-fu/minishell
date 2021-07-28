@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 22:02:20 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/25 20:01:08 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/27 20:50:41 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void	exec_final_child(t_shell *shell, t_process *process, int *fd_back)
 	process->pid = fork();
 	if (process->pid== 0)
 	{
+		state = 1;
 		process->fd_out = get_fd_builtins(shell);
 		redirect_input(shell, fd_back);
 		redirect_output(shell, process, fd_back);
@@ -70,6 +71,7 @@ void	exec_final_child(t_shell *shell, t_process *process, int *fd_back)
 		{
 			if (!*process->argv)
 				exit(0);
+			signal(SIGQUIT, signal_child);
 			execve(path, process->argv, get_env(shell->data));
 			if(ft_strlen(process->argv[0]))
 				print_error_cmd(process->argv[0]);
