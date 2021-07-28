@@ -30,6 +30,7 @@ SRCS =	srcs/utils/list_utils					\
 		srcs/prompt/expansive_var				\
 		srcs/utils/free							\
 		srcs/prompt/parseo_quote				\
+		srcs/prompt/utils2						\
 		srcs/pipex/pipex						\
 		srcs/pipex/search_path					\
 		srcs/process/error						\
@@ -40,7 +41,10 @@ SRCS =	srcs/utils/list_utils					\
 		srcs/pipex/exec_one_process				\
 		srcs/pipex/utils						\
 		srcs/builtins/ft_list_undefine			\
+		srcs/prompt/expansive_var_utils			\
+		srcs/prompt/expasive_var_case			\
 		srcs/utils/signals						
+#srcs/utils/signals						
 
 #		srcs/utils/start						
 SRCSM = $(addsuffix .c, $(SRCS))
