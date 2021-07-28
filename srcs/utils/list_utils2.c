@@ -6,13 +6,13 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 17:20:31 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/27 12:15:34 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/28 16:03:49 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libminishell.h"
 
-int		get_var_len(char *str)
+int	get_var_len(char *str)
 {
 	int	count;
 
@@ -60,7 +60,7 @@ t_list	*fill_exp_list(char **envp)
 	return (lst);
 }
 
-void    replace_content_exp(t_data *data, char *content, char *name)
+void	replace_content_exp(t_data *data, char *content, char *name)
 {
 	t_list	*ptr;
 	int		name_len;
@@ -85,7 +85,6 @@ void    replace_content_exp(t_data *data, char *content, char *name)
 	ft_lstadd_back(&(data->exp_list), ft_lstnew(content));
 	sort_env_list(data->exp_list);
 }
-
 
 void	replace_content_envp(t_data *data, char *content, char *name)
 {

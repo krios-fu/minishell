@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 22:48:45 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/27 20:50:50 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/28 15:48:57 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ void	exect_between_childs(t_shell *shell, t_process *process, int *fd_back)
 	process->pid = fork();
 	if (process->pid == 0)
 	{
-		state = 1;
 		process->fd_out = get_fd_builtins(shell);
 		close(process->fd[READ_END]);
 		redirect_input(shell, fd_back);

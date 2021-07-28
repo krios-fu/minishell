@@ -6,21 +6,20 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 18:04:13 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/25 21:02:13 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/28 15:52:35 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libminishell.h"
 
-
 void	free_matrix(char **str)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	if(str[i])
+	if (str[i])
 	{
-		while(str[i])
+		while (str[i])
 			free(str[i++]);
 		free(str);
 	}
@@ -28,7 +27,7 @@ void	free_matrix(char **str)
 
 void	free_redirect(t_redirect *redirect)
 {
-	t_redirect *tmp;
+	t_redirect	*tmp;
 
 	while (redirect)
 	{
@@ -45,7 +44,7 @@ void	free_redirect(t_redirect *redirect)
 void	free_resources(t_process *process)
 {
 	t_process	*tmp;
-	
+
 	while (process)
 	{
 		if (process->argv)
