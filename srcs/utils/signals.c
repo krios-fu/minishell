@@ -6,7 +6,7 @@
 /*   By: jacgarci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/27 12:20:19 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/28 16:23:58 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/28 22:26:44 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	signal_child(int number)
 {
 	if (number == SIGQUIT)
 	{
-		write(2, "Quit: 3\n", 8);
+		ft_putstr_fd("Quit: 3\n", 1);
 		signal(SIGQUIT, SIG_DFL);
 	}
 	if (number == SIGINT)
