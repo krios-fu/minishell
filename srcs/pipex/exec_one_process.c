@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 19:20:52 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/28 17:32:53 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/28 22:23:12 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void	exec_only_one_process(t_shell *shell)
 				get_env(shell->data), &path);
 			if (!*shell->data->lst_process->argv)
 				exit(0);
+			signal(SIGQUIT, SIG_DFL);
 			execve(path, shell->data->lst_process->argv, get_env(shell->data));
 			if (ft_strlen(shell->data->lst_process->argv[0]))
 				print_error_cmd(shell->data->lst_process->argv[0]);

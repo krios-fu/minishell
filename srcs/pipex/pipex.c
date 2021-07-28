@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 18:15:11 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/28 18:44:17 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/28 22:45:48 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,18 @@ void	start_pipe(t_shell *shell, int *num_p)
 	}
 	init_all_pipe(shell);
 	exec_first_child(shell, process);
-	while (*num_p > 2)
+	printf("errno%d\n", errno);
+	if (!errno)
 	{
+		while (*num_p > 2)
+		{
+			shell->data->lst_process = process->next;
+			exect_between_childs(shell, process->next, process->fd);
+			process = process->next;
+			(*num_p)--;
+		}
 		shell->data->lst_process = process->next;
-		exect_between_childs(shell, process->next, process->fd);
-		process = process->next;
-		(*num_p)--;
+		exec_final_child(shell, process->next, process->fd);
+		start_pipe2(shell, process, process_pid);
 	}
-	shell->data->lst_process = process->next;
-	exec_final_child(shell, process->next, process->fd);
-	start_pipe2(shell, process, process_pid);
 }

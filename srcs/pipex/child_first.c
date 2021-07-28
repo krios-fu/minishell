@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 22:39:47 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/28 17:03:45 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/28 22:51:05 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	exec_first_child(t_shell *shell, t_process *process)
 		{
 			if (!*process->argv)
 				exit(0);
+			//signal(SIGQUIT, SIG_DFL);
 			execve(path, process->argv, get_env(shell->data));
 			if (ft_strlen(process->argv[0]))
 				print_error_cmd(process->argv[0]);
