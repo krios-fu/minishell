@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 20:24:34 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/28 23:53:34 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/29 00:31:33 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	expansive_swap_case3(t_shell *shell, t_var *var)
 		var->j = 0;
 		free_matrix(split_matrix);
 	}
-		free(var->content);
+	free(var->content);
 }
 
 void	expansive_swap(t_shell *shell, t_var *var)
@@ -85,5 +85,4 @@ void	expansive_swap(t_shell *shell, t_var *var)
 		expansive_swap_case3(shell, var);
 		return ;
 	}
-
 }

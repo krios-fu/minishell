@@ -1,7 +1,7 @@
 #ifndef DATA_H
 # define DATA_H
 
-typedef int t_bool;
+typedef int	t_bool;
 
 typedef struct s_parseo
 {
