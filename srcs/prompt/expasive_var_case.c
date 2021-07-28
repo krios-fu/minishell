@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 20:24:34 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/29 00:31:33 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/29 00:32:42 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ void	expansive_swap(t_shell *shell, t_var *var)
 	else
 	{
 		expansive_swap_case3(shell, var);
+		free(var->env);
 		return ;
 	}
 }
