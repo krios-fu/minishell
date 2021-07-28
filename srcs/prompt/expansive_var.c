@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 23:30:51 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/28 20:54:02 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/28 21:59:39 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,36 @@ void	expansive_token(t_shell *shell, char **argv)
 		var.i++;
 	}
 	shell->data->lst_process->argv = var.token;
-	del_quotes(shell->data->lst_process);
+}
+
+void	expansive_token_input(t_shell *shell, char **argv)
+{
+	t_var	var;
+
+	var.i = 0;
+	var.len_exp = 0;
+	var.token = argv;
+	var.bool = false;
+	while (var.token[var.i])
+	{
+		expansive_token_aux(shell, &var);
+		var.i++;
+	}
+	shell->data->lst_process->input->file = var.token;
+}
+
+void	expansive_token_output(t_shell *shell, char **argv)
+{
+	t_var	var;
+
+	var.i = 0;
+	var.len_exp = 0;
+	var.token = argv;
+	var.bool = false;
+	while (var.token[var.i])
+	{
+		expansive_token_aux(shell, &var);
+		var.i++;
+	}
+	shell->data->lst_process->output->file = var.token;
 }

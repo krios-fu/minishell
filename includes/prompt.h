@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 21:37:30 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/28 20:53:23 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/28 23:36:22 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,14 @@ void			del_quotes(t_process *process);
 int				is_quote(char c);
 
 /*  expansive*/
-void	len_expansive(t_var *var);
-int		get_num_words_matrix (char **str);
-char	**matrixjoin(char **str1, char **str2, int insec_point);
-void	expansive_swap_case1(t_shell *shell, t_var *var);
-void	expansive_swap_case2(t_shell *shell, t_var *var);
-void	expansive_swap_case3(t_shell *shell, t_var *var);
-void	expansive_swap(t_shell *shell, t_var *var);
+void			len_expansive(t_var *var);
+int				get_num_words_matrix (char **str);
+char			**matrixjoin(char **str1, char **str2, int insec_point);
+void			expansive_swap_case1(t_shell *shell, t_var *var);
+void			expansive_swap_case2(t_shell *shell, t_var *var);
+void			expansive_swap_case3(t_shell *shell, t_var *var);
+void			expansive_swap(t_shell *shell, t_var *var);
+void			expansive_token_input(t_shell *shell, char **argv);
+void			expansive_token_output(t_shell *shell, char **argv);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 19:20:52 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/28 22:23:12 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/28 23:44:11 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,9 @@ void	exec_only_one_process(t_shell *shell)
 	{
 		if (shell->data->lst_process->fd_out > 2)
 			close(shell->data->lst_process->fd_out);
-		shell->data->lst_process->pid = fork();
 		if (shell->data->lst_process->pid == 0)
 		{
+			shell->data->lst_process->pid = fork();
 			redirect_input(shell);
 			redirect_output(shell);
 			get_path(shell->data->lst_process->argv[0],
