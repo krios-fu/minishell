@@ -8,6 +8,7 @@ NAME = minishell
 SRCS =	srcs/utils/list_utils					\
 		srcs/utils/list_utils2					\
 		srcs/utils/list_utils3					\
+		srcs/utils/start						\
 		srcs/utils/main							\
 		srcs/prompt/prompt						\
 		srcs/prompt/utils						\

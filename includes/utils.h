@@ -32,4 +32,10 @@ void	fill_slung_dash(t_data *data);
 void	signals(void);
 void	signal_handler(int number);
 void	signal_child(int number);
+
+/*
+** start.c
+*/
+t_shell	*init_shell(char **envp);
+void	main_loop(t_shell *shell);
 #endif
