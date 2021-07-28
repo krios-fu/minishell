@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 21:37:30 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/27 13:31:21 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/28 17:58:09 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,47 +21,6 @@
 # define CYAN	"\033[1;36m"
 # define RED	"\033[1;31m"
 # define WHITE	"\033[0;37m"
-
-typedef int	t_bool;
-
-typedef struct s_parseo
-{
-	size_t		num_arg;
-	size_t		i;
-	t_bool		flag;
-	t_bool		quotes_d;
-	t_bool		quotes_s;
-
-}				t_parseo;
-
-enum	e_boolean
-{
-	false,
-	true
-};
-
-/*
-** Start structs for split line prompt 
-*/
-typedef struct s_redirect
-{
-	char				**file;
-	char				*symbol;
-	int					pos;
-	struct s_redirect	*next;
-}				t_redirect;
-
-typedef struct s_process
-{
-	char				**argv;
-	t_redirect			*input;
-	t_redirect			*output;
-	pid_t				pid;
-	int					*fd;
-	int					fd_out;
-	int					status;
-	struct s_process	*next;
-}				t_process;
 
 /*
 **	functions prompt/ prompt

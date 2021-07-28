@@ -8,7 +8,6 @@ NAME = minishell
 SRCS =	srcs/utils/list_utils					\
 		srcs/utils/list_utils2					\
 		srcs/utils/list_utils3					\
-		srcs/utils/start						\
 		srcs/utils/main							\
 		srcs/prompt/prompt						\
 		srcs/prompt/utils						\
@@ -43,6 +42,7 @@ SRCS =	srcs/utils/list_utils					\
 		srcs/builtins/ft_list_undefine			\
 		srcs/utils/signals						
 
+#		srcs/utils/start						
 SRCSM = $(addsuffix .c, $(SRCS))
 OBJS = $(SRCSM:.c=.o)
 

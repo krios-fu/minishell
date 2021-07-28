@@ -2,8 +2,8 @@
 # define LIBMINISHELL_H
 
 # include "../libft/libft.h"
-# include "prompt.h"
 # include "data.h"
+# include "prompt.h"
 # include "builtins.h"
 # include "utils.h"
 # include <stdlib.h>
