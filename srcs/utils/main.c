@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 14:11:39 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/28 22:54:54 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/29 02:29:35 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void	start_parseo(t_shell *shell, char *line)
 				init_process(shell, num_process);
 				shell->data->lst_process = process;
 				start_pipe(shell, &num_process);
+				shell->data->lst_process = process;
 			}
 			else
 				shell->data->error_code = 258;
