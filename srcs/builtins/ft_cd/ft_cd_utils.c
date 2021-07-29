@@ -6,7 +6,7 @@
 /*   By: jacgarci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 17:55:06 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/27 11:44:37 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/29 12:45:27 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int	check_for_hyphen(t_data *data)
 	}
 	free(data->lst_process->argv[1]);
 	data->lst_process->argv[1] = ft_strdup(content + 7);
-	ft_putstr_fd(content + 5, data->lst_process->fd_out);
+	ft_putstr_fd(content + 7, data->lst_process->fd_out);
 	ft_putstr_fd("\n", data->lst_process->fd_out);
 	free(content);
 	return (0);

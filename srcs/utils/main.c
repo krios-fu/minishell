@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 14:11:39 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/29 02:46:02 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/29 12:49:52 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static t_shell	*init_minishell(char **envp)
 	shell->data->tmp_var_list = NULL;
 	g_error_code = 0;
 	sort_env_list(shell->data->exp_list);
+	fill_slung_dash(shell->data);
 	return (shell);
 }
 
