@@ -6,11 +6,17 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 18:04:13 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/29 00:54:19 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/29 13:36:15 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libminishell.h"
+
+void	free_shell_data(t_shell *shell)
+{
+	free(shell->data);
+	free(shell);
+}
 
 void	free_matrix(char **str)
 {

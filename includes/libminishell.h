@@ -70,6 +70,7 @@ void	sort_lst(t_list **lst);
 void	free_resources(t_process *process);
 void	free_matrix(char **str);
 void	free_redirect(t_redirect *redirect);
+void	free_shell_data(t_shell *shell);
 
 /*
 **	pipex/pipex

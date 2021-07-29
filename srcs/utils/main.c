@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 14:11:39 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/29 12:49:52 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/29 13:45:37 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static t_shell	*init_minishell(char **envp)
 	shell->data->envp_list = fill_envp_list(envp);
 	shell->data->exp_list = fill_exp_list(envp);
 	shell->data->tmp_var_list = NULL;
+	shell->data->num_p = 0;
 	g_error_code = 0;
 	sort_env_list(shell->data->exp_list);
 	fill_slung_dash(shell->data);
@@ -102,9 +103,11 @@ int	main(int argc, char *argv[], char *envp[])
 		if (!line)
 		{
 			write(1, CYAN"roc"BLUE"ket"GREEN"Men 👋 "RED"exit\n", 49);
+	//		free_shell_data(shell);
 			exit(0);
 		}
 		free(line);
 	}
+	//free_shell_data(shell);
 	return (0);
 }
