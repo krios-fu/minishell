@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 18:04:13 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/29 13:36:15 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/29 15:10:42 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ void	free_resources(t_process *process)
 			close(process->fd[1]);
 			free(process->fd);
 		}
+		if (process->fd_out > 2)
+			close(process->fd_out);
 		tmp = process->next;
 		free(process);
 		process = tmp;

@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 14:11:39 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/29 13:45:37 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/29 15:20:52 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	start_parseo(t_shell *shell, char *line)
 				shell->data->lst_process = process;
 			}
 			else
-				g_error_code = 258;
+				g_error_code = 255;
 		}
 	}
 }
@@ -103,11 +103,9 @@ int	main(int argc, char *argv[], char *envp[])
 		if (!line)
 		{
 			write(1, CYAN"roc"BLUE"ket"GREEN"Men 👋 "RED"exit\n", 49);
-	//		free_shell_data(shell);
 			exit(0);
 		}
 		free(line);
 	}
-	//free_shell_data(shell);
 	return (0);
 }
