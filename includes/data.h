@@ -1,6 +1,8 @@
 #ifndef DATA_H
 # define DATA_H
 
+int			g_error_code;
+
 typedef int	t_bool;
 
 typedef struct s_parseo
@@ -48,7 +50,6 @@ typedef struct s_data
 	t_list			*envp_list;
 	t_list			*exp_list;
 	t_list			*tmp_var_list;
-	int				error_code;
 	char			*swung_dash;
 	int				num_p;
 }				t_data;

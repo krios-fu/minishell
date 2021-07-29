@@ -32,6 +32,7 @@ void	fill_slung_dash(t_data *data);
 void	signals(void);
 void	signal_handler(int number);
 void	signal_child(int number);
+void	signal_child2(int number);
 
 /*
 ** start.c

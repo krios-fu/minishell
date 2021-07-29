@@ -6,7 +6,7 @@
 /*   By: jacgarci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/27 11:44:57 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/27 11:45:01 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/29 02:22:12 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,5 @@ void	ft_echo(t_data *data)
 	print_args(data, &index);
 	if (!flag)
 		ft_putstr_fd("\n", data->lst_process->fd_out);
-	data->error_code = 0;
+	g_error_code = 0;
 }

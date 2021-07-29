@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 19:20:52 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/28 22:23:12 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/29 02:42:15 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,15 @@ static void	wait_for_child(t_shell *shell)
 
 	waitpid(shell->data->lst_process->pid, &status, 0);
 	if (status == 2)
-		shell->data->error_code = 130;
+		g_error_code = 130;
 	if (status == 3)
-		shell->data->error_code = 131;
+		g_error_code = 131;
 	if (WIFEXITED(status))
 	{
 		if (WEXITSTATUS(status) == 255)
-			shell->data->error_code = 127;
+			g_error_code = 127;
 		else
-			shell->data->error_code = WEXITSTATUS(status);
+			g_error_code = WEXITSTATUS(status);
 	}
 }
 
@@ -38,7 +38,7 @@ static void	close_parent_fd(t_shell *shell)
 	close(shell->data->lst_process->fd[READ_END]);
 }
 
-static void	redirect_input (t_shell *shell)
+void	redirect_input_exec(t_shell *shell)
 {
 	int	fd_file;
 
@@ -52,7 +52,7 @@ static void	redirect_input (t_shell *shell)
 	}
 }
 
-static void	redirect_output(t_shell *shell)
+void	redirect_output_exec(t_shell *shell)
 {
 	int		fd_out;
 
@@ -78,8 +78,7 @@ void	exec_only_one_process(t_shell *shell)
 		shell->data->lst_process->pid = fork();
 		if (shell->data->lst_process->pid == 0)
 		{
-			redirect_input(shell);
-			redirect_output(shell);
+			redirect_io(shell);
 			get_path(shell->data->lst_process->argv[0],
 				get_env(shell->data), &path);
 			if (!*shell->data->lst_process->argv)

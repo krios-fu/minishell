@@ -6,7 +6,7 @@
 /*   By: jacgarci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/27 11:46:36 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/27 11:46:40 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/29 02:21:55 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 
 static int	invalid_arg(t_data *data, char *arg)
 {
+	(void)data;
 	if (ft_strchr(arg, '=') || !check_arg_name(arg))
 	{
 		not_valid_identifier("unset", arg);
-		data->error_code = 1;
+		g_error_code = 1;
 		return (1);
 	}
 	return (0);
@@ -45,7 +46,7 @@ void	ft_unset(t_data *data)
 	index = 1;
 	if (!data->lst_process->argv[index])
 	{
-		data->error_code = 0;
+		g_error_code = 0;
 		return ;
 	}
 	while (data->lst_process->argv[index])
@@ -55,5 +56,5 @@ void	ft_unset(t_data *data)
 		unset_arg(data, data->lst_process->argv[index]);
 		index++;
 	}
-	data->error_code = 0;
+	g_error_code = 0;
 }

@@ -6,7 +6,7 @@
 /*   By: jacgarci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/27 11:45:52 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/27 18:57:49 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/29 02:20:30 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ void	ft_export(t_data *data)
 		if (!check_arg_name(data->lst_process->argv[index]))
 		{
 			not_valid_identifier("export", data->lst_process->argv[index]);
-			data->error_code = 1;
+			g_error_code = 1;
 			return ;
 		}
 		envp_part(data, data->lst_process->argv[index]);
@@ -123,5 +123,5 @@ void	ft_export(t_data *data)
 		index++;
 	}
 	sort_env_list(data->exp_list);
-	data->error_code = 0;
+	g_error_code = 0;
 }

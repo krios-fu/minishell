@@ -6,11 +6,17 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 19:39:38 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/28 19:46:18 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/29 02:42:43 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libminishell.h"
+
+void	redirect_io(t_shell *shell)
+{
+	redirect_input_exec(shell);
+	redirect_output_exec(shell);
+}
 
 int	get_fd_builtins (t_shell *shell)
 {
