@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 20:24:34 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/29 00:32:42 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/29 02:26:15 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	expansive_swap_case1(t_shell *shell, t_var *var)
 {
-	var->content = ft_itoa(shell->data->error_code);
+	(void)shell;
+	var->content = ft_itoa(g_error_code);
 	var->before_exp = ft_strndup(var->token[var->i], var->j - 1);
 	var->join_befor_tmp = ft_strjoin(var->before_exp, var->content);
 	var->after_exp = ft_strjoin(var->join_befor_tmp,

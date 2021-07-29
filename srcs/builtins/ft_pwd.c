@@ -6,7 +6,7 @@
 /*   By: jacgarci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/27 11:46:20 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/27 11:46:24 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/29 02:21:04 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void	ft_pwd(t_data *data)
 
 	if (!getcwd(path, sizeof(path)))
 	{
-		data->error_code = 1;
+		g_error_code = 1;
 		return ;
 	}
 	ft_putstr_fd(path, data->lst_process->fd_out);
 	ft_putstr_fd("\n", data->lst_process->fd_out);
-	data->error_code = 0;
+	g_error_code = 0;
 }

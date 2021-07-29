@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 14:11:39 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/29 02:15:21 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/29 02:29:48 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static t_shell	*init_minishell(char **envp)
 	shell->data->envp_list = fill_envp_list(envp);
 	shell->data->exp_list = fill_exp_list(envp);
 	shell->data->tmp_var_list = NULL;
-	shell->data->error_code = 0;
+	g_error_code = 0;
 	sort_env_list(shell->data->exp_list);
 	return (shell);
 }
@@ -73,7 +73,7 @@ void	start_parseo(t_shell *shell, char *line)
 				start_pipe(shell, &num_process);
 			}
 			else
-				shell->data->error_code = 258;
+				g_error_code = 258;
 		}
 	}
 }
@@ -88,6 +88,7 @@ int	main(int argc, char *argv[], char *envp[])
 	shell = init_minishell(envp);
 	print_header();
 	print_welcome(shell);
+	g_error_code = 0;
 	while (1)
 	{
 		shell->data->lst_process = NULL;

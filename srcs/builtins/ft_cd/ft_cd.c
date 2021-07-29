@@ -6,7 +6,7 @@
 /*   By: jacgarci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/27 11:44:05 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/27 12:26:41 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/29 02:23:09 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ static void	normal_cd(t_data *data)
 {
 	if (special_path(data))
 	{
-		data->error_code = 1;
+		g_error_code = 1;
 		return ;
 	}
 	if (chdir(data->lst_process->argv[1]))
 	{
-		data->error_code = 1;
+		g_error_code = 1;
 		ft_putstr_fd("rocketMen: cd: ", 2);
 		ft_putstr_fd(data->lst_process->argv[1], 2);
 		ft_putstr_fd(": No such file or directory\n", 2);
@@ -76,7 +76,7 @@ static void	cd_home(t_data *data)
 	{
 		ft_putstr_fd("rocketMen: cd: HOME not set\n", 2);
 		free(path);
-		data->error_code = 1;
+		g_error_code = 1;
 		return ;
 	}
 	if (chdir(path) == -1)
@@ -85,7 +85,7 @@ static void	cd_home(t_data *data)
 		ft_putstr_fd(path, 2);
 		ft_putstr_fd(": No such file or directory\n", 2);
 		free(path);
-		data->error_code = 1;
+		g_error_code = 1;
 		return ;
 	}
 	update_pwd(data, path);
@@ -108,5 +108,5 @@ void	ft_cd(t_data *data)
 	else
 		normal_cd(data);
 	free(tmp);
-	data->error_code = 0;
+	g_error_code = 0;
 }

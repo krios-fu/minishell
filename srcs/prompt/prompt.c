@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 19:25:08 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/28 16:48:25 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/29 02:19:28 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ static char	*message_promt(t_shell *shell, char **s_path)
 	char	*path;
 	char	*prompt;
 
-	if (shell->data->error_code == 0)
+	(void)shell;
+	if (g_error_code == 0)
 	{
 		path = ft_strjoin(CYAN"roc"BLUE"ket"GREEN"Men 🚀 "RED,
 				s_path[get_ultimate_dir(s_path)]);

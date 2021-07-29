@@ -6,7 +6,7 @@
 /*   By: jacgarci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/27 12:20:19 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/29 02:16:06 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/29 02:34:28 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	signal_handler(int number)
 {
 	if (number == SIGINT)
 	{
+		g_error_code = 1;
 		printf("\n");
 		rl_on_new_line();
 		rl_replace_line("", 0);

@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 18:15:11 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/29 01:37:51 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/29 02:24:39 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,22 @@
 
 static void	start_pipe2(t_shell *shell, t_process *process, t_process *pro_pid)
 {
+	(void)shell;
 	while (pro_pid)
 	{
 		waitpid(pro_pid->pid, &pro_pid->status, 0);
 		if (pro_pid->status == 2)
-			shell->data->error_code = 130;
+			g_error_code = 130;
 		if (pro_pid->status == 3)
-			shell->data->error_code = 131;
+			g_error_code = 131;
 		pro_pid = pro_pid->next;
 	}
 	if (WIFEXITED(process->next->status))
 	{
 		if (WEXITSTATUS(process->next->status) == 255)
-			shell->data->error_code = 127;
+			g_error_code = 127;
 		else
-			shell->data->error_code = WEXITSTATUS(process->next->status);
+			g_error_code = WEXITSTATUS(process->next->status);
 	}
 }
 
