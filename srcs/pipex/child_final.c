@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 22:02:20 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/28 22:52:41 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/29 01:15:19 by jacgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	close_fd_parent(t_process *process)
 {
-	signal(SIGQUIT, signal_child);
+	signal(SIGQUIT, signal_child2);
 	signal(SIGINT, signal_child);
 	close(process->fd[WRITE_END]);
 	close(process->fd[READ_END]);

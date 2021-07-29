@@ -1,6 +1,8 @@
 #ifndef DATA_H
 # define DATA_H
 
+int	g_error_code;
+
 typedef int	t_bool;
 
 typedef struct s_parseo
