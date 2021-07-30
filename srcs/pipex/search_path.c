@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 15:56:22 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/28 18:58:19 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/30 18:36:29 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	get_path(char *cmd, char *envp[], char **f_path)
 	char	**paths;
 	int		fd;
 
-	if (*cmd == '.')
+	if (*cmd == '.' || *cmd == '/')
 	{
 		fd = open(cmd, O_RDONLY);
 		if (fd >= 0)
