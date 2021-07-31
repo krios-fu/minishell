@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 14:11:39 by jacgarci          #+#    #+#             */
-/*   Updated: 2021/07/31 20:48:41 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/31 22:26:20 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ static void	init_process(t_shell *shell, int num_process)
 		shell->data->lst_process = shell->data->lst_process->next;
 		i++;
 	}
-
 }
 
 void	start_parseo(t_shell *shell, char *line)
@@ -75,6 +74,8 @@ void	start_parseo(t_shell *shell, char *line)
 				start_pipe(shell, &num_process);
 				shell->data->lst_process = process;
 			}
+			else 
+				g_error_code = 1;
 		}
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/09 21:01:01 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/31 21:46:46 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/31 22:00:17 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,12 @@ void	*menu_builtins (void)
 
 int	search_builtins(t_shell *shell)
 {
-	char *bcmd;
+	char	*bcmd;
 
-	bcmd = (char *)shell->data->lst_process->argv[0];
-	if (!bcmd)
+	shell->data->lst_process->argv = ft_lst_undefine(shell->data);
+	if (!shell->data->lst_process->argv)
 		return (-1);
+	bcmd = *shell->data->lst_process->argv;
 	if (!ft_strcmp("cd\0", bcmd))
 		return (0);
 	if (!ft_strcmp("echo\0", bcmd))
@@ -49,14 +50,6 @@ int	search_builtins(t_shell *shell)
 		return (5);
 	if (!ft_strcmp("exit\0", bcmd))
 		return (6);
-	if(ft_isalpha(bcmd[0]) && ft_strchr(bcmd, '='))
-	{
-		shell->data->lst_process->argv = ft_lst_undefine(shell->data);
-		if (shell->data->lst_process->argv)
-			search_builtins(shell);
-		else
-			return (-1);
-	}
 	return (-1);
 }
 

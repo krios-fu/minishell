@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 20:24:34 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/29 02:26:15 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/31 22:35:46 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,25 +51,22 @@ void	expansive_swap_case3(t_shell *shell, t_var *var)
 	char	*tmp;
 
 	var->content = search_env(shell->data->envp_list, var->env);
-	if (*var->content)
-	{
-		var->before_exp = ft_strndup(var->token[var->i], var->j - 1);
-		split_matrix = ft_split(&var->content[var->len_exp + 1], ' ');
-		tmp_matrix = matrixjoin(var->token, split_matrix, var->i);
-		var->join_befor_tmp = ft_strjoin(var->before_exp, tmp_matrix[var->i]);
-		tmp = tmp_matrix[var->i];
-		tmp_matrix[var->i] = ft_strjoin(var->join_befor_tmp,
-				&var->token[var->i][var->j + var->len_exp]);
-		free_matrix(var->token);
-		free(var->before_exp);
-		free(var->join_befor_tmp);
-		free(tmp);
-		var->token = tmp_matrix;
-		var->i += (get_num_words_matrix(split_matrix) - 1);
-		var->i = 0;
-		var->j = 0;
-		free_matrix(split_matrix);
-	}
+	var->before_exp = ft_strndup(var->token[var->i], var->j - 1);
+	split_matrix = ft_split(&var->content[var->len_exp + 1], ' ');
+	tmp_matrix = matrixjoin(var->token, split_matrix, var->i);
+	var->join_befor_tmp = ft_strjoin(var->before_exp, tmp_matrix[var->i]);
+	tmp = tmp_matrix[var->i];
+	tmp_matrix[var->i] = ft_strjoin(var->join_befor_tmp,
+			&var->token[var->i][var->j + var->len_exp]);
+	free_matrix(var->token);
+	free(var->before_exp);
+	free(var->join_befor_tmp);
+	free(tmp);
+	var->token = tmp_matrix;
+	var->i += (get_num_words_matrix(split_matrix) - 1);
+	var->i = 0;
+	var->j = 0;
+	free_matrix(split_matrix);
 	free(var->content);
 }
 
