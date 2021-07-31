@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 22:02:20 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/29 01:15:19 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/31 21:52:04 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,11 @@ void	exec_final_child(t_shell *shell, t_process *process, int *fd_back)
 		process->fd_out = get_fd_builtins(shell);
 		redirect_input(shell, fd_back);
 		redirect_output(shell, process, fd_back);
-		get_path(process->argv[0], get_env(shell->data), &path);
 		if (process->fd_out != -2 && start_process(shell) == -1)
 		{
-			if (!*process->argv)
+			if (!process->argv)
 				exit(0);
+			get_path(process->argv[0], get_env(shell->data), &path);
 			signal(SIGQUIT, SIG_DFL);
 			execve(path, process->argv, get_env(shell->data));
 			if (ft_strlen(process->argv[0]))

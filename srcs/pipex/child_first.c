@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 22:39:47 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/29 01:32:19 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/07/31 21:52:27 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	exec_first_child(t_shell *shell, t_process *process)
 		get_path(process->argv[0], get_env(shell->data), &path);
 		if (process->fd_out != -2 && start_process(shell) == -1)
 		{
-			if (!*process->argv)
+			if (!process->argv)
 				exit(0);
 			signal(SIGQUIT, signal_child);
 			execve(path, process->argv, get_env(shell->data));

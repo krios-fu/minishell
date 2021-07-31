@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 18:15:11 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/29 02:55:38 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/31 19:39:55 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,15 +67,13 @@ void	start_pipe(t_shell *shell, int *num_p)
 	process_pid = shell->data->lst_process;
 	shell->status = true;
 	process = shell->data->lst_process;
-	if (shell->data->lst_process->argv == NULL)
-		(*num_p)--;
-	else
+	if (*num_p == 1)
 	{
-		if (*num_p == 1)
-		{
-			exec_only_one_process(shell);
-			return ;
-		}
+		exec_only_one_process(shell);
+		return ;
+	}
+	else if (*num_p > 1)
+	{
 		aux_pipe_first_process(shell, process);
 		while (*num_p > 2)
 		{

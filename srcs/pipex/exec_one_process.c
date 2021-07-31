@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 19:20:52 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/29 15:09:51 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/31 21:53:29 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void	exec_only_one_process(t_shell *shell)
 {
 	char	*path;
 
+
 	shell->data->lst_process->fd_out = get_fd_builtins(shell);
 	if (shell->data->lst_process->fd_out != -2 && start_process(shell) == -1)
 	{
@@ -78,6 +79,8 @@ void	exec_only_one_process(t_shell *shell)
 		shell->data->lst_process->pid = fork();
 		if (shell->data->lst_process->pid == 0)
 		{
+			if (!shell->data->lst_process->argv)
+				exit(0);
 			redirect_io(shell);
 			get_path(shell->data->lst_process->argv[0],
 				get_env(shell->data), &path);

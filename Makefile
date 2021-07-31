@@ -53,7 +53,7 @@ OBJS = $(SRCSM:.c=.o)
 LIBFT = libft/libft.a
 
 # COMPILER FLAGS -lreadline for library <readline/readline.h> &&  <readline/history.h>#
-CC = gcc -Wall -Wextra -Werror #-g3 -fsanitize=address
+CC = gcc -Wall -Wextra -Werror -g3 -fsanitize=address
 # COLOUR DEFINITION #
 BLUE = \033[0;34m
 GREEN = \033[1;32m

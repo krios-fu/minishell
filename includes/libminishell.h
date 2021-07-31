@@ -49,7 +49,7 @@ void	free_resources(t_process *process);
 ** process / exect
 */
 void	*menu_builtins (void);
-int		search_builtins(char *bcmd);
+int		search_builtins(t_shell *shell);
 int		start_process(t_shell *shell);
 
 /*
