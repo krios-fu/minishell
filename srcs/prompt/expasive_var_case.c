@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 20:24:34 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/31 22:35:46 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/07/31 23:14:53 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	expansive_swap_case1(t_shell *shell, t_var *var)
 	var->after_exp = ft_strjoin(var->join_befor_tmp,
 			&var->token[var->i][var->j + var->len_exp]);
 	free(var->token[var->i]);
-	free(var->env);
 	free(var->content);
 	free(var->before_exp);
 	free(var->join_befor_tmp);
@@ -38,10 +37,11 @@ void	expansive_swap_case2(t_shell *shell, t_var *var)
 			&var->token[var->i][var->j + var->len_exp]);
 	free(var->token[var->i]);
 	var->token[var->i] = var->after_exp;
-	free(var->env);
 	free(var->content);
 	free(var->before_exp);
 	free(var->join_befor_tmp);
+	var->i = 0;
+	var->j = 0;
 }
 
 void	expansive_swap_case3(t_shell *shell, t_var *var)
@@ -51,6 +51,12 @@ void	expansive_swap_case3(t_shell *shell, t_var *var)
 	char	*tmp;
 
 	var->content = search_env(shell->data->envp_list, var->env);
+	if (!*var->content)
+	{
+		free(var->content);
+		expansive_swap_case2(shell, var);
+		return ;
+	}
 	var->before_exp = ft_strndup(var->token[var->i], var->j - 1);
 	split_matrix = ft_split(&var->content[var->len_exp + 1], ' ');
 	tmp_matrix = matrixjoin(var->token, split_matrix, var->i);
@@ -84,4 +90,5 @@ void	expansive_swap(t_shell *shell, t_var *var)
 		free(var->env);
 		return ;
 	}
+	free(var->env);
 }
