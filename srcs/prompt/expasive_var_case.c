@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 20:24:34 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/31 23:14:53 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/08/02 14:18:05 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,6 @@ void	expansive_swap_case1(t_shell *shell, t_var *var)
 	var->after_exp = ft_strjoin(var->join_befor_tmp,
 			&var->token[var->i][var->j + var->len_exp]);
 	free(var->token[var->i]);
-	free(var->content);
-	free(var->before_exp);
-	free(var->join_befor_tmp);
 	var->token[var->i] = var->after_exp;
 }
 
@@ -37,9 +34,6 @@ void	expansive_swap_case2(t_shell *shell, t_var *var)
 			&var->token[var->i][var->j + var->len_exp]);
 	free(var->token[var->i]);
 	var->token[var->i] = var->after_exp;
-	free(var->content);
-	free(var->before_exp);
-	free(var->join_befor_tmp);
 	var->i = 0;
 	var->j = 0;
 }
@@ -65,15 +59,12 @@ void	expansive_swap_case3(t_shell *shell, t_var *var)
 	tmp_matrix[var->i] = ft_strjoin(var->join_befor_tmp,
 			&var->token[var->i][var->j + var->len_exp]);
 	free_matrix(var->token);
-	free(var->before_exp);
-	free(var->join_befor_tmp);
 	free(tmp);
 	var->token = tmp_matrix;
 	var->i += (get_num_words_matrix(split_matrix) - 1);
 	var->i = 0;
 	var->j = 0;
 	free_matrix(split_matrix);
-	free(var->content);
 }
 
 void	expansive_swap(t_shell *shell, t_var *var)
@@ -85,10 +76,9 @@ void	expansive_swap(t_shell *shell, t_var *var)
 	else if (var->bool == true)
 		expansive_swap_case2(shell, var);
 	else
-	{
 		expansive_swap_case3(shell, var);
-		free(var->env);
-		return ;
-	}
+	free(var->before_exp);
+	free(var->join_befor_tmp);
+	free(var->content);
 	free(var->env);
 }

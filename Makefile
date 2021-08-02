@@ -43,7 +43,8 @@ SRCS =	srcs/utils/list_utils					\
 		srcs/builtins/ft_list_undefine			\
 		srcs/prompt/expansive_var_utils			\
 		srcs/prompt/expasive_var_case			\
-		srcs/utils/signals						
+		srcs/utils/signals						\
+		srcs/prompt/expansive_redirect
 #srcs/utils/signals						
 
 #		srcs/utils/start						

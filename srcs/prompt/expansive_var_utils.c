@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 20:07:12 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/28 22:07:43 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/08/02 14:17:47 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	len_expansive(t_var *var)
 	}
 }
 
-int	get_num_words_matrix (char **str)
+int	get_num_words_matrix(char **str)
 {
 	int	i;
 

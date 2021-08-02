@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libminishell.h                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/02 14:13:38 by krios-fu          #+#    #+#             */
+/*   Updated: 2021/08/02 14:14:09 by krios-fu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef LIBMINISHELL_H
 # define LIBMINISHELL_H
 
@@ -31,6 +43,7 @@
 
 void	print_welcome(t_shell *shell);
 char	*prompt(t_shell *shell);
+void	expansive_token_aux_2(t_shell *shell, t_var *var);
 
 /*
 **	process/process
@@ -42,13 +55,13 @@ void	expansive_token(t_shell *shell, char **argv);
 void	loop_expa_redirect_input(t_shell *shell, t_redirect *redirect);
 void	loop_expa_redirect_output(t_shell *shell, t_redirect *redirect);
 int		get_process(t_data *data, char *line);
-void	assign_fd_to_process (t_process *lst_process);
+void	assign_fd_to_process(t_process *lst_process);
 void	free_resources(t_process *process);
 
 /* 
 ** process / exect
 */
-void	*menu_builtins (void);
+void	*menu_builtins(void);
 int		search_builtins(t_shell *shell);
 int		start_process(t_shell *shell);
 
@@ -85,7 +98,7 @@ void	exect_between_childs(t_shell *shell, t_process *process, int *fd_back);
 void	exec_only_one_process(t_shell *shell);
 void	redirect_output_exec(t_shell *shell);
 void	redirect_input_exec(t_shell *shell);
-int		get_fd_builtins (t_shell *shell);
+int		get_fd_builtins(t_shell *shell);
 void	redirect_io(t_shell *shell);
 
 #endif

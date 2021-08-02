@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 21:00:26 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/28 19:18:58 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/08/02 13:26:31 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*set_file_redirect(t_redirect *redirect, char *line)
 			break ;
 	}
 	file[0] = ft_strndup(line, i);
-	file [1] = NULL;
+	file[1] = NULL;
 	redirect->file = file;
 	return (&line[i]);
 }

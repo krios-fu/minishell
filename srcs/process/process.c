@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 21:30:07 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/28 22:17:08 by jacgarci         ###   ########.fr       */
+/*   Updated: 2021/08/02 14:16:58 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	get_process(t_data *data, char *line)
 	return (num_process);
 }
 
-void	assign_fd_to_process (t_process *lst_process)
+void	assign_fd_to_process(t_process *lst_process)
 {
 	t_process	*tmp_process;
 

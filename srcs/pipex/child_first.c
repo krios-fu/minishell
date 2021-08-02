@@ -6,13 +6,13 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 22:39:47 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/31 21:52:27 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/08/02 14:12:37 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libminishell.h"
 
-static void	redirect_input (t_shell *shell)
+static void	redirect_input(t_shell *shell)
 {
 	int	fd_file;
 
