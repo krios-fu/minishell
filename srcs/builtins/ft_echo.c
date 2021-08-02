@@ -29,6 +29,37 @@ static void	print_args(t_data *data, int *index)
 	}
 }
 
+static int	check_argument(char *content)
+{
+	int	hyphen;
+	int	n;
+
+	hyphen = 0;
+	n = 0;
+	while (*content)
+	{
+		if (*content == '-')
+			hyphen++;
+		else if (*content != 'n')
+			n = -1;
+		content++;
+	}
+	if (hyphen == 1 && !n)
+		return (1);
+	return (0);
+}
+
+static void	check_flag(t_data *data, int *index, int *flag)
+{
+	while (data->lst_process->argv[*index])
+	{
+		if (!check_argument(data->lst_process->argv[*index]))
+			return ;
+		(*index)++;
+		*flag = 1;
+	}
+}
+
 void	ft_echo(t_data *data)
 {
 	int	flag;
@@ -41,11 +72,7 @@ void	ft_echo(t_data *data)
 		ft_putstr_fd("\n", data->lst_process->fd_out);
 		return ;
 	}
-	if (ft_strnstr(data->lst_process->argv[index], "-n\0", 2))
-	{
-		flag = 1;
-		index++;
-	}
+	check_flag(data, &index, &flag);
 	print_args(data, &index);
 	if (!flag)
 		ft_putstr_fd("\n", data->lst_process->fd_out);
