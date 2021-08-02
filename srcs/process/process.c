@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 21:30:07 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/08/02 14:16:58 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/08/02 14:54:30 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,22 @@ static t_process	*create_process(void)
 
 static int	check_process_argv(t_process *n_process, char **l_cmd, int i)
 {
+	int	len_symbol;
+
+	len_symbol = 0;
 	n_process->argv = get_tokens_arg(n_process, l_cmd[i]);
+	if (n_process->input)
+		len_symbol = ft_strlen(n_process->input->symbol);
+	if (n_process->output)
+		len_symbol = ft_strlen(n_process->output->symbol);
 	n_process->fd = NULL;
-	if (!n_process->argv)
+	if (!n_process->argv || len_symbol > 2)
 	{
+		if (len_symbol > 2)
+		{
+			ft_putstr_fd("rocketMen: syntax error\n", 2);
+			g_error_code = 1;
+		}
 		free_matrix(l_cmd);
 		free_resources(n_process);
 		return (0);
