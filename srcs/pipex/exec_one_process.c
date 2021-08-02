@@ -22,12 +22,7 @@ static void	wait_for_child(t_shell *shell)
 	if (status == 3)
 		g_error_code = 131;
 	if (WIFEXITED(status))
-	{
-		if (WEXITSTATUS(status) == 255)
-			g_error_code = 127;
-		else
-			g_error_code = WEXITSTATUS(status);
-	}
+		g_error_code = WEXITSTATUS(status);
 }
 
 static void	close_parent_fd(t_shell *shell)

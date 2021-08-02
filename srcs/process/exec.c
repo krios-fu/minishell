@@ -65,6 +65,6 @@ int	start_process(t_shell *shell)
 	opc = search_builtins(shell);
 	if (opc >= 0)
 		(*menu[opc])(shell->data);
-	 free(menu);
+	free(menu);
 	return (opc);
 }
