@@ -51,7 +51,6 @@ static int	check_argument(char *content)
 
 static void	check_flag(t_data *data, int *index, int *flag)
 {
-	//si -n_ o -nnnn avanza index y flag = 1;
 	while (data->lst_process->argv[*index])
 	{
 		if (!check_argument(data->lst_process->argv[*index]))
