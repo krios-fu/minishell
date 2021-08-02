@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/02 14:13:38 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/08/02 14:14:09 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/08/02 17:05:13 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,9 @@
 void	print_welcome(t_shell *shell);
 char	*prompt(t_shell *shell);
 void	expansive_token_aux_2(t_shell *shell, t_var *var);
-
+void	del_quotes_redirect(t_redirect *redirect);
+int		check_split_quote(char *arg);
+char	get_quotes_split(char *arg);
 /*
 **	process/process
 **

@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 20:07:12 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/08/02 14:17:47 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/08/02 17:03:58 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,10 @@ void	loop_expa_redirect_input(t_shell *shell, t_redirect *redirect)
 	while (redirect)
 	{
 		if (ft_strcmp(redirect->symbol, "<<\0"))
+		{
 			expansive_token_input(shell, redirect->file);
+			del_quotes_redirect(redirect);
+		}
 		redirect = redirect->next;
 	}
 }
@@ -82,6 +85,7 @@ void	loop_expa_redirect_output(t_shell *shell, t_redirect *redirect)
 	while (redirect)
 	{
 		expansive_token_output(shell, redirect->file);
+		del_quotes_redirect(redirect);
 		redirect = redirect->next;
 	}
 }

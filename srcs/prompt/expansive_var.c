@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 23:30:51 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/08/02 14:17:27 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/08/02 16:40:50 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ static void	expansive_token_aux(t_shell *shell, t_var *var)
 			var->bool = true;
 		else if (var->token[var->i][var->j] == '\"' && var->bool == true)
 			var->bool = false;
-		if (var->token[var->i][var->j] == '$')
+		if (var->token[var->i][var->j] == '$'
+			&& (var->token[var->i][var->j + 1] != ' '
+			&& var->token[var->i][var->j + 1] != '\0'))
 		{
 			len_expansive(var);
 			expansive_swap(shell, var);

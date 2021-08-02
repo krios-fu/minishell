@@ -6,7 +6,7 @@
 /*   By: krios-fu <krios-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 18:29:37 by krios-fu          #+#    #+#             */
-/*   Updated: 2021/07/28 19:09:37 by krios-fu         ###   ########.fr       */
+/*   Updated: 2021/08/02 17:05:07 by krios-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	is_quote(char c)
 	return (0);
 }
 
-static	int	check_split_quote(char *arg)
+int	check_split_quote(char *arg)
 {
 	int	quote_d;
 	int	quote_s;
@@ -44,7 +44,7 @@ static	int	check_split_quote(char *arg)
 	return (0);
 }
 
-static char	get_quotes_split(char *arg)
+char	get_quotes_split(char *arg)
 {
 	int	i;
 
